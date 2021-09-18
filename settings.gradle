@@ -1,0 +1,5 @@
+rootProject.name = 'EcoMC'
+
+// Core
+include ':eco-core'
+include ':eco-core:core-plugin'

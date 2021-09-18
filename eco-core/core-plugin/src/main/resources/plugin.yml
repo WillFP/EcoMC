@@ -1,0 +1,17 @@
+name: EcoMC
+version: ${projectVersion}
+main: com.willfp.ecomc.EcoMCPlugin
+api-version: 1.16
+authors: [ Auxilor ]
+website: willfp.com
+load: STARTUP
+depend:
+  - eco
+
+commands:
+  displayiteminhand:
+    description: Amogus
+
+permissions:
+  ecomc.displayiteminhand:
+    default: false

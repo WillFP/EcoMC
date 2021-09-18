@@ -1,0 +1,6 @@
+# Project exclude paths
+/.gradle/
+/build/
+/eco-core/build/
+/eco-core/core-plugin/build/
+/eco-core/core-plugin/build/classes/java/main/
