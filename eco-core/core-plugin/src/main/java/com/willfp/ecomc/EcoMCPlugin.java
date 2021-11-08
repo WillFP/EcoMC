@@ -23,7 +23,8 @@ public class EcoMCPlugin extends EcoPlugin {
         return Arrays.asList(
                 new KeyDropListener(this),
                 new Hardinator(this),
-                new EntityYeeter(this)
+                new EntityYeeter(this),
+                new SpawnProtection(this)
         );
     }
 
