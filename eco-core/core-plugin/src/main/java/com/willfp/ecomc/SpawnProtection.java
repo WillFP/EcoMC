@@ -48,8 +48,12 @@ public class SpawnProtection extends PluginDependent<EcoPlugin> implements Liste
         }, 18000);
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.HIGHEST)
     public void onDamage(@NotNull final EntityDamageByEntityEvent event) {
+        if (event.isCancelled()) {
+            return;
+        }
+
         if (!(event.getEntity() instanceof Player player)) {
             return;
         }
