@@ -2,16 +2,13 @@ package com.willfp.ecomc;
 
 import com.willfp.eco.core.EcoPlugin;
 import com.willfp.eco.core.PluginDependent;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
-import org.bukkit.entity.Projectile;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 public class SpawnProtection extends PluginDependent<EcoPlugin> implements Listener {
     /**
@@ -71,7 +68,7 @@ public class SpawnProtection extends PluginDependent<EcoPlugin> implements Liste
             return;
         }
 
-        Player attacker = tryAsPlayer(event.getDamager());
+        Player attacker = LmaoUtils.tryAsPlayer(event.getDamager());
 
         if (!(attacker != null && event.getEntity() instanceof Player)) {
             return;
@@ -89,20 +86,5 @@ public class SpawnProtection extends PluginDependent<EcoPlugin> implements Liste
             attacker.sendMessage(this.getPlugin().getLangYml().getMessage("invul-pvp-protected-attacker"));
             victim.sendMessage(this.getPlugin().getLangYml().getMessage("invul-pvp-protected-victim"));
         }
-    }
-
-    @Nullable
-    private Player tryAsPlayer(@NotNull final Entity entity) {
-        if (entity instanceof Player) {
-            return (Player) entity;
-        }
-
-        if (entity instanceof Projectile projectile) {
-            if (projectile.getShooter() instanceof Player shooter) {
-                return shooter;
-            }
-        }
-
-        return null;
     }
 }

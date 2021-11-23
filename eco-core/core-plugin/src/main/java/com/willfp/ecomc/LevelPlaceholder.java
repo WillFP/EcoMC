@@ -56,30 +56,6 @@ public class LevelPlaceholder {
         ));
 
         PlaceholderManager.registerPlaceholder(new PlaceholderEntry(
-                "nation",
-                 player -> {
-                    String town = PlaceholderManager.translatePlaceholders("%townyadvanced_nation%", player);
-                    if (town == null || town.isEmpty() || town.isBlank()) {
-                        return StringUtils.format("&cNo Nation");
-                    } else {
-                        return town;
-                    }
-                 }
-        ));
-
-        PlaceholderManager.registerPlaceholder(new PlaceholderEntry(
-                "town",
-                 player -> {
-                    String town = PlaceholderManager.translatePlaceholders("%townyadvanced_town%", player);
-                    if (town == null || town.isEmpty() || town.isBlank()) {
-                        return StringUtils.format("&cNo Town");
-                    } else {
-                        return town;
-                    }
-                 }
-        ));
-
-        PlaceholderManager.registerPlaceholder(new PlaceholderEntry(
                 "rank",
                  player -> {
                     String prefix = PlaceholderManager.translatePlaceholders("%luckperms_prefix%", player);
