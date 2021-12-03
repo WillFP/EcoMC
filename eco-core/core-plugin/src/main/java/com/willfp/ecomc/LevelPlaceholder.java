@@ -1,8 +1,13 @@
 package com.willfp.ecomc;
 
+import com.willfp.eco.core.integrations.economy.EconomyManager;
 import com.willfp.eco.core.integrations.placeholder.PlaceholderEntry;
 import com.willfp.eco.core.integrations.placeholder.PlaceholderManager;
-import com.willfp.eco.util.StringUtils;
+import com.willfp.eco.util.NumberUtils;
+
+import java.util.Map;
+import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class LevelPlaceholder {
     public static void register() {

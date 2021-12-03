@@ -9,13 +9,22 @@ import java.util.List;
 import java.util.logging.Level;
 
 public class EcoMCPlugin extends EcoPlugin {
+    private static EcoMCPlugin instance;
+
     public EcoMCPlugin() {
         super();
+        instance = this;
     }
 
     @Override
     protected void handleEnable() {
         LevelPlaceholder.register();
+        SchmoneyPlaceholder.init();
+    }
+
+    @Override
+    protected void handleReload() {
+        SchmoneyPlaceholder.createTheRunnable();
     }
 
     @Override
@@ -33,5 +42,9 @@ public class EcoMCPlugin extends EcoPlugin {
         return Arrays.asList(
                 new DisplayItemInHand(this)
         );
+    }
+
+    public static EcoMCPlugin getInstance() {
+        return instance;
     }
 }
