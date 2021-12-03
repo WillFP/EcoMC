@@ -16,13 +16,26 @@ import java.util.concurrent.ConcurrentHashMap;
 public class SchmoneyPlaceholder {
     private static final EcoMCPlugin PLUGIN = EcoMCPlugin.getInstance();
     private static final Map<UUID, Double> PREVIOUS_BALANCES = new ConcurrentHashMap<>();
-    private static final Map<UUID, String> CHANGES = new ConcurrentHashMap<>();
 
     public void init() {
         PlaceholderManager.registerPlaceholder(new PlaceholderEntry(
                 "money_change",
                 player -> {
-                    return CHANGES.getOrDefault(player.getUniqueId(), "");
+                    double prev = PREVIOUS_BALANCES.getOrDefault(player.getUniqueId(), 0.0);
+                    if (prev == 0) {
+                        return "";
+                    }
+
+                    double diff = EconomyManager.getBalance(player) - prev;
+                    if (Math.abs(diff) > 0.01) {
+                        if (diff > 0) {
+                            return " §e+" + NumberUtils.format(diff) + "";
+                        } else {
+                            return " §e" + NumberUtils.format(diff) + "";
+                        }
+                    } else {
+                        return "";
+                    }
                 }
         ));
     }
@@ -30,20 +43,8 @@ public class SchmoneyPlaceholder {
     public void createTheRunnable() {
         PLUGIN.getScheduler().runTimer(() -> {
             for (Player player : Bukkit.getOnlinePlayers()) {
-                double prev = PREVIOUS_BALANCES.getOrDefault(player.getUniqueId(), 0.0);
-                if (prev == 0) {
-                    CHANGES.put(player.getUniqueId(), "");
-                    continue;
-                }
-
-                double diff = EconomyManager.getBalance(player) - prev;
                 PREVIOUS_BALANCES.put(player.getUniqueId(), EconomyManager.getBalance(player));
-                if (Math.abs(diff) > 0.01) {
-                    CHANGES.put(player.getUniqueId(), " §e(" + NumberUtils.format(diff) + ")");
-                } else {
-                    CHANGES.put(player.getUniqueId(), "");
-                }
             }
-        }, 20, 20);
+        }, 20, 60);
     }
 }
