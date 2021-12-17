@@ -2,7 +2,10 @@ package com.willfp.ecomc;
 
 import com.willfp.eco.core.EcoPlugin;
 import com.willfp.eco.core.command.impl.PluginCommand;
+import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.plugin.RegisteredListener;
 
 import java.util.Arrays;
 import java.util.List;
