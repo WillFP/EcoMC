@@ -4,6 +4,8 @@ import com.willfp.eco.core.integrations.economy.EconomyManager;
 import com.willfp.eco.core.integrations.placeholder.PlaceholderEntry;
 import com.willfp.eco.core.integrations.placeholder.PlaceholderManager;
 import com.willfp.eco.util.NumberUtils;
+import com.willfp.eco.util.StringUtils;
+import org.bukkit.potion.PotionEffectType;
 
 import java.util.Map;
 import java.util.UUID;
@@ -78,6 +80,17 @@ public class LevelPlaceholder {
                      } else {
                          return " " + tag;
                      }
+                 }
+        ));
+
+        PlaceholderManager.registerPlaceholder(new PlaceholderEntry(
+                "heart",
+                 player -> {
+                    if (player.hasPotionEffect(PotionEffectType.ABSORPTION)) {
+                        return StringUtils.format("&6❤");
+                    } else {
+                        return StringUtils.format("&c❤");
+                    }
                  }
         ));
     }

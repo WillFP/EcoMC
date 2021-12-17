@@ -6,7 +6,6 @@ import org.bukkit.event.Listener;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.logging.Level;
 
 public class EcoMCPlugin extends EcoPlugin {
     private static EcoMCPlugin instance;
