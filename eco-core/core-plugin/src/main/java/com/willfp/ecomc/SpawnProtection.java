@@ -2,6 +2,7 @@ package com.willfp.ecomc;
 
 import com.willfp.eco.core.EcoPlugin;
 import com.willfp.eco.core.PluginDependent;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -43,6 +44,10 @@ public class SpawnProtection extends PluginDependent<EcoPlugin> implements Liste
             }
             player.sendMessage(this.getPlugin().getLangYml().getMessage("invul-expired"));
         }, 18000);
+
+        this.getPlugin().getScheduler().runLater(() -> {
+            Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "forcertp " + player.getName() + " -c main");
+        }, 5);
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)
