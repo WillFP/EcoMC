@@ -43,11 +43,22 @@ public class SpawnProtection extends PluginDependent<EcoPlugin> implements Liste
                 return;
             }
             player.sendMessage(this.getPlugin().getLangYml().getMessage("invul-expired"));
+            player.removeMetadata("new_player_invul", this.getPlugin());
         }, 18000);
 
         this.getPlugin().getScheduler().runLater(() -> {
             Bukkit.getServer().dispatchCommand(Bukkit.getConsoleSender(), "forcertp " + player.getName() + " -c main");
         }, 5);
+    }
+
+    @EventHandler
+    public void handleRejoins(@NotNull final PlayerJoinEvent event) {
+        Player player = event.getPlayer();
+        if (!player.hasPlayedBefore()) {
+            return;
+        }
+
+        player.removeMetadata("new_player_invul", this.getPlugin());
     }
 
     @EventHandler(priority = EventPriority.HIGHEST)
