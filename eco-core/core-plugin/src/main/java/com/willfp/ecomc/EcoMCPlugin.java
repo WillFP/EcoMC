@@ -32,7 +32,8 @@ public class EcoMCPlugin extends EcoPlugin {
                 new KeyDropListener(this),
                 new Hardinator(this),
                 new EntityYeeter(this),
-                new SpawnProtection(this)
+                new SpawnProtection(this),
+                new Baninator()
         );
     }
 

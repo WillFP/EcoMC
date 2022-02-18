@@ -15,6 +15,6 @@
         <module name="EcoMC.eco-core.core-plugin.test" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="16" />
+    <bytecodeTargetLevel target="17" />
   </component>
 </project>
