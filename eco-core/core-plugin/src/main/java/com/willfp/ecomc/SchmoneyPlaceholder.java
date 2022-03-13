@@ -1,8 +1,8 @@
 package com.willfp.ecomc;
 
 import com.willfp.eco.core.integrations.economy.EconomyManager;
-import com.willfp.eco.core.integrations.placeholder.PlaceholderEntry;
 import com.willfp.eco.core.integrations.placeholder.PlaceholderManager;
+import com.willfp.eco.core.placeholder.PlayerPlaceholder;
 import com.willfp.eco.util.NumberUtils;
 import lombok.experimental.UtilityClass;
 import org.bukkit.Bukkit;
@@ -18,7 +18,8 @@ public class SchmoneyPlaceholder {
     private static final Map<UUID, Double> PREVIOUS_BALANCES = new ConcurrentHashMap<>();
 
     public void init() {
-        PlaceholderManager.registerPlaceholder(new PlaceholderEntry(
+        PlaceholderManager.registerPlaceholder(new PlayerPlaceholder(
+                PLUGIN,
                 "money_change",
                 player -> {
                     double prev = PREVIOUS_BALANCES.getOrDefault(player.getUniqueId(), 0.0);
