@@ -1,19 +1,14 @@
 package com.willfp.ecomc;
 
-import com.willfp.eco.core.integrations.economy.EconomyManager;
-import com.willfp.eco.core.integrations.placeholder.PlaceholderEntry;
 import com.willfp.eco.core.integrations.placeholder.PlaceholderManager;
-import com.willfp.eco.util.NumberUtils;
+import com.willfp.eco.core.placeholder.PlayerPlaceholder;
 import com.willfp.eco.util.StringUtils;
 import org.bukkit.potion.PotionEffectType;
 
-import java.util.Map;
-import java.util.UUID;
-import java.util.concurrent.ConcurrentHashMap;
-
 public class LevelPlaceholder {
     public static void register() {
-        PlaceholderManager.registerPlaceholder(new PlaceholderEntry(
+        PlaceholderManager.registerPlaceholder(new PlayerPlaceholder(
+                EcoMCPlugin.getInstance(),
                 "level",
                 player -> {
                     int level;
@@ -24,7 +19,7 @@ public class LevelPlaceholder {
                     }
                     String color;
 
-                    if(level == 1) {
+                    if (level == 1) {
                         color = "§8";
                     } else if (level < 10) {
                         color = "§7";
@@ -44,54 +39,57 @@ public class LevelPlaceholder {
                         color = "§b";
                     } else if (level < 90) {
                         color = "§a";
-                    } else if(level < 100) {
+                    } else if (level < 100) {
                         color = "§d";
                     } else {
                         color = "§a§l";
                     }
 
                     return color + level + "✯";
-                },
-                true
-                ));
-
-        PlaceholderManager.registerPlaceholder(new PlaceholderEntry(
-                "color",
-                 player -> {
-                     return PlaceholderManager.translatePlaceholders("%luckperms_prefix%", player).substring(0, 2);
-                 }
+                }
         ));
 
-        PlaceholderManager.registerPlaceholder(new PlaceholderEntry(
+        PlaceholderManager.registerPlaceholder(new PlayerPlaceholder(
+                EcoMCPlugin.getInstance(),
+                "color",
+                player -> {
+                    return PlaceholderManager.translatePlaceholders("%luckperms_prefix%", player).substring(0, 2);
+                }
+        ));
+
+        PlaceholderManager.registerPlaceholder(new PlayerPlaceholder(
+                EcoMCPlugin.getInstance(),
                 "rank",
-                 player -> {
+                player -> {
                     String prefix = PlaceholderManager.translatePlaceholders("%luckperms_prefix%", player);
                     return prefix.replace(" ", "")
                             .replace("|", "");
-                 }
+                }
         ));
 
-        PlaceholderManager.registerPlaceholder(new PlaceholderEntry(
+        PlaceholderManager.registerPlaceholder(new PlayerPlaceholder(
+                EcoMCPlugin.getInstance(),
                 "tag",
-                 player -> {
-                     String tag = PlaceholderManager.translatePlaceholders("%deluxetags_tag%", player);
-                     if (tag == null || tag.isEmpty() || tag.isBlank()) {
-                         return "";
-                     } else {
-                         return " " + tag;
-                     }
-                 }
+                player -> {
+                    String tag = PlaceholderManager.translatePlaceholders("%deluxetags_tag%", player);
+                    if (tag == null || tag.isEmpty() || tag.isBlank()) {
+                        return "";
+                    } else {
+                        return " " + tag;
+                    }
+                }
         ));
 
-        PlaceholderManager.registerPlaceholder(new PlaceholderEntry(
+        PlaceholderManager.registerPlaceholder(new PlayerPlaceholder(
+                EcoMCPlugin.getInstance(),
                 "heart",
-                 player -> {
+                player -> {
                     if (player.hasPotionEffect(PotionEffectType.ABSORPTION)) {
                         return StringUtils.format("&6❤");
                     } else {
                         return StringUtils.format("&c❤");
                     }
-                 }
+                }
         ));
     }
 }
