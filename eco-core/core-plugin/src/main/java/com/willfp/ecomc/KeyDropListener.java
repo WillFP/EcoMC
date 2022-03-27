@@ -32,7 +32,7 @@ public class KeyDropListener extends PluginDependent<EcoPlugin> implements Liste
         if (NumberUtils.randFloat(0, 100) < this.getPlugin().getConfigYml().getDouble("chance")) {
             Bukkit.getServer().dispatchCommand(
                     Bukkit.getConsoleSender(),
-                    "crates givekey basic " + player.getName() + " 1"
+                    "crates give " + player.getName() + " basic"
             );
             player.sendMessage(this.getPlugin().getLangYml().getMessage("got-key"));
             player.playSound(
@@ -79,7 +79,7 @@ public class KeyDropListener extends PluginDependent<EcoPlugin> implements Liste
         if (NumberUtils.randFloat(0, 100) < this.getPlugin().getConfigYml().getDouble("mob-chance") * multiplier) {
             Bukkit.getServer().dispatchCommand(
                     Bukkit.getConsoleSender(),
-                    "crates givekey basic " + player.getName() + " 1"
+                    "crates give " + player.getName() + " basic"
             );
             player.sendMessage(this.getPlugin().getLangYml().getMessage("got-key"));
             player.playSound(
