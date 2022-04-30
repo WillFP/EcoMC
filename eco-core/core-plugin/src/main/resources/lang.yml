@@ -11,3 +11,5 @@ messages:
   invul-pvp-remove: "&fYour invulnerability has been removed (PvP). &aGood luck!"
   invul-pvp-protected-victim: "&fYou are currently protected from PvP. Fighting back will remove your invulnerability!"
   invul-pvp-protected-attacker: "&cThis player is currently protected from PvP."
+  must-specify-player: "&cYou must specify a player!"
+  invalid-player: "&cInvalid player!"
