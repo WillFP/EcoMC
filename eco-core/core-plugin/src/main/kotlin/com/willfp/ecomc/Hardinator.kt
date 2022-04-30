@@ -17,7 +17,7 @@ class Hardinator(private val plugin: EcoPlugin) : Listener {
 
     @EventHandler
     fun dealLess(event: EntityDamageByEntityEvent) {
-        val player = event.damager.tryAsPlayer() ?: return
+        event.damager.tryAsPlayer() ?: return
         event.damage = event.damage * plugin.configYml.getDouble("outgoing-damage-multiplier")
     }
 }

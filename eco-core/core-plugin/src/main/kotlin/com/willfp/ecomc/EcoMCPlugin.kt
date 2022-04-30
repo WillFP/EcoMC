@@ -5,6 +5,7 @@ import com.willfp.eco.core.command.impl.PluginCommand
 import com.willfp.eco.core.integrations.placeholder.PlaceholderManager
 import com.willfp.eco.core.placeholder.PlayerPlaceholder
 import com.willfp.eco.util.toNiceString
+import com.willfp.ecomc.crystals.CommandCrystals
 import org.bukkit.event.Listener
 
 class EcoMCPlugin : EcoPlugin() {
@@ -24,7 +25,7 @@ class EcoMCPlugin : EcoPlugin() {
 
     override fun loadPluginCommands(): List<PluginCommand> {
         return listOf(
-            makeCrystalsCommand(this)
+            CommandCrystals(this)
         )
     }
 

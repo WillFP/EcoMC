@@ -13,3 +13,7 @@ messages:
   invul-pvp-protected-attacker: "&cThis player is currently protected from PvP."
   must-specify-player: "&cYou must specify a player!"
   invalid-player: "&cInvalid player!"
+  must-specify-amount: "&cYou must specify the amount!"
+  invalid-amount: "&cInvalid amount!"
+  crystal-amount: "%player%&f has %amount%&f crystals"
+  gave-crystals: "Gave %player%&f %amount%&f crystals!"

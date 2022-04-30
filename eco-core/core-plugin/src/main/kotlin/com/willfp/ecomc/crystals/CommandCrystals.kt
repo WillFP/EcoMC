@@ -1,35 +1,42 @@
-@file:Suppress("UNUSED_PARAMETER")
-
-package com.willfp.ecomc
+package com.willfp.ecomc.crystals
 
 import com.willfp.eco.core.EcoPlugin
 import com.willfp.eco.core.command.impl.PluginCommand
-import com.willfp.eco.core.commands.addSubcommand
-import com.willfp.eco.core.commands.command
-import com.willfp.eco.core.data.keys.PersistentDataKey
-import com.willfp.eco.core.data.keys.PersistentDataKeyType
-import com.willfp.eco.core.data.profile
+import com.willfp.eco.core.command.impl.Subcommand
 import com.willfp.eco.util.StringUtils
 import com.willfp.eco.util.savedDisplayName
+import com.willfp.ecomc.crystals
 import org.bukkit.Bukkit
-import org.bukkit.OfflinePlayer
 import org.bukkit.command.CommandSender
 import org.bukkit.util.StringUtil
 
-private val key = PersistentDataKey(
-    EcoMCPlugin.instance.namespacedKeyFactory.create("crystals"),
-    PersistentDataKeyType.INT,
-    0
-)
-
-var OfflinePlayer.crystals: Int
-    get() = this.profile.read(key)
-    set(value) {
-        this.profile.write(key, value)
+class CommandCrystals(
+    plugin: EcoPlugin
+) : PluginCommand(
+    plugin,
+    "crystals",
+    "ecomc.crystals",
+    false
+) {
+    init {
+        this.addSubcommand(CommandGive(plugin))
+            .addSubcommand(CommandGet(plugin))
     }
 
-fun makeCrystalsCommand(plugin: EcoPlugin): PluginCommand {
-    fun executeGive(sender: CommandSender, args: List<String>) {
+    override fun onExecute(sender: CommandSender, args: List<String>) {
+        sender.sendMessage(plugin.langYml.getMessage("invalid-command"))
+    }
+}
+
+private class CommandGive(
+    plugin: EcoPlugin
+) : Subcommand(
+    plugin,
+    "give",
+    "ecomc.crystals",
+    false
+) {
+    override fun onExecute(sender: CommandSender, args: List<String>) {
         if (args.isEmpty()) {
             sender.sendMessage(plugin.langYml.getMessage("must-specify-player"))
             return
@@ -57,9 +64,14 @@ fun makeCrystalsCommand(plugin: EcoPlugin): PluginCommand {
         }
 
         player.crystals += amount
+        sender.sendMessage(
+            plugin.langYml.getMessage("gave-crystals", StringUtils.FormatOption.WITHOUT_PLACEHOLDERS)
+                .replace("%player%", player.savedDisplayName)
+                .replace("%amount%", amount.toString())
+        )
     }
 
-    fun tabCompleteGive(sender: CommandSender, args: List<String>): List<String> {
+    override fun tabComplete(sender: CommandSender, args: List<String>): List<String> {
         val completions = mutableListOf<String>()
 
         if (args.isEmpty()) {
@@ -84,8 +96,17 @@ fun makeCrystalsCommand(plugin: EcoPlugin): PluginCommand {
 
         return completions
     }
+}
 
-    fun executeGet(sender: CommandSender, args: List<String>) {
+private class CommandGet(
+    plugin: EcoPlugin
+) : Subcommand(
+    plugin,
+    "get",
+    "ecomc.crystals",
+    false
+) {
+    override fun onExecute(sender: CommandSender, args: List<String>) {
         if (args.isEmpty()) {
             sender.sendMessage(plugin.langYml.getMessage("must-specify-player"))
             return
@@ -107,7 +128,7 @@ fun makeCrystalsCommand(plugin: EcoPlugin): PluginCommand {
         )
     }
 
-    fun tabCompleteGet(sender: CommandSender, args: List<String>): List<String> {
+    override fun tabComplete(sender: CommandSender, args: List<String>): List<String> {
         val completions = mutableListOf<String>()
 
         if (args.isEmpty()) {
@@ -123,17 +144,5 @@ fun makeCrystalsCommand(plugin: EcoPlugin): PluginCommand {
         }
 
         return completions
-    }
-
-    return command(plugin, "crystals", "ecomc.crystals", false) {
-        addSubcommand("give") {
-            executor = ::executeGive
-            tabCompleter = ::tabCompleteGive
-        }
-
-        addSubcommand("get") {
-            executor = ::executeGet
-            tabCompleter = ::tabCompleteGet
-        }
     }
 }
