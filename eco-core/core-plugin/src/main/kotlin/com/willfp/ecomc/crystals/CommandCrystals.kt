@@ -8,6 +8,7 @@ import com.willfp.eco.util.savedDisplayName
 import com.willfp.ecomc.crystals
 import org.bukkit.Bukkit
 import org.bukkit.command.CommandSender
+import org.bukkit.entity.Player
 import org.bukkit.util.StringUtil
 
 class CommandCrystals(
@@ -21,6 +22,7 @@ class CommandCrystals(
     init {
         this.addSubcommand(CommandGive(plugin))
             .addSubcommand(CommandGet(plugin))
+            .addSubcommand(CommandShop(plugin))
     }
 
     override fun onExecute(sender: CommandSender, args: List<String>) {
@@ -144,5 +146,19 @@ private class CommandGet(
         }
 
         return completions
+    }
+}
+
+private class CommandShop(
+    plugin: EcoPlugin
+) : Subcommand(
+    plugin,
+    "shop",
+    "ecomc.crystals",
+    true
+) {
+    override fun onExecute(sender: CommandSender, args: List<String>) {
+        sender as Player
+        crystalShop.open(sender)
     }
 }
