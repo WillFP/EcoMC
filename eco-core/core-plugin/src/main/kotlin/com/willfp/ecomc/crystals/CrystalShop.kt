@@ -21,7 +21,9 @@ import com.willfp.ecomc.EcoMCPlugin
 import org.bukkit.Bukkit
 import org.bukkit.Material
 import org.bukkit.Sound
+import org.bukkit.enchantments.Enchantment
 import org.bukkit.entity.Player
+import org.bukkit.inventory.ItemFlag
 
 private interface ShopItem {
     fun giveTo(player: Player)
@@ -92,11 +94,20 @@ private fun buySlot(config: Config, isSingleUse: Boolean = false): Slot {
                 )
 
                 player.closeInventory()
+            } else {
+                player.sendMessage(EcoMCPlugin.instance.langYml.getMessage("buy-crystals"))
+                player.playSound(
+                    player.location,
+                    Sound.ENTITY_VILLAGER_NO,
+                    1f,
+                    0.9f
+                )
             }
         }
 
         setUpdater { player, _, _ ->
             val lore = mutableListOf(
+                "",
                 "&fPrice: &b${price}❖",
                 ""
             )
@@ -109,7 +120,7 @@ private fun buySlot(config: Config, isSingleUse: Boolean = false): Slot {
                     lore.add("&e&oLeft click to buy!")
                 } else {
                     lore.add("&c&oYou cannot afford this!")
-                    lore.add("&c&oYou need &b&o${price - player.crystals}❖&c&o more crystals!")
+                    lore.add("&c&oYou need &b&o${price - player.crystals}❖&c&o more crystals")
                     lore.add("&c&oGet some at &a&ostore.ecomc.net")
                 }
             }
@@ -125,6 +136,7 @@ private lateinit var tagsShop: Menu
 private lateinit var trackersShop: Menu
 private lateinit var statsShop: Menu
 private lateinit var enchantShop: Menu
+private lateinit var armorUpgradeShop: Menu
 
 private lateinit var mainMenu: Menu
 
@@ -193,6 +205,22 @@ fun initCrystalShop(plugin: EcoPlugin) {
                 onLeftClick { event, _, _ ->
                     val player = event.whoClicked as Player
                     enchantShop.open(player)
+                }
+            }
+        )
+
+        setSlot(
+            2, 6, slot(
+                ItemStackBuilder(Material.DIAMOND_CHESTPLATE)
+                    .addEnchantment(Enchantment.DURABILITY, 1)
+                    .addItemFlag(ItemFlag.HIDE_ENCHANTS)
+                    .addItemFlag(ItemFlag.HIDE_ATTRIBUTES)
+                    .setDisplayName("&bArmor Upgrades")
+                    .build()
+            ) {
+                onLeftClick { event, _, _ ->
+                    val player = event.whoClicked as Player
+                    armorUpgradeShop.open(player)
                 }
             }
         )
@@ -366,6 +394,49 @@ fun initCrystalShop(plugin: EcoPlugin) {
         }
 
         setTitle("Crystal Shop ❖ - Enchants")
+
+        onClose { event, _ ->
+            val player = event.player as Player
+            plugin.scheduler.run { mainMenu.open(player) }
+        }
+    }
+
+    armorUpgradeShop = menu(2) {
+        setMask(
+            FillerMask(
+                MaskItems(
+                    Items.lookup("light_blue_stained_glass_pane")
+                ),
+                "000000000",
+                "111101111",
+            )
+        )
+
+        setSlot(2, 5, slot(
+            ItemStackBuilder(Material.DIAMOND)
+                .setDisplayName("&fYour Balance:")
+                .build()
+        ) {
+            setUpdater { player, _, previous ->
+                previous.fast().lore = listOf(
+                    "&b${player.crystals}❖ &fCrystals",
+                    "",
+                    "&eGet more at &astore.ecomc.net"
+                ).formatEco()
+
+                previous
+            }
+        })
+
+        for (config in plugin.configYml.getSubsections("crystalshop.armor")) {
+            setSlot(
+                config.getInt("gui.row"),
+                config.getInt("gui.column"),
+                buySlot(config, isSingleUse = config.getBool("singleUse"))
+            )
+        }
+
+        setTitle("Crystal Shop ❖ - Armor Upgrades")
 
         onClose { event, _ ->
             val player = event.player as Player
