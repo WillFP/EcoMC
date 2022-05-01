@@ -9,6 +9,7 @@ import com.willfp.eco.core.drops.DropQueue
 import com.willfp.eco.core.fast.fast
 import com.willfp.eco.core.gui.menu
 import com.willfp.eco.core.gui.menu.Menu
+import com.willfp.eco.core.gui.menu.MenuBuilder
 import com.willfp.eco.core.gui.slot
 import com.willfp.eco.core.gui.slot.FillerMask
 import com.willfp.eco.core.gui.slot.MaskItems
@@ -124,7 +125,7 @@ private lateinit var crystalShopPage1: Menu
 private lateinit var crystalShopPage2: Menu
 
 fun initCrystalShop(plugin: EcoPlugin) {
-    crystalShopPage1 = menu(4) {
+    fun crystalShop(builder: MenuBuilder.() -> Unit): Menu = menu(4) {
         setMask(
             FillerMask(
                 MaskItems(
@@ -133,7 +134,7 @@ fun initCrystalShop(plugin: EcoPlugin) {
                 "100000001",
                 "100000001",
                 "100000001",
-                "111101011",
+                "111101111",
             )
         )
 
@@ -153,6 +154,10 @@ fun initCrystalShop(plugin: EcoPlugin) {
             }
         })
 
+        builder(this)
+    }
+
+    crystalShopPage1 = crystalShop {
         setSlot(
             4, 7, slot(
                 ItemStackBuilder(Material.PAPER)
@@ -179,35 +184,7 @@ fun initCrystalShop(plugin: EcoPlugin) {
         }
     }
 
-    crystalShopPage2 = menu(4) {
-        setMask(
-            FillerMask(
-                MaskItems(
-                    Items.lookup("light_blue_stained_glass_pane")
-                ),
-                "100000001",
-                "100000001",
-                "100000001",
-                "110101111",
-            )
-        )
-
-        setSlot(4, 5, slot(
-            ItemStackBuilder(Material.DIAMOND)
-                .setDisplayName("&fYour Balance:")
-                .build()
-        ) {
-            setUpdater { player, _, previous ->
-                previous.fast().lore = listOf(
-                    "&b${player.crystals}❖ &fCrystals",
-                    "",
-                    "&a&oGet more at store.ecomc.net!"
-                ).formatEco()
-
-                previous
-            }
-        })
-
+    crystalShopPage2 = crystalShop {
         setSlot(
             4, 3, slot(
                 ItemStackBuilder(Material.PAPER)
