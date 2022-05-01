@@ -1,15 +1,395 @@
-chance: 0.025
-mob-chance: 0.07
-incoming-damage-multiplier: 1.2
-outgoing-damage-multiplier: 0.7
+mob-chance: 0.1
+chance: 0.008
+outgoing-damage-multiplier: 1
+incoming-damage-multiplier: 1
 
 crystalshop:
-  - id: 1000_dollar
-    gui:
-      page: 1
-      row: 1
-      column: 2
-    singleUse: false
-    price: 10
-    display: diamond name:"&a$1000"
-    command: eco give %player% 1000
+  stats:
+    - display: paper unbreaking:1 hide_enchants name:"&fPermanent +1 %ecoskills_defense_name%"
+      command: ecoskills give %player% defense 1
+      singleUse: false
+      price: 120
+      gui:
+        column: 1
+        row: 1
+      id: defense
+
+    - display: paper unbreaking:1 hide_enchants name:"&fPermanent +1 %ecoskills_strength_name%"
+      command: ecoskills give %player% strength 1
+      singleUse: false
+      price: 120
+      gui:
+        column: 2
+        row: 1
+      id: strength
+
+    - display: paper unbreaking:1 hide_enchants name:"&fPermanent +1 %ecoskills_crit_chance_name%"
+      command: ecoskills give %player% crit_chance 1
+      singleUse: false
+      price: 120
+      gui:
+        column: 3
+        row: 1
+      id: crit_chance
+
+    - display: paper unbreaking:1 hide_enchants name:"&fPermanent +1 %ecoskills_crit_damage_name%"
+      command: ecoskills give %player% crit_damage 1
+      singleUse: false
+      price: 120
+      gui:
+        column: 4
+        row: 1
+      id: crit_damage
+
+    - display: paper unbreaking:1 hide_enchants name:"&fPermanent +1 %ecoskills_speed_name%"
+      command: ecoskills give %player% speed 1
+      singleUse: false
+      price: 120
+      gui:
+        column: 6
+        row: 1
+      id: speed
+
+    - display: paper unbreaking:1 hide_enchants name:"&fPermanent +1 %ecoskills_attack_speed_name%"
+      command: ecoskills give %player% attack_speed 1
+      singleUse: false
+      price: 120
+      gui:
+        column: 7
+        row: 1
+      id: attack_speed
+
+    - display: paper unbreaking:1 hide_enchants name:"&fPermanent +1 %ecoskills_wisdom_name%"
+      command: ecoskills give %player% wisdom 1
+      singleUse: false
+      price: 120
+      gui:
+        column: 8
+        row: 1
+      id: wisdom
+
+    - display: paper unbreaking:1 hide_enchants name:"&fPermanent +1 %ecoskills_ferocity_name%"
+      command: ecoskills give %player% ferocity 1
+      singleUse: false
+      price: 120
+      gui:
+        column: 9
+        row: 1
+      id: ferocity
+
+  trackers:
+    - display: stattrackers:arrows_shot
+      item: stattrackers:arrows_shot
+      singleUse: false
+      price: 275
+      gui:
+        column: 2
+        row: 1
+      id: arrows_shot
+
+    - display: stattrackers:blocks_broken
+      item: stattrackers:blocks_broken
+      singleUse: false
+      price: 380
+      gui:
+        column: 3
+        row: 1
+      id: blocks_broken
+
+    - display: stattrackers:bosses_killed
+      item: stattrackers:bosses_killed
+      singleUse: false
+      price: 275
+      gui:
+        column: 4
+        row: 1
+      id: bosses_killed
+
+    - display: stattrackers:criticals_dealt
+      item: stattrackers:criticals_dealt
+      singleUse: false
+      price: 275
+      gui:
+        column: 5
+        row: 1
+      id: criticals_dealt
+
+    - display: stattrackers:damage_blocked
+      item: stattrackers:damage_blocked
+      singleUse: false
+      price: 275
+      gui:
+        column: 6
+        row: 1
+      id: damage_blocked
+
+    - display: stattrackers:damage_dealt
+      item: stattrackers:damage_dealt
+      singleUse: false
+      price: 535
+      gui:
+        column: 7
+        row: 1
+      id: damage_dealt
+
+    - display: stattrackers:damage_taken
+      item: stattrackers:damage_taken
+      singleUse: false
+      price: 350
+      gui:
+        column: 8
+        row: 1
+      id: damage_taken
+
+    - display: stattrackers:distance_flown
+      item: stattrackers:distance_flown
+      singleUse: false
+      price: 275
+      gui:
+        column: 2
+        row: 2
+      id: distance_flown
+
+    - display: stattrackers:headshots
+      item: stattrackers:headshots
+      singleUse: false
+      price: 275
+      gui:
+        column: 3
+        row: 2
+      id: headshots
+
+    - display: stattrackers:distance_sneaked
+      item: stattrackers:distance_sneaked
+      singleUse: false
+      price: 275
+      gui:
+        column: 4
+        row: 2
+      id: distance_sneaked
+
+    - display: stattrackers:distance_sprinted
+      item: stattrackers:distance_sprinted
+      singleUse: false
+      price: 275
+      gui:
+        column: 5
+        row: 2
+      id: distance_sprinted
+
+    - display: stattrackers:distance_travelled
+      item: stattrackers:distance_travelled
+      singleUse: false
+      price: 350
+      gui:
+        column: 6
+        row: 2
+      id: distance_travelled
+
+    - display: stattrackers:mobs_killed
+      item: stattrackers:mobs_killed
+      singleUse: false
+      price: 275
+      gui:
+        column: 7
+        row: 2
+      id: mobs_killed
+
+    - display: stattrackers:players_killed
+      item: stattrackers:players_killed
+      singleUse: false
+      price: 650
+      gui:
+        column: 8
+        row: 2
+      id: players_killed
+
+  tags:
+    - display: name_tag name:"&9ツ &fTag"
+      command: lp user %player% permission set deluxetags.tag.1 true
+      singleUse: true
+      price: 450
+      gui:
+        column: 2
+        row: 1
+      id: tag_1
+
+    - display: name_tag name:"&c☀ &fTag"
+      command: lp user %player% permission set deluxetags.tag.2 true
+      singleUse: true
+      price: 450
+      gui:
+        column: 3
+        row: 1
+      id: tag_2
+
+    - display: name_tag name:"&e✦ &fTag"
+      command: lp user %player% permission set deluxetags.tag.3 true
+      singleUse: true
+      price: 90
+      gui:
+        column: 4
+        row: 1
+      id: tag_3
+
+    - display: name_tag name:"&3男 &fTag"
+      command: lp user %player% permission set deluxetags.tag.4 true
+      singleUse: true
+      price: 450
+      gui:
+        column: 5
+        row: 1
+      id: tag_4
+
+    - display: name_tag name:"&f☽ &fTag"
+      command: lp user %player% permission set deluxetags.tag.5 true
+      singleUse: true
+      price: 450
+      gui:
+        column: 6
+        row: 1
+      id: tag_5
+
+    - display: name_tag name:"&8☯ &fTag"
+      command: lp user %player% permission set deluxetags.tag.6 true
+      singleUse: true
+      price: 450
+      gui:
+        column: 7
+        row: 1
+      id: tag_6
+
+    - display: name_tag name:"&d&o(big guy) &fTag"
+      command: lp user %player% permission set deluxetags.tag.7 true
+      singleUse: true
+      price: 450
+      gui:
+        column: 8
+        row: 1
+      id: tag_7
+
+    - display: name_tag name:"§x§5§0§c§9§c§3§le§x§6§1§c§e§c§8§lg§x§7§2§d§3§c§d§li§x§8§3§d§8§d§2§lr§x§9§4§d§d§d§7§ll &fTag"
+      command: lp user %player% permission set deluxetags.tag.8 true
+      singleUse: true
+      price: 450
+      gui:
+        column: 2
+        row: 2
+      id: tag_8
+
+    - display: name_tag name:"§x§e§5§2§d§2§7c§x§d§5§2§4§2§2h§x§c§5§1§b§1§da§x§b§5§1§2§1§8d &fTag"
+      command: lp user %player% permission set deluxetags.tag.9 true
+      singleUse: true
+      price: 450
+      gui:
+        column: 3
+        row: 2
+      id: tag_9
+
+    - display: name_tag name:"§x§f§4§c§4§f§3f§x§f§5§b§2§f§4e§x§f§6§a§0§f§5m§x§f§7§8§e§f§6b§x§f§8§7§c§f§7o§x§f§9§6§a§f§8y &fTag"
+      command: lp user %player% permission set deluxetags.tag.10 true
+      singleUse: true
+      price: 450
+      gui:
+        column: 4
+        row: 2
+      id: tag_10
+
+    - display: name_tag name:"§x§0§f§9§b§0§fh§x§0§e§8§8§0§ea§x§0§d§7§5§0§dc§x§0§c§6§2§0§ck§x§0§b§4§f§0§be§x§0§a§3§c§0§ar§x§0§9§2§9§0§9m§x§0§8§1§6§0§8a§x§0§7§0§3§0§7n &fTag"
+      command: lp user %player% permission set deluxetags.tag.11 true
+      singleUse: true
+      price: 450
+      gui:
+        column: 5
+        row: 2
+      id: tag_11
+
+    - display: name_tag name:"§x§5§6§a§b§2§f§lB§x§6§6§b§5§3§9§lA§x§7§6§b§f§4§3§lL§x§8§6§c§9§4§d§lL§x§9§6§d§3§5§7§lE§x§a§6§d§d§6§1§lR &fTag"
+      command: lp user %player% permission set deluxetags.tag.12 true
+      singleUse: true
+      price: 1800
+      gui:
+        column: 6
+        row: 2
+      id: tag_12
+
+    - display: name_tag name:"§x§1§1§9§9§8§em§x§1§8§a§a§8§bi§x§1§f§b§b§8§8n§x§2§6§c§c§8§5t§x§2§d§d§d§8§2e§x§3§4§e§e§7§fd &fTag"
+      command: lp user %player% permission set deluxetags.tag.13 true
+      singleUse: true
+      price: 1800
+      gui:
+        column: 7
+        row: 2
+      id: tag_13
+
+    - display: name_tag name:"§x§4§e§5§4§c§8s§x§6§3§6§9§d§9i§x§7§8§7§e§e§am§x§8§d§9§3§f§bp &fTag"
+      command: lp user %player% permission set deluxetags.tag.14 true
+      singleUse: true
+      price: 450
+      gui:
+        column: 8
+        row: 2
+      id: tag_14
+
+    - display: name_tag name:"§x§f§c§0§0§f§f§oc§x§d§d§1§b§f§b§oy§x§b§e§3§6§f§7§ob§x§9§f§5§1§f§3§oe§x§8§0§6§c§e§f§or§x§6§1§8§7§e§b§op§x§4§2§a§2§e§7§ou§x§2§3§b§d§e§3§on§x§0§4§d§8§d§f§ok §x§0§0§d§b§d§e§k!!! &fTag"
+      command: lp user %player% permission set deluxetags.tag.15 true
+      singleUse: true
+      price: 750
+      gui:
+        column: 2
+        row: 3
+      id: tag_15
+
+    - display: name_tag name:"§x§f§1§2§7§1§1c§x§f§1§4§2§1§2r§x§f§1§5§d§1§3i§x§f§1§7§8§1§4n§x§f§1§9§3§1§5g§x§f§1§a§e§1§6e &fTag"
+      command: lp user %player% permission set deluxetags.tag.16 true
+      singleUse: true
+      price: 450
+      gui:
+        column: 3
+        row: 3
+      id: tag_16
+
+    - display: name_tag name:"§x§8§9§f§f§f§dc§x§9§a§d§d§f§7a§x§a§b§b§b§f§1t§x§b§c§9§9§e§bg§x§c§d§7§7§e§5i§x§d§e§5§5§d§fr§x§e§f§3§3§d§9l &fTag"
+      command: lp user %player% permission set deluxetags.tag.17 true
+      singleUse: true
+      price: 450
+      gui:
+        column: 4
+        row: 3
+      id: tag_17
+
+    - display: name_tag name:"§x§a§b§b§a§a§bs§x§b§4§c§1§b§4i§x§b§d§c§8§b§dg§x§c§6§c§f§c§6m§x§c§f§d§6§c§fa §x§d§8§d§d§d§8§x§e§1§e§4§e§1m§x§e§a§e§b§e§aa§x§f§3§f§2§f§3l§x§f§c§f§9§f§ce &fTag"
+      command: lp user %player% permission set deluxetags.tag.18 true
+      singleUse: true
+      price: 450
+      gui:
+        column: 5
+        row: 3
+      id: tag_18
+
+    - display: name_tag name:"§x§f§4§c§4§f§3d§x§f§6§a§5§f§5i§x§f§8§8§6§f§7n§x§f§a§6§7§f§9o &fTag"
+      command: lp user %player% permission set deluxetags.tag.19 true
+      singleUse: true
+      price: 450
+      gui:
+        column: 6
+        row: 3
+      id: tag_19
+
+    - display: name_tag name:"§x§e§d§2§1§3§as§x§e§3§2§1§3§7u§x§d§9§2§1§3§4s§x§c§f§2§1§3§1s§x§c§5§2§1§2§ey §x§b§b§2§1§2§b§x§b§1§2§1§2§8b§x§a§7§2§1§2§5a§x§9§d§2§1§2§2k§x§9§3§2§1§1§fa &fTag"
+      command: lp user %player% permission set deluxetags.tag.20 true
+      singleUse: true
+      price: 450
+      gui:
+        column: 7
+        row: 3
+      id: tag_20
+
+    - display: name_tag name:"§x§6§d§6§0§2§7s§x§7§5§6§8§3§3h§x§7§d§7§0§3§fr§x§8§5§7§8§4§bi§x§8§d§8§0§5§7g§x§9§5§8§8§6§3m§x§9§d§9§0§6§fa§x§a §5§9§8§7§b§x§a§d§a§0§8§7b§x§b§5§a§8§9§3a§x§b§d§b§0§9§fl§x§c§5§b§8§a§bl§x§c§d§c§0§b§7s &fTag"
+      command: lp user %player% permission set deluxetags.tag.21 true
+      singleUse: true
+      price: 650
+      gui:
+        column: 8
+        row: 3
+      id: tag_21
