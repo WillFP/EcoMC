@@ -156,6 +156,8 @@ fun initCrystalShop(plugin: EcoPlugin) {
             }
         })
 
+        setTitle("Crystal Shop ❖")
+
         builder(this)
     }
 
