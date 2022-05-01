@@ -80,6 +80,10 @@ private fun buySlot(config: Config, isSingleUse: Boolean = false): Slot {
             if (player.crystals >= price) {
                 player.crystals -= price
 
+                if (key != null) {
+                    player.profile.write(key, player.profile.read(key) + 1)
+                }
+
                 item.giveTo(player)
                 player.playSound(
                     player.location,
