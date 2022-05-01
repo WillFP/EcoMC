@@ -316,7 +316,7 @@ fun initCrystalShop(plugin: EcoPlugin) {
         }
     }
 
-    statsShop = menu(2) {
+    statsShop = menu(3) {
         setMask(
             FillerMask(
                 MaskItems(
@@ -328,7 +328,7 @@ fun initCrystalShop(plugin: EcoPlugin) {
             )
         )
 
-        setSlot(2, 5, slot(
+        setSlot(3, 5, slot(
             ItemStackBuilder(Material.DIAMOND)
                 .setDisplayName("&fYour Balance:")
                 .build()
