@@ -155,10 +155,10 @@ private class CommandShop(
     plugin,
     "shop",
     "ecomc.crystals",
-    true
+    false
 ) {
     override fun onExecute(player: CommandSender, args: List<String>) {
-        player as Player
+        if (player !is Player) return
         player.openCrystalShop()
     }
 }
