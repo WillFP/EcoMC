@@ -324,6 +324,7 @@ fun initCrystalShop(plugin: EcoPlugin) {
                     Items.lookup("light_blue_stained_glass_pane")
                 ),
                 "000000000",
+                "000000000",
                 "111101111",
             )
         )
