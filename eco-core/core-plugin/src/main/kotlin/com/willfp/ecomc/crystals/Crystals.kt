@@ -42,7 +42,7 @@ class CrystalLuckListener(
             return
         }
 
-        if (NumberUtils.randFloat(0.0, 100.0) < level * 0.1) {
+        if (NumberUtils.randFloat(0.0, 100.0) < level * 0.05) {
             player.crystals += 1
             player.sendMessage(plugin.langYml.getMessage("crystal-luck"))
             player.playSound(
