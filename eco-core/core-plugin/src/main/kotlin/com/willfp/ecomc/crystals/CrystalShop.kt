@@ -136,6 +136,7 @@ private lateinit var tagsShop: Menu
 private lateinit var trackersShop: Menu
 private lateinit var statsShop: Menu
 private lateinit var enchantShop: Menu
+private lateinit var sellwandShop: Menu
 
 private lateinit var mainMenu: Menu
 
@@ -208,6 +209,20 @@ fun initCrystalShop(plugin: EcoPlugin) {
                     val player = event.whoClicked as Player
                     player.playClickSound()
                     enchantShop.open(player)
+                }
+            }
+        )
+
+        setSlot(
+            2, 5, slot(
+                ItemStackBuilder(Material.BLAZE_ROD)
+                    .setDisplayName("&bSellwands")
+                    .build()
+            ) {
+                onLeftClick { event, _, _ ->
+                    val player = event.whoClicked as Player
+                    player.playClickSound()
+                    sellwandShop.open(player)
                 }
             }
         )
@@ -381,6 +396,49 @@ fun initCrystalShop(plugin: EcoPlugin) {
         }
 
         setTitle("Crystal Shop ❖ - Enchants")
+
+        onClose { event, _ ->
+            val player = event.player as Player
+            plugin.scheduler.run { mainMenu.open(player) }
+        }
+    }
+
+    sellwandShop = menu(2) {
+        setMask(
+            FillerMask(
+                MaskItems(
+                    Items.lookup("light_blue_stained_glass_pane")
+                ),
+                "000000000",
+                "111101111",
+            )
+        )
+
+        setSlot(2, 5, slot(
+            ItemStackBuilder(Material.DIAMOND)
+                .setDisplayName("&fYour Balance:")
+                .build()
+        ) {
+            setUpdater { player, _, previous ->
+                previous.fast().lore = listOf(
+                    "&b${player.crystals}❖ &fCrystals",
+                    "",
+                    "&eGet more at &astore.ecomc.net"
+                ).formatEco()
+
+                previous
+            }
+        })
+
+        for (config in plugin.configYml.getSubsections("crystalshop.sellwands")) {
+            setSlot(
+                config.getInt("gui.row"),
+                config.getInt("gui.column"),
+                buySlot(config, isSingleUse = config.getBool("singleUse"))
+            )
+        }
+
+        setTitle("Crystal Shop ❖ - Sellwands")
 
         onClose { event, _ ->
             val player = event.player as Player
