@@ -136,7 +136,7 @@ crystalshop:
       id: strength
 
     - display: paper unbreaking:1 hide_enchants name:"&fPermanent +10 %ecoskills_crit_chance_name%"
-      command: ecoskills give %player% crit_chance 1
+      command: ecoskills give %player% crit_chance 10
       singleUse: false
       price: 1200
       gui:
@@ -145,7 +145,7 @@ crystalshop:
       id: crit_chance
 
     - display: paper unbreaking:1 hide_enchants name:"&fPermanent +10 %ecoskills_crit_damage_name%"
-      command: ecoskills give %player% crit_damage 1
+      command: ecoskills give %player% crit_damage 10
       singleUse: false
       price: 1200
       gui:
@@ -154,7 +154,7 @@ crystalshop:
       id: crit_damage
 
     - display: paper unbreaking:1 hide_enchants name:"&fPermanent +10 %ecoskills_speed_name%"
-      command: ecoskills give %player% speed 1
+      command: ecoskills give %player% speed 10
       singleUse: false
       price: 1200
       gui:
@@ -163,7 +163,7 @@ crystalshop:
       id: speed
 
     - display: paper unbreaking:1 hide_enchants name:"&fPermanent +10 %ecoskills_attack_speed_name%"
-      command: ecoskills give %player% attack_speed 1
+      command: ecoskills give %player% attack_speed 10
       singleUse: false
       price: 1200
       gui:
@@ -172,7 +172,7 @@ crystalshop:
       id: attack_speed
 
     - display: paper unbreaking:1 hide_enchants name:"&fPermanent +10 %ecoskills_wisdom_name%"
-      command: ecoskills give %player% wisdom 1
+      command: ecoskills give %player% wisdom 10
       singleUse: false
       price: 1200
       gui:
@@ -181,7 +181,7 @@ crystalshop:
       id: wisdom
 
     - display: paper unbreaking:1 hide_enchants name:"&fPermanent +10 %ecoskills_ferocity_name%"
-      command: ecoskills give %player% ferocity 1
+      command: ecoskills give %player% ferocity 10
       singleUse: false
       price: 1200
       gui:
