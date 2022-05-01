@@ -4,6 +4,16 @@ outgoing-damage-multiplier: 1
 incoming-damage-multiplier: 1
 
 crystalshop:
+  enchants:
+    - display: enchanted_book crystal_luck:1
+      item: enchanted_book crystal_luck:1
+      singleUse: false
+      price: 105
+      gui:
+        column: 5
+        row: 1
+      id: crystal_luck
+
   stats:
     - display: paper unbreaking:1 hide_enchants name:"&fPermanent +1 %ecoskills_defense_name%"
       command: ecoskills give %player% defense 1
