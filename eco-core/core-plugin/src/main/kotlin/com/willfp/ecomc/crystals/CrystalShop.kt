@@ -436,7 +436,7 @@ fun initCrystalShop(plugin: EcoPlugin) {
             )
         }
 
-        setTitle("Crystal Shop ❖ - Armor Upgrades")
+        setTitle("Crystal Shop ❖ - Upgrades")
 
         onClose { event, _ ->
             val player = event.player as Player

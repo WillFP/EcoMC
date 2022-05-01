@@ -5,24 +5,26 @@ incoming-damage-multiplier: 1
 
 crystalshop:
   armor:
-    - display: ecoarmor:upgrade_crystal_mythic
-      item: ecoarmor:upgrade_crystal_mythic
+    - display: ecoarmor:crystal_mythic
+      item: ecoarmor:crystal_mythic
       singleUse: false
       price: 520
       gui:
         column: 4
         row: 1
       id: mythic_1
-    - display: ecoarmor:upgrade_crystal_mythic 2
-      item: ecoarmor:upgrade_crystal_mythic 2
+
+    - display: ecoarmor:crystal_mythic 2
+      item: ecoarmor:crystal_mythic 2
       singleUse: false
       price: 980
       gui:
         column: 5
         row: 1
       id: mythic_2
-    - display: ecoarmor:upgrade_crystal_mythic 3
-      item: ecoarmor:upgrade_crystal_mythic 3
+
+    - display: ecoarmor:crystal_mythic 3
+      item: ecoarmor:crystal_mythic 3
       singleUse: false
       price: 1440
       gui:
