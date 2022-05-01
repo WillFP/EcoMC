@@ -107,7 +107,7 @@ private fun buySlot(config: Config, isSingleUse: Boolean = false): Slot {
                     lore.add("&e&oLeft click to buy!")
                 } else {
                     lore.add("&c&oYou cannot afford this!")
-                    lore.add("&c&oYou need &e&o${price - player.crystals}&c&o more crystals")
+                    lore.add("&c&oYou need &b&o${price - player.crystals}❖&c&o more crystals!")
                     lore.add("&c&oGet some at &a&ostore.ecomc.net")
                 }
             }
