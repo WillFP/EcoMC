@@ -5,14 +5,14 @@ incoming-damage-multiplier: 1
 
 crystalshop:
   sellwands:
-    - display: blaze_rod name:"&aSellwand &8| &f100 Uses &8| &f1x Sell Multiplier"
-      command: dsw sellwand %player% default 1 1 100
+    - display: blaze_rod name:"&aSellwand &8| &f100 Uses &8| &f1.1x Sell Multiplier"
+      command: dsw sellwand %player% default 1 1.1 100
       singleUse: false
       price: 240
       gui:
         column: 4
         row: 1
-      id: sellwand_1_100
+      id: sellwand_11_100
 
     - display: blaze_rod name:"&aSellwand &8| &f100 Uses &8| &f1.25x Sell Multiplier"
       command: dsw sellwand %player% default 1 1.25 100
