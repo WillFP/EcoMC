@@ -91,7 +91,7 @@ private fun buySlot(config: Config, isSingleUse: Boolean = false): Slot {
             }
         }
 
-        setUpdater { player, _, previous ->
+        setUpdater { player, _, _ ->
             val lore = mutableListOf(
                 "&fPrice: &b${price}❖",
                 ""
@@ -112,8 +112,9 @@ private fun buySlot(config: Config, isSingleUse: Boolean = false): Slot {
                 }
             }
 
-            previous.fast().lore = display.item.fast().lore + lore.formatEco(player)
-            previous
+            ItemStackBuilder(display.item.clone())
+                .addLoreLines(lore)
+                .build()
         }
     }
 }
@@ -127,18 +128,34 @@ fun initCrystalShop(plugin: EcoPlugin) {
         setMask(
             FillerMask(
                 MaskItems(
-                    Items.lookup("black_stained_glass_pane")
+                    Items.lookup("light_blue_stained_glass_pane")
                 ),
                 "100000001",
                 "100000001",
                 "100000001",
-                "111111011",
+                "111101011",
             )
         )
 
+        setSlot(4, 5, slot(
+            ItemStackBuilder(Material.DIAMOND)
+                .setDisplayName("&fYour Balance:")
+                .build()
+        ) {
+            setUpdater { player, _, previous ->
+                previous.fast().lore = listOf(
+                    "&b${player.crystals}❖ &fCrystals",
+                    "",
+                    "&eGet more at &astore.ecomc.net"
+                ).formatEco()
+
+                previous
+            }
+        })
+
         setSlot(
             4, 7, slot(
-                ItemStackBuilder(Material.ARROW)
+                ItemStackBuilder(Material.PAPER)
                     .setDisplayName("&aNext Page ->")
                     .build()
             ) {
@@ -166,18 +183,34 @@ fun initCrystalShop(plugin: EcoPlugin) {
         setMask(
             FillerMask(
                 MaskItems(
-                    Items.lookup("black_stained_glass_pane")
+                    Items.lookup("light_blue_stained_glass_pane")
                 ),
                 "100000001",
                 "100000001",
                 "100000001",
-                "110111111",
+                "110101111",
             )
         )
 
+        setSlot(4, 5, slot(
+            ItemStackBuilder(Material.DIAMOND)
+                .setDisplayName("&fYour Balance:")
+                .build()
+        ) {
+            setUpdater { player, _, previous ->
+                previous.fast().lore = listOf(
+                    "&b${player.crystals}❖ &fCrystals",
+                    "",
+                    "&a&oGet more at store.ecomc.net!"
+                ).formatEco()
+
+                previous
+            }
+        })
+
         setSlot(
             4, 3, slot(
-                ItemStackBuilder(Material.ARROW)
+                ItemStackBuilder(Material.PAPER)
                     .setDisplayName("&a<- Previous Page")
                     .build()
             ) {
