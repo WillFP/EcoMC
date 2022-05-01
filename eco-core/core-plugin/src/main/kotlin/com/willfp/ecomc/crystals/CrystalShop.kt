@@ -98,11 +98,9 @@ private fun buySlot(config: Config, isSingleUse: Boolean = false): Slot {
                 ""
             )
 
-            if (key != null) {
-                if (player.profile.read(key) > 0) {
-                    lore.add("&c&oYou have already purchased")
-                    lore.add("&c&othis item")
-                }
+            if (key != null && player.profile.read(key) > 0) {
+                lore.add("&c&oYou have already purchased")
+                lore.add("&c&othis item")
             } else {
                 if (player.crystals >= price) {
                     lore.add("&e&oLeft click to buy!")
