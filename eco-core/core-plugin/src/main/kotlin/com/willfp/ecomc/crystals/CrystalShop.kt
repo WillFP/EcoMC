@@ -164,6 +164,7 @@ fun initCrystalShop(plugin: EcoPlugin) {
             ) {
                 onLeftClick { event, _, _ ->
                     val player = event.whoClicked as Player
+                    player.playClickSound()
                     tagsShop.open(player)
                 }
             }
@@ -177,6 +178,7 @@ fun initCrystalShop(plugin: EcoPlugin) {
             ) {
                 onLeftClick { event, _, _ ->
                     val player = event.whoClicked as Player
+                    player.playClickSound()
                     trackersShop.open(player)
                 }
             }
@@ -190,6 +192,7 @@ fun initCrystalShop(plugin: EcoPlugin) {
             ) {
                 onLeftClick { event, _, _ ->
                     val player = event.whoClicked as Player
+                    player.playClickSound()
                     statsShop.open(player)
                 }
             }
@@ -203,6 +206,7 @@ fun initCrystalShop(plugin: EcoPlugin) {
             ) {
                 onLeftClick { event, _, _ ->
                     val player = event.whoClicked as Player
+                    player.playClickSound()
                     enchantShop.open(player)
                 }
             }
@@ -383,6 +387,10 @@ fun initCrystalShop(plugin: EcoPlugin) {
             plugin.scheduler.run { mainMenu.open(player) }
         }
     }
+}
+
+private fun Player.playClickSound() {
+    this.playSound(this.location, Sound.UI_BUTTON_CLICK, 1.0f, 1.0f)
 }
 
 fun Player.openCrystalShop() {
