@@ -16,7 +16,7 @@ class CommandCrystals(
     plugin,
     "crystals",
     "ecomc.crystals",
-    false
+    true
 ) {
     init {
         this.addSubcommand(CommandGive(plugin))
@@ -24,8 +24,9 @@ class CommandCrystals(
             .addSubcommand(CommandShop(plugin))
     }
 
-    override fun onExecute(sender: CommandSender, args: List<String>) {
-        sender.sendMessage(plugin.langYml.getMessage("invalid-command"))
+    override fun onExecute(player: CommandSender, args: List<String>) {
+        player as Player
+        player.openCrystalShop()
     }
 }
 
@@ -34,7 +35,7 @@ private class CommandGive(
 ) : Subcommand(
     plugin,
     "give",
-    "ecomc.crystals",
+    "ecomc.crystals.give",
     false
 ) {
     override fun onExecute(sender: CommandSender, args: List<String>) {
@@ -104,7 +105,7 @@ private class CommandGet(
 ) : Subcommand(
     plugin,
     "get",
-    "ecomc.crystals",
+    "ecomc.crystals.get",
     false
 ) {
     override fun onExecute(sender: CommandSender, args: List<String>) {

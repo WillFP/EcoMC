@@ -15,4 +15,8 @@ commands:
 
 permissions:
   ecomc.crystals:
-    default: false
+    default: true
+  ecomc.crystals.give:
+    default: op
+  ecomc.crystals.get:
+    default: op

@@ -43,7 +43,8 @@ class EcoMCPlugin : EcoPlugin() {
             Hardinator(this),
             EntityYeeter(),
             SpawnProtection(this),
-            CrystalLuckListener(this)
+            CrystalLuckListener(this),
+            Baninator()
         )
     }
 

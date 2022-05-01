@@ -395,4 +395,10 @@ private fun Player.playClickSound() {
 
 fun Player.openCrystalShop() {
     mainMenu.open(this)
+    this.playSound(
+        this.location,
+        Sound.ITEM_ARMOR_EQUIP_GENERIC,
+        2.0f,
+        0.5f
+    )
 }
