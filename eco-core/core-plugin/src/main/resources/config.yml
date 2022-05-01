@@ -2,3 +2,14 @@ chance: 0.025
 mob-chance: 0.07
 incoming-damage-multiplier: 1.2
 outgoing-damage-multiplier: 0.7
+
+crystalshop:
+  - id: 1000_dollar
+    gui:
+      page: 1
+      row: 1
+      column: 2
+    singleUse: false
+    price: 10
+    display: diamond name:"&a$1000"
+    command: eco give %player% 1000
