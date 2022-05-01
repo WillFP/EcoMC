@@ -92,8 +92,7 @@ private fun buySlot(config: Config, isSingleUse: Boolean = false): Slot {
                     1f,
                     1.5f
                 )
-
-                player.closeInventory()
+                player.sendMessage(EcoMCPlugin.instance.langYml.getMessage("bought-from-crystal").replace("%item%", display.item.fast().displayName))
             } else {
                 player.sendMessage(EcoMCPlugin.instance.langYml.getMessage("buy-crystals"))
                 player.playSound(

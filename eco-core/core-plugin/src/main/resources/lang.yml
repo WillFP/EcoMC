@@ -19,3 +19,4 @@ messages:
   gave-crystals: "Gave %player%&f %amount%&f crystals!"
   crystal-luck: "&fYou got &b1❖ Crystal&f! (Crystal Luck)"
   buy-crystals: "&fGet more crystals here: &ahttps://store.ecomc.net/category/329462"
+  bought-from-crystal: "&fYou bought %item%&f!"
