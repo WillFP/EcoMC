@@ -53,7 +53,7 @@ allprojects {
     }
 
     processResources {
-        filesNotMatching(["**/*.png", "**/models/**", "**/textures/**", "**lang.yml"]) {
+        filesMatching("**plugin.yml") {
             expand projectVersion: project.version
         }
     }
