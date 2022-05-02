@@ -5,6 +5,7 @@ import com.willfp.eco.core.config.interfaces.Config
 import com.willfp.eco.core.events.EntityDeathByEntityEvent
 import com.willfp.eco.util.NumberUtils
 import com.willfp.eco.util.tryAsPlayer
+import com.willfp.ecomc.EcoMCPlugin
 import com.willfp.ecoskills.api.EcoSkillsAPI
 import com.willfp.ecoskills.stats.Stat
 import org.bukkit.Sound
@@ -32,7 +33,7 @@ class CrystalLuck: Stat("crystal_luck") {
 
         if (NumberUtils.randFloat(0.0, 100.0) < level * config.getDouble("chance-per-level")) {
             player.crystals += 1
-            player.sendMessage(plugin.langYml.getMessage("crystal-luck"))
+            player.sendMessage(EcoMCPlugin.instance.langYml.getMessage("crystal-luck"))
             player.playSound(
                 player.location,
                 Sound.BLOCK_NOTE_BLOCK_BELL,
@@ -63,7 +64,7 @@ class CrystalLuck: Stat("crystal_luck") {
 
         if (NumberUtils.randFloat(0.0, 100.0) < level * config.getDouble("chance-per-level") * multiplier) {
             player.crystals += 1
-            player.sendMessage(plugin.langYml.getMessage("crystal-luck"))
+            player.sendMessage(EcoMCPlugin.instance.langYml.getMessage("crystal-luck"))
             player.playSound(
                 player.location,
                 Sound.BLOCK_NOTE_BLOCK_BELL,
