@@ -9,12 +9,14 @@ import com.willfp.ecomc.crystals.CommandCrystals
 import com.willfp.ecomc.crystals.CrystalLuck
 import com.willfp.ecomc.crystals.crystals
 import com.willfp.ecomc.crystals.initCrystalShop
+import com.willfp.ecomc.crystals.initCustomPotions
 import com.willfp.ecomc.crystals.initGeodes
 import org.bukkit.event.Listener
 
 class EcoMCPlugin : EcoPlugin() {
     override fun handleEnable() {
         CrystalLuck() // Init crystal luck
+        initCustomPotions(this)
         initGeodes(this)
         LevelPlaceholder.register(this)
         initCrystalShop(this)

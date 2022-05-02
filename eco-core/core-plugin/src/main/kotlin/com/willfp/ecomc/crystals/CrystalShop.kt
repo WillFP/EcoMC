@@ -138,7 +138,7 @@ private lateinit var tagsShop: Menu
 private lateinit var trackersShop: Menu
 private lateinit var statsShop: Menu
 private lateinit var upgradesShop: Menu
-private lateinit var sellwandShop: Menu
+private lateinit var itemShop: Menu
 
 private lateinit var mainMenu: Menu
 
@@ -280,7 +280,7 @@ fun initCrystalShop(plugin: EcoPlugin) {
                 onLeftClick { event, _, _ ->
                     val player = event.whoClicked as Player
                     player.playClickSound()
-                    sellwandShop.open(player)
+                    itemShop.open(player)
                 }
             }
         )
@@ -462,7 +462,7 @@ fun initCrystalShop(plugin: EcoPlugin) {
         }
     }
 
-    sellwandShop = menu(2) {
+    itemShop = menu(2) {
         setMask(
             FillerMask(
                 MaskItems(
@@ -489,7 +489,7 @@ fun initCrystalShop(plugin: EcoPlugin) {
             }
         })
 
-        for (config in plugin.configYml.getSubsections("crystalshop.sellwands")) {
+        for (config in plugin.configYml.getSubsections("crystalshop.items")) {
             setSlot(
                 config.getInt("gui.row"),
                 config.getInt("gui.column"),
@@ -497,7 +497,7 @@ fun initCrystalShop(plugin: EcoPlugin) {
             )
         }
 
-        setTitle("Crystal Shop ❖ - Sellwands")
+        setTitle("Crystal Shop ❖ - Items")
 
         onClose { event, _ ->
             val player = event.player as Player

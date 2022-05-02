@@ -7,13 +7,13 @@ geodes:
   max: 2
 
 crystalshop:
-  sellwands:
+  items:
     - display: blaze_rod name:"&aSellwand &8| &f100 Uses &8| &f1.1x Sell Multiplier"
       command: dsw sellwand %player% default 1 1.1 100
       singleUse: false
       price: 240
       gui:
-        column: 4
+        column: 1
         row: 1
       id: sellwand_11_100
 
@@ -22,7 +22,7 @@ crystalshop:
       singleUse: false
       price: 450
       gui:
-        column: 5
+        column: 2
         row: 1
       id: sellwand_125_100
 
@@ -31,9 +31,18 @@ crystalshop:
       singleUse: false
       price: 675
       gui:
-        column: 6
+        column: 3
         row: 1
       id: sellwand_15_100
+
+    - display: ecomc:strength_5
+      item: ecomc:strength_5
+      singleUse: false
+      price: 80
+      gui:
+        column: 4
+        row: 1
+      id: strength_5
 
   upgrades:
     - display: enchanted_book crystal_finder:1
