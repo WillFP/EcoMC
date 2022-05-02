@@ -21,9 +21,7 @@ import com.willfp.ecomc.EcoMCPlugin
 import org.bukkit.Bukkit
 import org.bukkit.Material
 import org.bukkit.Sound
-import org.bukkit.enchantments.Enchantment
 import org.bukkit.entity.Player
-import org.bukkit.inventory.ItemFlag
 
 private interface ShopItem {
     fun giveTo(player: Player)
@@ -92,7 +90,10 @@ private fun buySlot(config: Config, isSingleUse: Boolean = false): Slot {
                     1f,
                     1.5f
                 )
-                player.sendMessage(EcoMCPlugin.instance.langYml.getMessage("bought-from-crystal").replace("%item%", display.item.fast().displayName))
+                player.sendMessage(
+                    EcoMCPlugin.instance.langYml.getMessage("bought-from-crystal")
+                        .replace("%item%", display.item.fast().displayName)
+                )
             } else {
                 player.sendMessage(EcoMCPlugin.instance.langYml.getMessage("buy-crystals"))
                 player.playSound(
@@ -150,11 +151,39 @@ fun initCrystalShop(plugin: EcoPlugin) {
                 ),
                 "221111122",
                 "333333333",
-                "221111122"
+                "221101122"
             )
         )
 
         setTitle("Crystal Shop ❖")
+
+        setSlot(3, 5, slot(
+            ItemStackBuilder(Material.DIAMOND)
+                .setDisplayName("&fWhat are crystals?")
+                .build()
+        ) {
+            setUpdater { player, _, previous ->
+                val item = previous.clone()
+
+                item.fast().lore = listOf(
+                    "",
+                    "&bCrystals ❖&f are a special",
+                    "&fcurrency used to buy exclusive",
+                    "&fcosmetics, upgrades, and items.",
+                    "",
+                    "&fYou can get &bCrystals ❖&f by",
+                    "&fmining blocks, killing mobs",
+                    "&fand on &astore.ecomc.net",
+                    "",
+                    "&fThe %ecoskills_crystal_luck_name%&f stat",
+                    "&fincreases the chance of mobs",
+                    "&fand blocks dropping &bCrystals ❖",
+                    "&fYour %ecoskills_crystal_luck_name%&f: &a%ecoskills_crystal_luck%"
+                ).formatEco(player)
+
+                item
+            }
+        })
 
         setSlot(
             2, 3, slot(
