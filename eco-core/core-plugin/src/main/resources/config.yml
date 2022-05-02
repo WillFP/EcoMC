@@ -49,6 +49,22 @@ crystalshop:
         column: 2
         row: 1
       id: gemology_1
+    - display: talismans:gemology_1
+      item: talismans:gemology_1
+      singleUse: false
+      price: 135
+      gui:
+        column: 2
+        row: 1
+      id: gemology_1
+    - display: reforges:stone_sparkly
+      item: reforges:stone_sparkly
+      singleUse: false
+      price: 95
+      gui:
+        column: 3
+        row: 1
+      id: sparkly
 
   stats:
     - display: paper unbreaking:1 hide_enchants name:"&fPermanent +1 %ecoskills_defense_name%"
