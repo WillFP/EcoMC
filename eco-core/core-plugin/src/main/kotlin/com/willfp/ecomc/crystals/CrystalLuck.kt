@@ -36,7 +36,7 @@ class CrystalLuck : Stat("crystal_luck") {
 
         val item = if (weight < 50) {
             Items.lookup("ecomc:geode_1").item
-        } else if (weight < 80) {
+        } else if (weight < 90) {
             Items.lookup("ecomc:geode_2").item
         } else {
             Items.lookup("ecomc:geode_3").item
