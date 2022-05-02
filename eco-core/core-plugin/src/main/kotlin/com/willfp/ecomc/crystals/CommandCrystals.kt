@@ -71,7 +71,9 @@ private class CommandGive(
             val onlinePlayer = Bukkit.getPlayer(player.uniqueId) ?: return
             repeat(amount) {
                 DropQueue(onlinePlayer)
-                    .addItem(Items.lookup("ecomc:geode").item)
+                    .addItem(Items.lookup("ecomc:geode_1").item)
+                    .addItem(Items.lookup("ecomc:geode_2").item)
+                    .addItem(Items.lookup("ecomc:geode_3").item)
                     .forceTelekinesis()
                     .push()
             }
