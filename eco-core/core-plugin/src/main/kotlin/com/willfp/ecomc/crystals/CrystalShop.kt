@@ -182,13 +182,14 @@ fun initCrystalShop(plugin: EcoPlugin) {
 
             onLeftClick { event, _, _ ->
                 val player = event.whoClicked as Player
+                player.playClickSound()
                 player.openGeodesMenu()
             }
         })
 
         setSlot(3, 5, slot(
             ItemStackBuilder(Material.DIAMOND)
-                .setDisplayName("&fWhat are crystals?")
+                .setDisplayName("&fWhat are crystals and geodes?")
                 .build()
         ) {
             setUpdater { player, _, previous ->
@@ -206,7 +207,7 @@ fun initCrystalShop(plugin: EcoPlugin) {
                     "",
                     "&fThe %ecoskills_crystal_luck_name%&f stat",
                     "&fincreases the chance of mobs",
-                    "&fand blocks dropping &bCrystals ❖",
+                    "&fand blocks dropping <g:#6a3093>Geodes</g:#a044ff>",
                     "&fYour %ecoskills_crystal_luck_name%&f: &a%ecoskills_crystal_luck%"
                 ).formatEco(player = player, formatPlaceholders = true)
 

@@ -13,6 +13,13 @@ commands:
   crystals:
     description: Get crystals
     permission: ecomc.crystals
+    aliases:
+      - crystal
+      - geode
+      - geodes
+      - crystalshop
+      - cshop
+      - geodeshop
 
 permissions:
   ecomc.crystals:

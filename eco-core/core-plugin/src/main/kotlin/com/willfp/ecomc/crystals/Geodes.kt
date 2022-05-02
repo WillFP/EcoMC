@@ -142,6 +142,19 @@ fun initGeodes(plugin: EcoPlugin) {
                     }
                 }
 
+                onClose { event, menu ->
+                    val player = event.player as Player
+                    DropQueue(player)
+                        .addItems(menu.getCaptiveItems(player))
+                        .forceTelekinesis()
+                        .setLocation(player.eyeLocation)
+                        .push()
+
+                    plugin.scheduler.run {
+                        player.openCrystalShop()
+                    }
+                }
+
                 onLeftClick { event, _, menu ->
                     val player = event.whoClicked as Player
                     val hasGeode = menu.getCaptiveItems(player).getOrNull(0)
@@ -154,6 +167,7 @@ fun initGeodes(plugin: EcoPlugin) {
                         item.itemMeta = null
 
                         var crystalsToGive = 0
+
                         repeat(amount) {
                             crystalsToGive += NumberUtils.randInt(
                                 plugin.configYml.getInt("geodes.min"),
@@ -180,8 +194,6 @@ fun initGeodes(plugin: EcoPlugin) {
                             1.0f,
                             0.6f
                         )
-
-                        player.closeInventory()
                     }
                 }
             }
