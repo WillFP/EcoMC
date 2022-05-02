@@ -47,7 +47,7 @@ fun initGeodes(plugin: EcoPlugin) {
         { it.geodeLevel == 1 },
         SkullBuilder()
             .setSkullTexture("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZGNkNTE5NDgzZGQwNDFiMzRlYTAwNmVlNjY4NTkyY2VhNmQxZWNhZmE2YWViODJmN2M3MzI4MWVhMzM5Y2JjZCJ9fX0=")
-            .setDisplayName("&#ED213APoor <gradient:#6a3093>Geode</gradient:#a044ff>")
+            .setDisplayName("<gradient:#6a3093>Geode</gradient:#a044ff>")
             .addLoreLine("&fBring this to the &aCristallier")
             .addLoreLine("&fto crack it open and get")
             .addLoreLine("&b❖ Crystals&f!")
