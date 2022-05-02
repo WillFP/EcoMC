@@ -51,7 +51,7 @@ fun initGeodes(plugin: EcoPlugin) {
             .addLoreLine("&fto crack it open and get")
             .addLoreLine("&b❖ Crystals&f!")
             .addLoreLine("")
-            .addLoreLine("&fEach <gradient:#6a3093>Geode</gradient:#a044ff> contains")
+            .addLoreLine("&fEach <gradient:#6a3093>Geode</gradient:#a044ff>&f contains")
             .addLoreLine("&fbetween 0 and 2 &b❖ Crystals!")
             .build().apply {
                 setGeode()
@@ -104,13 +104,11 @@ fun initGeodes(plugin: EcoPlugin) {
         })
 
         onClose { event, menu ->
-            val player = event.player as Player
-            for (item in menu.getCaptiveItems(player)) {
-                DropQueue(player)
-                    .addItem(item)
-                    .forceTelekinesis()
-                    .push()
-            }
+            DropQueue(event.player as Player)
+                .addItems(menu.getCaptiveItems(event.player as Player))
+                .setLocation(event.player.eyeLocation)
+                .forceTelekinesis()
+                .push()
         }
 
         setSlot(
