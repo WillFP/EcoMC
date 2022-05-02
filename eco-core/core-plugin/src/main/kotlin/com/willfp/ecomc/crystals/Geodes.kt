@@ -18,6 +18,9 @@ import org.bukkit.Material
 import org.bukkit.Sound
 import org.bukkit.enchantments.Enchantment
 import org.bukkit.entity.Player
+import org.bukkit.event.EventHandler
+import org.bukkit.event.Listener
+import org.bukkit.event.block.BlockPlaceEvent
 import org.bukkit.inventory.ItemFlag
 import org.bukkit.inventory.ItemStack
 import org.bukkit.persistence.PersistentDataType
@@ -40,6 +43,15 @@ private val ItemStack.geodeLevel: Int
     }
 
 private lateinit var geodesMenu: Menu
+
+class PreventGeodePlace: Listener {
+    @EventHandler
+    fun handle(event: BlockPlaceEvent) {
+        if (event.itemInHand.geodeLevel > 0) {
+            event.isCancelled = true
+        }
+    }
+}
 
 fun initGeodes(plugin: EcoPlugin) {
     CustomItem(

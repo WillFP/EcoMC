@@ -43,14 +43,6 @@ fun initCustomPotions(plugin: EcoPlugin) {
     )
 
     potionEffect(
-        "haste_5",
-        "&6Haste V Potion",
-        PotionEffectType.FAST_DIGGING,
-        5,
-        900
-    )
-
-    potionEffect(
         "speed_5",
         "&bSpeed V Potion",
         PotionEffectType.SPEED,

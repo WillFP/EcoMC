@@ -37,18 +37,9 @@ crystalshop:
       singleUse: false
       price: 80
       gui:
-        column: 5
-        row: 1
-      id: strength_5
-
-    - display: ecomc:haste_5
-      item: ecomc:haste_5
-      singleUse: false
-      price: 80
-      gui:
         column: 6
         row: 1
-      id: haste_5
+      id: strength_5
 
     - display: ecomc:speed_5
       item: ecomc:speed_5
