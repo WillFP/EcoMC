@@ -163,6 +163,7 @@ fun initCrystalShop(plugin: EcoPlugin) {
             ItemStackBuilder(Material.GOLDEN_PICKAXE)
                 .addEnchantment(Enchantment.DURABILITY, 1)
                 .addItemFlag(ItemFlag.HIDE_ENCHANTS)
+                .addItemFlag(ItemFlag.HIDE_ATTRIBUTES)
                 .setDisplayName("&fCrack open geodes!")
                 .build()
         ) {
