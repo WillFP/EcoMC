@@ -22,19 +22,20 @@ import org.bukkit.inventory.ItemFlag
 import org.bukkit.inventory.ItemStack
 import org.bukkit.persistence.PersistentDataType
 
-private fun ItemStack.setGeode() {
+private fun ItemStack.setGeode(level: Int) {
     this.fast().persistentDataContainer.set(
         EcoMCPlugin.instance.namespacedKeyFactory.create("geode"),
         PersistentDataType.INTEGER,
-        1
+        level
     )
 }
 
-private val ItemStack.isGeode: Boolean
+private val ItemStack.geodeLevel: Int
     get() {
-        return this.fast().persistentDataContainer.has(
+        return this.fast().persistentDataContainer.getOrDefault(
             EcoMCPlugin.instance.namespacedKeyFactory.create("geode"),
-            PersistentDataType.INTEGER
+            PersistentDataType.INTEGER,
+            0
         )
     }
 
@@ -42,19 +43,53 @@ private lateinit var geodesMenu: Menu
 
 fun initGeodes(plugin: EcoPlugin) {
     CustomItem(
-        plugin.namespacedKeyFactory.create("geode"),
-        { it.isGeode },
+        plugin.namespacedKeyFactory.create("geode_1"),
+        { it.geodeLevel == 1 },
         SkullBuilder()
-            .setSkullTexture("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZDg4NmUwZjQxMTg1YjE4YTNhZmQ4OTQ4OGQyZWU0Y2FhMDczNTAwOTI0N2NjY2YwMzljZWQ2YWVkNzUyZmYxYSJ9fX0=")
-            .setDisplayName("<gradient:#6a3093>Geode</gradient:#a044ff>")
+            .setSkullTexture("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZGNkNTE5NDgzZGQwNDFiMzRlYTAwNmVlNjY4NTkyY2VhNmQxZWNhZmE2YWViODJmN2M3MzI4MWVhMzM5Y2JjZCJ9fX0=")
+            .setDisplayName("&#ED213APoor <gradient:#6a3093>Geode</gradient:#a044ff>")
             .addLoreLine("&fBring this to the &aCristallier")
             .addLoreLine("&fto crack it open and get")
             .addLoreLine("&b❖ Crystals&f!")
             .addLoreLine("")
-            .addLoreLine("&fEach <gradient:#6a3093>Geode</gradient:#a044ff>&f contains")
+            .addLoreLine("&fThis <gradient:#6a3093>Geode</gradient:#a044ff>&f contains")
+            .addLoreLine("&fbetween 0 and 1 &b❖ Crystals!")
+            .build().apply {
+                setGeode(1)
+            }
+    ).register()
+
+    CustomItem(
+        plugin.namespacedKeyFactory.create("geode_2"),
+        { it.geodeLevel == 2 },
+        SkullBuilder()
+            .setSkullTexture("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODA2ZjYyYzcyMDllOWYyYmMzNTI1MmE0Mzg2ZDBjNjdhNGE3MTAzYjQwM2RkZmM5ZDk0MzNjNDNhYjRmYzdjNiJ9fX0=")
+            .setDisplayName("&#11998eDecent <gradient:#6a3093>Geode</gradient:#a044ff>")
+            .addLoreLine("&fBring this to the &aCristallier")
+            .addLoreLine("&fto crack it open and get")
+            .addLoreLine("&b❖ Crystals&f!")
+            .addLoreLine("")
+            .addLoreLine("&fThis <gradient:#6a3093>Geode</gradient:#a044ff>&f contains")
             .addLoreLine("&fbetween 0 and 2 &b❖ Crystals!")
             .build().apply {
-                setGeode()
+                setGeode(2)
+            }
+    ).register()
+
+    CustomItem(
+        plugin.namespacedKeyFactory.create("geode_3"),
+        { it.geodeLevel == 3 },
+        SkullBuilder()
+            .setSkullTexture("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZTZkZmZmOTc1YjYxMjAwZTdhNDZmNjRhOTM0OTc1MzQ0YzQ5NjIxNmE4ZmE5Yzk4NTA2Y2NhNDdkOGI3OWVhYyJ9fX0=")
+            .setDisplayName("&#b91d73Remarkable <gradient:#6a3093>Geode</gradient:#a044ff>")
+            .addLoreLine("&fBring this to the &aCristallier")
+            .addLoreLine("&fto crack it open and get")
+            .addLoreLine("&b❖ Crystals&f!")
+            .addLoreLine("")
+            .addLoreLine("&fThis <gradient:#6a3093>Geode</gradient:#a044ff>&f contains")
+            .addLoreLine("&fbetween 1 and 4 &b❖ Crystals!")
+            .build().apply {
+                setGeode(3)
             }
     ).register()
 
@@ -82,10 +117,9 @@ fun initGeodes(plugin: EcoPlugin) {
                         .build()
                 ) {
                     setUpdater { player, menu, _ ->
-                        val hasGeode = menu.getCaptiveItems(player).getOrNull(0)
-                            ?.isGeode == true
+                        val geodeLevel = menu.getCaptiveItems(player).getOrNull(0)?.geodeLevel ?: 0
 
-                        if (hasGeode) {
+                        if (geodeLevel > 0) {
                             ItemStackBuilder(Material.PURPLE_STAINED_GLASS_PANE)
                                 .setDisplayName("&e")
                                 .build()
@@ -118,10 +152,9 @@ fun initGeodes(plugin: EcoPlugin) {
                     .build()
             ) {
                 setUpdater { player, menu, _ ->
-                    val hasGeode = menu.getCaptiveItems(player).getOrNull(0)
-                        ?.isGeode == true
+                    val geodeLevel = menu.getCaptiveItems(player).getOrNull(0)?.geodeLevel ?: 0
 
-                    if (hasGeode) {
+                    if (geodeLevel > 0) {
                         ItemStackBuilder(Material.STONECUTTER)
                             .setDisplayName("&aBreak open geodes!")
                             .addLoreLine("")
@@ -159,10 +192,9 @@ fun initGeodes(plugin: EcoPlugin) {
 
                 onLeftClick { event, _, menu ->
                     val player = event.whoClicked as Player
-                    val hasGeode = menu.getCaptiveItems(player).getOrNull(0)
-                        ?.isGeode == true
+                    val geodeLevel = menu.getCaptiveItems(player).getOrNull(0)?.geodeLevel ?: 0
 
-                    if (hasGeode) {
+                    if (geodeLevel > 0) {
                         val item = menu.getCaptiveItems(player)[0]
                         val amount = item.amount
                         item.amount = 0
@@ -171,10 +203,12 @@ fun initGeodes(plugin: EcoPlugin) {
                         var crystalsToGive = 0
 
                         repeat(amount) {
-                            crystalsToGive += NumberUtils.randInt(
-                                plugin.configYml.getInt("geodes.min"),
-                                plugin.configYml.getInt("geodes.max")
-                            )
+                            crystalsToGive += when (geodeLevel) {
+                                1 -> NumberUtils.randInt(0, 1)
+                                2 -> NumberUtils.randInt(0, 2)
+                                3 -> NumberUtils.randInt(1, 4)
+                                else -> 0
+                            }
                         }
 
                         if (crystalsToGive == 0) {

@@ -11,8 +11,10 @@ import com.willfp.eco.util.tryAsPlayer
 import com.willfp.ecomc.EcoMCPlugin
 import com.willfp.ecoskills.api.EcoSkillsAPI
 import com.willfp.ecoskills.stats.Stat
+import org.bukkit.Location
 import org.bukkit.Sound
 import org.bukkit.attribute.Attribute
+import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
 import org.bukkit.event.block.BlockBreakEvent
 
@@ -28,6 +30,36 @@ class CrystalLuck : Stat("crystal_luck") {
         return CrystalLuckConfig()
     }
 
+    private fun dropRandomGeode(player: Player, location: Location) {
+        val weight = NumberUtils.randInt(0, 100)
+
+        val item = if (weight < 50) {
+            Items.lookup("ecomc:geode_1").item
+        } else if (weight < 80) {
+            Items.lookup("ecomc:geode_2").item
+        } else {
+            Items.lookup("ecomc:geode_3").item
+        }
+
+        DropQueue(player)
+            .addItem(item)
+            .setLocation(location)
+            .push()
+        player.sendMessage(EcoMCPlugin.instance.langYml.getMessage("crystal-luck"))
+        player.playSound(
+            player.location,
+            Sound.BLOCK_NOTE_BLOCK_BELL,
+            1f,
+            1.2f
+        )
+        player.playSound(
+            player.location,
+            Sound.ENTITY_PLAYER_LEVELUP,
+            1f,
+            1.8f
+        )
+    }
+
     @EventHandler
     fun handle(event: BlockBreakEvent) {
         val player = event.player
@@ -39,23 +71,7 @@ class CrystalLuck : Stat("crystal_luck") {
         }
 
         if (NumberUtils.randFloat(0.0, 100.0) < level * config.getDouble("chance-per-level")) {
-            DropQueue(player)
-                .addItem(Items.lookup("ecomc:geode").item)
-                .setLocation(event.block.location)
-                .push()
-            player.sendMessage(EcoMCPlugin.instance.langYml.getMessage("crystal-luck"))
-            player.playSound(
-                player.location,
-                Sound.BLOCK_NOTE_BLOCK_BELL,
-                1f,
-                1.2f
-            )
-            player.playSound(
-                player.location,
-                Sound.ENTITY_PLAYER_LEVELUP,
-                1f,
-                1.8f
-            )
+            dropRandomGeode(player, event.block.location)
         }
     }
 
@@ -73,23 +89,7 @@ class CrystalLuck : Stat("crystal_luck") {
         }
 
         if (NumberUtils.randFloat(0.0, 100.0) < level * config.getDouble("chance-per-level-mobs") * multiplier) {
-            DropQueue(player)
-                .addItem(Items.lookup("ecomc:geode").item)
-                .setLocation(event.victim.location)
-                .push()
-            player.sendMessage(EcoMCPlugin.instance.langYml.getMessage("crystal-luck"))
-            player.playSound(
-                player.location,
-                Sound.BLOCK_NOTE_BLOCK_BELL,
-                1f,
-                1.2f
-            )
-            player.playSound(
-                player.location,
-                Sound.ENTITY_PLAYER_LEVELUP,
-                1f,
-                1.8f
-            )
+            dropRandomGeode(player, event.victim.location)
         }
     }
 }
