@@ -41,7 +41,7 @@ class CrystalLuck : Stat("crystal_luck") {
         if (NumberUtils.randFloat(0.0, 100.0) < level * config.getDouble("chance-per-level")) {
             DropQueue(player)
                 .addItem(Items.lookup("ecomc:geode").item)
-                .forceTelekinesis()
+                .setLocation(event.block.location)
                 .push()
             player.sendMessage(EcoMCPlugin.instance.langYml.getMessage("crystal-luck"))
             player.playSound(
@@ -75,7 +75,7 @@ class CrystalLuck : Stat("crystal_luck") {
         if (NumberUtils.randFloat(0.0, 100.0) < level * config.getDouble("chance-per-level-mobs") * multiplier) {
             DropQueue(player)
                 .addItem(Items.lookup("ecomc:geode").item)
-                .forceTelekinesis()
+                .setLocation(event.victim.location)
                 .push()
             player.sendMessage(EcoMCPlugin.instance.langYml.getMessage("crystal-luck"))
             player.playSound(
