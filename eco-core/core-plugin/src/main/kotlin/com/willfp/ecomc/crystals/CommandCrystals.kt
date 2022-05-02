@@ -68,19 +68,20 @@ private class CommandGive(
         }
 
         if (args.getOrNull(2) == "geode") {
-            player.crystals += amount
+            val onlinePlayer = Bukkit.getPlayer(player.uniqueId) ?: return
+            repeat(amount) {
+                DropQueue(onlinePlayer)
+                    .addItem(Items.lookup("ecomc:geode").item)
+                    .forceTelekinesis()
+                    .push()
+            }
             sender.sendMessage(
                 plugin.langYml.getMessage("gave-crystals", StringUtils.FormatOption.WITHOUT_PLACEHOLDERS)
                     .replace("%player%", player.savedDisplayName)
                     .replace("%amount%", amount.toString())
             )
         } else {
-            repeat(amount) {
-                DropQueue(player as? Player ?: return)
-                    .addItem(Items.lookup("ecomc:geode").item)
-                    .forceTelekinesis()
-                    .push()
-            }
+            player.crystals += amount
             sender.sendMessage(
                 plugin.langYml.getMessage("gave-crystals", StringUtils.FormatOption.WITHOUT_PLACEHOLDERS)
                     .replace("%player%", player.savedDisplayName)

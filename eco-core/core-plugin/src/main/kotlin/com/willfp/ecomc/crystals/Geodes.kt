@@ -1,6 +1,7 @@
 package com.willfp.ecomc.crystals
 
 import com.willfp.eco.core.EcoPlugin
+import com.willfp.eco.core.drops.DropQueue
 import com.willfp.eco.core.fast.fast
 import com.willfp.eco.core.gui.menu
 import com.willfp.eco.core.gui.menu.Menu
@@ -14,7 +15,10 @@ import com.willfp.eco.core.items.builder.SkullBuilder
 import com.willfp.eco.util.NumberUtils
 import com.willfp.ecomc.EcoMCPlugin
 import org.bukkit.Material
+import org.bukkit.Sound
+import org.bukkit.enchantments.Enchantment
 import org.bukkit.entity.Player
+import org.bukkit.inventory.ItemFlag
 import org.bukkit.inventory.ItemStack
 import org.bukkit.persistence.PersistentDataType
 
@@ -46,10 +50,13 @@ fun initGeodes(plugin: EcoPlugin) {
             .addLoreLine("&fBring this to the &aCristallier")
             .addLoreLine("&fto crack it open and get")
             .addLoreLine("&b❖ Crystals&f!")
+            .addLoreLine("")
+            .addLoreLine("&fEach <gradient:#6a3093>Geode</gradient:#a044ff> contains")
+            .addLoreLine("&fbetween 0 and 2 &b❖ Crystals!")
             .build().apply {
                 setGeode()
             }
-    )
+    ).register()
 
     geodesMenu = menu(5) {
         setMask(
@@ -65,6 +72,8 @@ fun initGeodes(plugin: EcoPlugin) {
             )
         )
 
+        setTitle("Break open Geodes")
+
         for (i in 1..9) {
             setSlot(
                 5, i, slot(
@@ -78,11 +87,11 @@ fun initGeodes(plugin: EcoPlugin) {
 
                         if (hasGeode) {
                             ItemStackBuilder(Material.PURPLE_STAINED_GLASS_PANE)
-                                .setDisplayName("")
+                                .setDisplayName("&e")
                                 .build()
                         } else {
                             ItemStackBuilder(Material.RED_STAINED_GLASS_PANE)
-                                .setDisplayName("")
+                                .setDisplayName("&e")
                                 .build()
                         }
                     }
@@ -93,6 +102,16 @@ fun initGeodes(plugin: EcoPlugin) {
         setSlot(2, 5, slot(ItemStack(Material.AIR)) {
             setCaptive()
         })
+
+        onClose { event, menu ->
+            val player = event.player as Player
+            for (item in menu.getCaptiveItems(player)) {
+                DropQueue(player)
+                    .addItem(item)
+                    .forceTelekinesis()
+                    .push()
+            }
+        }
 
         setSlot(
             3, 5, slot(
@@ -110,6 +129,8 @@ fun initGeodes(plugin: EcoPlugin) {
                             .addLoreLine("")
                             .addLoreLine("&7Click to crack open your geodes")
                             .addLoreLine("&7to obtain &b❖ Crystals&7!")
+                            .addEnchantment(Enchantment.DURABILITY, 1)
+                            .addItemFlag(ItemFlag.HIDE_ENCHANTS)
                             .build()
                     } else {
                         ItemStackBuilder(Material.GOLDEN_PICKAXE)
@@ -117,6 +138,8 @@ fun initGeodes(plugin: EcoPlugin) {
                             .addLoreLine("")
                             .addLoreLine("&7Place geodes in the slot above")
                             .addLoreLine("&7to break them open for &b❖ Crystals&7!")
+                            .addEnchantment(Enchantment.DURABILITY, 1)
+                            .addItemFlag(ItemFlag.HIDE_ENCHANTS)
                             .build()
                     }
                 }
@@ -152,6 +175,15 @@ fun initGeodes(plugin: EcoPlugin) {
                                     .replace("%amount%", crystalsToGive.toString())
                             )
                         }
+
+                        player.playSound(
+                            player.location,
+                            Sound.UI_STONECUTTER_TAKE_RESULT,
+                            1.0f,
+                            0.6f
+                        )
+
+                        player.closeInventory()
                     }
                 }
             }
