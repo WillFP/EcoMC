@@ -274,7 +274,7 @@ fun initCrystalShop(plugin: EcoPlugin) {
         setSlot(
             2, 5, slot(
                 ItemStackBuilder(Material.BLAZE_ROD)
-                    .setDisplayName("&bSellwands")
+                    .setDisplayName("&bItems")
                     .build()
             ) {
                 onLeftClick { event, _, _ ->

@@ -18,7 +18,7 @@ fun initCustomPotions(plugin: EcoPlugin) {
         meta.addCustomEffect(
             PotionEffect(
                 type,
-                duration,
+                duration * 20,
                 strength - 1,
                 true,
                 true,
