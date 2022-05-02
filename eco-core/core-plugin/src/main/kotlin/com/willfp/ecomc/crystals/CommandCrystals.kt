@@ -3,6 +3,8 @@ package com.willfp.ecomc.crystals
 import com.willfp.eco.core.EcoPlugin
 import com.willfp.eco.core.command.impl.PluginCommand
 import com.willfp.eco.core.command.impl.Subcommand
+import com.willfp.eco.core.drops.DropQueue
+import com.willfp.eco.core.items.Items
 import com.willfp.eco.util.StringUtils
 import com.willfp.eco.util.savedDisplayName
 import org.bukkit.Bukkit
@@ -65,12 +67,26 @@ private class CommandGive(
             return
         }
 
-        player.crystals += amount
-        sender.sendMessage(
-            plugin.langYml.getMessage("gave-crystals", StringUtils.FormatOption.WITHOUT_PLACEHOLDERS)
-                .replace("%player%", player.savedDisplayName)
-                .replace("%amount%", amount.toString())
-        )
+        if (args.getOrNull(2) == "geode") {
+            player.crystals += amount
+            sender.sendMessage(
+                plugin.langYml.getMessage("gave-crystals", StringUtils.FormatOption.WITHOUT_PLACEHOLDERS)
+                    .replace("%player%", player.savedDisplayName)
+                    .replace("%amount%", amount.toString())
+            )
+        } else {
+            repeat(amount) {
+                DropQueue(player as? Player ?: return)
+                    .addItem(Items.lookup("ecomc:geode").item)
+                    .forceTelekinesis()
+                    .push()
+            }
+            sender.sendMessage(
+                plugin.langYml.getMessage("gave-crystals", StringUtils.FormatOption.WITHOUT_PLACEHOLDERS)
+                    .replace("%player%", player.savedDisplayName)
+                    .replace("%amount%", amount.toString())
+            )
+        }
     }
 
     override fun tabComplete(sender: CommandSender, args: List<String>): List<String> {
@@ -92,6 +108,14 @@ private class CommandGive(
             StringUtil.copyPartialMatches(
                 args[1],
                 arrayOf(1, 2, 3, 4, 5).map { it.toString() },
+                completions
+            )
+        }
+
+        if (args.size == 3) {
+            StringUtil.copyPartialMatches(
+                args[2],
+                listOf("geode"),
                 completions
             )
         }

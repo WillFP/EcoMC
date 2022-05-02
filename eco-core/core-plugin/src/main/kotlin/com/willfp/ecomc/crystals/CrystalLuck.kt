@@ -3,7 +3,9 @@ package com.willfp.ecomc.crystals
 import com.willfp.eco.core.config.BaseConfig
 import com.willfp.eco.core.config.ConfigType
 import com.willfp.eco.core.config.interfaces.Config
+import com.willfp.eco.core.drops.DropQueue
 import com.willfp.eco.core.events.EntityDeathByEntityEvent
+import com.willfp.eco.core.items.Items
 import com.willfp.eco.util.NumberUtils
 import com.willfp.eco.util.tryAsPlayer
 import com.willfp.ecomc.EcoMCPlugin
@@ -37,7 +39,10 @@ class CrystalLuck : Stat("crystal_luck") {
         }
 
         if (NumberUtils.randFloat(0.0, 100.0) < level * config.getDouble("chance-per-level")) {
-            player.crystals += 1
+            DropQueue(player)
+                .addItem(Items.lookup("ecomc:geode").item)
+                .forceTelekinesis()
+                .push()
             player.sendMessage(EcoMCPlugin.instance.langYml.getMessage("crystal-luck"))
             player.playSound(
                 player.location,
@@ -68,7 +73,10 @@ class CrystalLuck : Stat("crystal_luck") {
         }
 
         if (NumberUtils.randFloat(0.0, 100.0) < level * config.getDouble("chance-per-level-mobs") * multiplier) {
-            player.crystals += 1
+            DropQueue(player)
+                .addItem(Items.lookup("ecomc:geode").item)
+                .forceTelekinesis()
+                .push()
             player.sendMessage(EcoMCPlugin.instance.langYml.getMessage("crystal-luck"))
             player.playSound(
                 player.location,

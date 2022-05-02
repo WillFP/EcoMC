@@ -2,6 +2,9 @@ mob-chance: 0.1
 chance: 0.008
 outgoing-damage-multiplier: 1
 incoming-damage-multiplier: 1
+geodes:
+  min: 0
+  max: 2
 
 crystalshop:
   sellwands:

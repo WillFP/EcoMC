@@ -21,7 +21,9 @@ import com.willfp.ecomc.EcoMCPlugin
 import org.bukkit.Bukkit
 import org.bukkit.Material
 import org.bukkit.Sound
+import org.bukkit.enchantments.Enchantment
 import org.bukkit.entity.Player
+import org.bukkit.inventory.ItemFlag
 
 private interface ShopItem {
     fun giveTo(player: Player)
@@ -149,13 +151,40 @@ fun initCrystalShop(plugin: EcoPlugin) {
                     Items.lookup("black_stained_glass_pane"),
                     Items.lookup("gray_stained_glass_pane"),
                 ),
-                "221111122",
+                "221101122",
                 "333333333",
                 "221101122"
             )
         )
 
         setTitle("Crystal Shop ❖")
+
+        setSlot(1, 5, slot(
+            ItemStackBuilder(Material.GOLDEN_PICKAXE)
+                .addEnchantment(Enchantment.DURABILITY, 1)
+                .addItemFlag(ItemFlag.HIDE_ENCHANTS)
+                .setDisplayName("&fCrack open geodes!")
+                .build()
+        ) {
+            setUpdater { player, _, previous ->
+                val item = previous.clone()
+
+                item.fast().lore = listOf(
+                    "",
+                    "&fBreak open your <gradient:#6a3093>Geodes</gradient:#a044ff>",
+                    "&fto get &bCrystals ❖&f!",
+                    "",
+                    "&e&oClick to open"
+                ).formatEco(player = player, formatPlaceholders = true)
+
+                item
+            }
+
+            onLeftClick { event, _, _ ->
+                val player = event.whoClicked as Player
+                player.openGeodesMenu()
+            }
+        })
 
         setSlot(3, 5, slot(
             ItemStackBuilder(Material.DIAMOND)
