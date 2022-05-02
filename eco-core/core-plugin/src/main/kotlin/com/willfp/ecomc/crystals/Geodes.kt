@@ -129,6 +129,7 @@ fun initGeodes(plugin: EcoPlugin) {
                             .addLoreLine("&7to obtain &b❖ Crystals&7!")
                             .addEnchantment(Enchantment.DURABILITY, 1)
                             .addItemFlag(ItemFlag.HIDE_ENCHANTS)
+                            .addItemFlag(ItemFlag.HIDE_ATTRIBUTES)
                             .build()
                     } else {
                         ItemStackBuilder(Material.GOLDEN_PICKAXE)
@@ -138,6 +139,7 @@ fun initGeodes(plugin: EcoPlugin) {
                             .addLoreLine("&7to break them open for &b❖ Crystals&7!")
                             .addEnchantment(Enchantment.DURABILITY, 1)
                             .addItemFlag(ItemFlag.HIDE_ENCHANTS)
+                            .addItemFlag(ItemFlag.HIDE_ATTRIBUTES)
                             .build()
                     }
                 }

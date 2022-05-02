@@ -173,7 +173,7 @@ fun initCrystalShop(plugin: EcoPlugin) {
                 item.fast().lore = listOf(
                     "",
                     "&fBreak open your <gradient:#6a3093>Geodes</gradient:#a044ff>",
-                    "&fto get &bCrystals ❖&f!",
+                    "&fto get &b❖ Crystals&f!",
                     "",
                     "&e&oClick to open"
                 ).formatEco(player = player, formatPlaceholders = true)
