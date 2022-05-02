@@ -1,6 +1,7 @@
 package com.willfp.ecomc.crystals
 
-import com.willfp.eco.core.config.config
+import com.willfp.eco.core.config.BaseConfig
+import com.willfp.eco.core.config.ConfigType
 import com.willfp.eco.core.config.interfaces.Config
 import com.willfp.eco.core.events.EntityDeathByEntityEvent
 import com.willfp.eco.util.NumberUtils
@@ -13,12 +14,16 @@ import org.bukkit.attribute.Attribute
 import org.bukkit.event.EventHandler
 import org.bukkit.event.block.BlockBreakEvent
 
-class CrystalLuck: Stat("crystal_luck") {
+private class CrystalLuckConfig : BaseConfig(
+    "crystalluck",
+    EcoMCPlugin.instance,
+    true,
+    ConfigType.YAML
+)
+
+class CrystalLuck : Stat("crystal_luck") {
     override fun loadConfig(): Config {
-        return config {
-            "name" to "&b❖ Crystal Luck"
-            "chance-per-level" to 0.003
-        }
+        return CrystalLuckConfig()
     }
 
     @EventHandler
@@ -62,7 +67,7 @@ class CrystalLuck: Stat("crystal_luck") {
             return
         }
 
-        if (NumberUtils.randFloat(0.0, 100.0) < level * config.getDouble("chance-per-level") * multiplier) {
+        if (NumberUtils.randFloat(0.0, 100.0) < level * config.getDouble("chance-per-level-mobs") * multiplier) {
             player.crystals += 1
             player.sendMessage(EcoMCPlugin.instance.langYml.getMessage("crystal-luck"))
             player.playSound(
