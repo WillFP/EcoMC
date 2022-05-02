@@ -37,14 +37,14 @@ crystalshop:
       id: sellwand_15_100
 
   enchants:
-    - display: enchanted_book crystal_luck:1
-      item: enchanted_book crystal_luck:1
+    - display: enchanted_book crystal_finder:1
+      item: enchanted_book crystal_finder:1
       singleUse: false
       price: 105
       gui:
         column: 5
         row: 1
-      id: crystal_luck
+      id: crystal_finder
 
   stats:
     - display: paper unbreaking:1 hide_enchants name:"&fPermanent +1 %ecoskills_defense_name%"
