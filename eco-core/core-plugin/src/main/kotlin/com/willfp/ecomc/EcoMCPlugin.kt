@@ -6,6 +6,7 @@ import com.willfp.eco.core.integrations.placeholder.PlaceholderManager
 import com.willfp.eco.core.placeholder.PlayerPlaceholder
 import com.willfp.eco.util.toNiceString
 import com.willfp.ecomc.crystals.CommandCrystals
+import com.willfp.ecomc.crystals.CrystalEnchantType
 import com.willfp.ecomc.crystals.CrystalLuck
 import com.willfp.ecomc.crystals.crystals
 import com.willfp.ecomc.crystals.initCrystalShop
@@ -16,6 +17,7 @@ import org.bukkit.event.Listener
 class EcoMCPlugin : EcoPlugin() {
     override fun handleEnable() {
         CrystalLuck() // Init crystal luck
+        CrystalEnchantType() // Init enchant type
         initCustomPotions(this)
         initGeodes(this)
         LevelPlaceholder.register(this)

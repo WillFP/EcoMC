@@ -4,6 +4,7 @@ version rootProject.version
 dependencies {
     compileOnly 'org.spigotmc:spigot-api:1.18.2-R0.1-SNAPSHOT'
     compileOnly 'com.willfp:EcoSkills:1.22.0'
+    compileOnly 'com.willfp:EcoEnchants:8.21.0'
 
     compileOnly fileTree(dir: '../../lib', include: ['*.jar'])
 }
