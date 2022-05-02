@@ -13,7 +13,7 @@ crystalshop:
       singleUse: false
       price: 240
       gui:
-        column: 1
+        column: 2
         row: 1
       id: sellwand_11_100
 
@@ -22,7 +22,7 @@ crystalshop:
       singleUse: false
       price: 450
       gui:
-        column: 2
+        column: 3
         row: 1
       id: sellwand_125_100
 
@@ -31,7 +31,7 @@ crystalshop:
       singleUse: false
       price: 675
       gui:
-        column: 3
+        column: 4
         row: 1
       id: sellwand_15_100
 
@@ -40,9 +40,36 @@ crystalshop:
       singleUse: false
       price: 80
       gui:
-        column: 4
+        column: 5
         row: 1
       id: strength_5
+
+    - display: ecomc:haste_5
+      item: ecomc:haste_5
+      singleUse: false
+      price: 80
+      gui:
+        column: 6
+        row: 1
+      id: haste_5
+
+    - display: ecomc:speed_5
+      item: ecomc:speed_5
+      singleUse: false
+      price: 80
+      gui:
+        column: 7
+        row: 1
+      id: speed_5
+
+    - display: ecomc:resistance_5
+      item: ecomc:resistance_5
+      singleUse: false
+      price: 80
+      gui:
+        column: 8
+        row: 1
+      id: resistance_5
 
   upgrades:
     - display: enchanted_book crystal_finder:1

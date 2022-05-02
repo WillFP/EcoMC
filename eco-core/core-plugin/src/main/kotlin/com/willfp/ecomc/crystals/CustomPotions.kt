@@ -8,7 +8,6 @@ import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.meta.PotionMeta
 import org.bukkit.potion.PotionEffect
 import org.bukkit.potion.PotionEffectType
-import org.checkerframework.checker.units.qual.m
 
 fun initCustomPotions(plugin: EcoPlugin) {
     fun potionEffect(id: String, name: String, type: PotionEffectType, strength: Int, duration: Int): CustomItem {
@@ -39,6 +38,30 @@ fun initCustomPotions(plugin: EcoPlugin) {
         "strength_5",
         "&cStrength V Potion",
         PotionEffectType.INCREASE_DAMAGE,
+        5,
+        900
+    )
+
+    potionEffect(
+        "haste_5",
+        "&6Haste V Potion",
+        PotionEffectType.FAST_DIGGING,
+        5,
+        900
+    )
+
+    potionEffect(
+        "speed_5",
+        "&bSpeed V Potion",
+        PotionEffectType.SPEED,
+        5,
+        900
+    )
+
+    potionEffect(
+        "resistance_5",
+        "&3Resistance V Potion",
+        PotionEffectType.DAMAGE_RESISTANCE,
         5,
         900
     )
