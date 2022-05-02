@@ -160,7 +160,7 @@ fun initCrystalShop(plugin: EcoPlugin) {
         setTitle("Crystal Shop ❖")
 
         setSlot(1, 5, slot(
-            ItemStackBuilder(Material.GOLDEN_PICKAXE)
+            ItemStackBuilder(Material.STONECUTTER)
                 .addEnchantment(Enchantment.DURABILITY, 1)
                 .addItemFlag(ItemFlag.HIDE_ENCHANTS)
                 .addItemFlag(ItemFlag.HIDE_ATTRIBUTES)

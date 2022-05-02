@@ -113,7 +113,7 @@ fun initGeodes(plugin: EcoPlugin) {
 
         setSlot(
             3, 5, slot(
-                ItemStackBuilder(Material.GOLDEN_PICKAXE)
+                ItemStackBuilder(Material.STONECUTTER)
                     .setDisplayName("&aBreak open geodes!")
                     .build()
             ) {
@@ -122,7 +122,7 @@ fun initGeodes(plugin: EcoPlugin) {
                         ?.isGeode == true
 
                     if (hasGeode) {
-                        ItemStackBuilder(Material.GOLDEN_PICKAXE)
+                        ItemStackBuilder(Material.STONECUTTER)
                             .setDisplayName("&aBreak open geodes!")
                             .addLoreLine("")
                             .addLoreLine("&7Click to crack open your geodes")
@@ -132,7 +132,7 @@ fun initGeodes(plugin: EcoPlugin) {
                             .addItemFlag(ItemFlag.HIDE_ATTRIBUTES)
                             .build()
                     } else {
-                        ItemStackBuilder(Material.GOLDEN_PICKAXE)
+                        ItemStackBuilder(Material.STONECUTTER)
                             .setDisplayName("&aBreak open geodes!")
                             .addLoreLine("")
                             .addLoreLine("&7Place geodes in the slot above")
