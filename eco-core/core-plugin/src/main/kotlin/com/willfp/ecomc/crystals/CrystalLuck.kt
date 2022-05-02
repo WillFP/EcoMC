@@ -17,7 +17,7 @@ class CrystalLuck: Stat("crystal_luck") {
     override fun loadConfig(): Config {
         return config {
             "name" to "&b❖ Crystal Luck"
-            "chance-per-level" to 0.005
+            "chance-per-level" to 0.003
         }
     }
 
