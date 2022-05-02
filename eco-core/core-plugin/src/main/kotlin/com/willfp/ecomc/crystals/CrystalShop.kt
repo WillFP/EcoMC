@@ -179,7 +179,7 @@ fun initCrystalShop(plugin: EcoPlugin) {
                     "&fincreases the chance of mobs",
                     "&fand blocks dropping &bCrystals ❖",
                     "&fYour %ecoskills_crystal_luck_name%&f: &a%ecoskills_crystal_luck%"
-                ).formatEco(player)
+                ).formatEco(player = player, formatPlaceholders = true)
 
                 item
             }
