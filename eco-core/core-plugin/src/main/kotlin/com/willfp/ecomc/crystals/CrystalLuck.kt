@@ -5,6 +5,7 @@ import com.willfp.eco.core.config.ConfigType
 import com.willfp.eco.core.config.interfaces.Config
 import com.willfp.eco.core.drops.DropQueue
 import com.willfp.eco.core.events.EntityDeathByEntityEvent
+import com.willfp.eco.core.fast.fast
 import com.willfp.eco.core.items.Items
 import com.willfp.eco.util.NumberUtils
 import com.willfp.eco.util.tryAsPlayer
@@ -45,7 +46,10 @@ class CrystalLuck : Stat("crystal_luck") {
             .addItem(item)
             .setLocation(location)
             .push()
-        player.sendMessage(EcoMCPlugin.instance.langYml.getMessage("crystal-luck"))
+        player.sendMessage(
+            EcoMCPlugin.instance.langYml.getMessage("crystal-luck")
+                .replace("%geode%", item.fast().displayName)
+        )
         player.playSound(
             player.location,
             Sound.BLOCK_NOTE_BLOCK_BELL,
