@@ -135,7 +135,7 @@ private fun buySlot(config: Config, isSingleUse: Boolean = false): Slot {
 private lateinit var tagsShop: Menu
 private lateinit var trackersShop: Menu
 private lateinit var statsShop: Menu
-private lateinit var enchantShop: Menu
+private lateinit var upgradesShop: Menu
 private lateinit var sellwandShop: Menu
 
 private lateinit var mainMenu: Menu
@@ -230,13 +230,13 @@ fun initCrystalShop(plugin: EcoPlugin) {
         setSlot(
             2, 7, slot(
                 ItemStackBuilder(Material.ENCHANTED_BOOK)
-                    .setDisplayName("&bEnchantments")
+                    .setDisplayName("&bUpgrades")
                     .build()
             ) {
                 onLeftClick { event, _, _ ->
                     val player = event.whoClicked as Player
                     player.playClickSound()
-                    enchantShop.open(player)
+                    upgradesShop.open(player)
                 }
             }
         )
@@ -389,7 +389,7 @@ fun initCrystalShop(plugin: EcoPlugin) {
         }
     }
 
-    enchantShop = menu(2) {
+    upgradesShop = menu(2) {
         setMask(
             FillerMask(
                 MaskItems(
@@ -416,7 +416,7 @@ fun initCrystalShop(plugin: EcoPlugin) {
             }
         })
 
-        for (config in plugin.configYml.getSubsections("crystalshop.enchants")) {
+        for (config in plugin.configYml.getSubsections("crystalshop.upgrades")) {
             setSlot(
                 config.getInt("gui.row"),
                 config.getInt("gui.column"),
@@ -424,7 +424,7 @@ fun initCrystalShop(plugin: EcoPlugin) {
             )
         }
 
-        setTitle("Crystal Shop ❖ - Enchants")
+        setTitle("Crystal Shop ❖ - Upgrades")
 
         onClose { event, _ ->
             val player = event.player as Player

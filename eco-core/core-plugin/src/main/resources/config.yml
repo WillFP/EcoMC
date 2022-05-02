@@ -32,15 +32,23 @@ crystalshop:
         row: 1
       id: sellwand_15_100
 
-  enchants:
+  upgrades:
     - display: enchanted_book crystal_finder:1
       item: enchanted_book crystal_finder:1
       singleUse: false
       price: 105
       gui:
-        column: 5
+        column: 1
         row: 1
       id: crystal_finder
+    - display: talismans:gemology_1
+      item: talismans:gemology_1
+      singleUse: false
+      price: 135
+      gui:
+        column: 2
+        row: 1
+      id: gemology_1
 
   stats:
     - display: paper unbreaking:1 hide_enchants name:"&fPermanent +1 %ecoskills_defense_name%"
