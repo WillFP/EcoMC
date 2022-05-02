@@ -65,6 +65,14 @@ crystalshop:
         column: 3
         row: 1
       id: sparkly
+    - display: enchanted_book gleam:1
+      item: enchanted_book gleam:1
+      singleUse: false
+      price: 185
+      gui:
+        column: 4
+        row: 1
+      id: gleam
 
   stats:
     - display: paper unbreaking:1 hide_enchants name:"&fPermanent +1 %ecoskills_defense_name%"
