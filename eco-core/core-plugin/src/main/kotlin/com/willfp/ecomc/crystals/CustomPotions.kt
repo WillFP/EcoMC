@@ -8,6 +8,7 @@ import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.meta.PotionMeta
 import org.bukkit.potion.PotionEffect
 import org.bukkit.potion.PotionEffectType
+import org.checkerframework.checker.units.qual.m
 
 fun initCustomPotions(plugin: EcoPlugin) {
     fun potionEffect(id: String, name: String, type: PotionEffectType, strength: Int, duration: Int): CustomItem {
@@ -26,6 +27,7 @@ fun initCustomPotions(plugin: EcoPlugin) {
             true
         )
         meta.setDisplayName(name.formatEco())
+        item.itemMeta = meta
         return CustomItem(
             plugin.namespacedKeyFactory.create(id),
             { it == item },
