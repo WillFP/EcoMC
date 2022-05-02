@@ -13,7 +13,7 @@ import org.bukkit.event.Listener
 
 class EcoMCPlugin : EcoPlugin() {
     override fun handleEnable() {
-        CrystalLuck(this) // Init crystal luck
+        CrystalLuck() // Init crystal luck
         LevelPlaceholder.register(this)
         initCrystalShop(this)
         SchmoneyPlaceholder.init()

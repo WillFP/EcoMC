@@ -1,6 +1,6 @@
 package com.willfp.ecomc.crystals
 
-import com.willfp.eco.core.EcoPlugin
+import com.willfp.eco.core.config.config
 import com.willfp.eco.core.config.interfaces.Config
 import com.willfp.eco.core.events.EntityDeathByEntityEvent
 import com.willfp.eco.util.NumberUtils
@@ -12,11 +12,12 @@ import org.bukkit.attribute.Attribute
 import org.bukkit.event.EventHandler
 import org.bukkit.event.block.BlockBreakEvent
 
-class CrystalLuck(
-    private val ecomc: EcoPlugin
-) : Stat("crystal_luck") {
+class CrystalLuck: Stat("crystal_luck") {
     override fun loadConfig(): Config {
-        return ecomc.configYml.getSubsection("crystal-luck")
+        return config {
+            "name" to "&b❖ Crystal Luck"
+            "chance-per-level" to 0.001
+        }
     }
 
     @EventHandler

@@ -3,10 +3,6 @@ chance: 0.008
 outgoing-damage-multiplier: 1
 incoming-damage-multiplier: 1
 
-crystal-luck:
-  chance-per-level: 0.001
-  name: "&b❖ Crystal Luck"
-
 crystalshop:
   sellwands:
     - display: blaze_rod name:"&aSellwand &8| &f100 Uses &8| &f1.1x Sell Multiplier"
