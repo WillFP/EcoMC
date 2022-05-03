@@ -18,7 +18,7 @@ messages:
   crystal-amount: "%player%&f has %amount%&f crystals"
   gave-crystals: "Gave %player%&f %amount%&f crystals!"
   crystal-luck: "&fYou got a %geode%&f from &f%ecoskills_crystal_luck_name%! &fBring it to the &aGemcutter&f to break it open."
-  buy-crystals: "&fGet more crystals here: &ahttps://store.ecomc.net/category/329462"
+  buy-crystals: "&cYou don't have enough &bCrystals ❖&f! Get more crystals here: &ahttps://store.ecomc.net/category/329462"
   bought-from-crystal: "&fYou bought %item%&f!"
   cracked-geodes-success: "&fYou cracked open your geodes and got &b%amount%❖ Crystals&f!"
   cracked-geodes-fail: "&cYou geodes didn't contain any crystals, better luck next time!"

@@ -49,7 +49,8 @@ class EcoMCPlugin : EcoPlugin() {
             Baninator(),
             PreventGeodePlace(),
             CrystalPotionHandler(this),
-            BuyCrystalPotionsSmh(this)
+            BuyCrystalPotionsSmh(this),
+            HDBCrystalPriceHandler(this)
         )
     }
 
