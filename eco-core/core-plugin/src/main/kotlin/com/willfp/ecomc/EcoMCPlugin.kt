@@ -47,7 +47,7 @@ class EcoMCPlugin : EcoPlugin() {
     override fun handleReload() {
         SchmoneyPlaceholder.createTheRunnable(this)
         CrystalPotionHandler.initRunnable(this)
-        initCrystalShop(this)
+        initCrystalShop()
     }
 
     override fun loadListeners(): List<Listener> {

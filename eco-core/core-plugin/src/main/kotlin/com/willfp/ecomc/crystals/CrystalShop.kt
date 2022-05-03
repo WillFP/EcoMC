@@ -24,6 +24,7 @@ import org.bukkit.Material
 import org.bukkit.Sound
 import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemFlag
+import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.meta.PotionMeta
 
 private interface ShopItem {
@@ -48,6 +49,68 @@ private class CommandShopItem(
             Bukkit.getConsoleSender(),
             command.replace("%player%", player.name)
         )
+    }
+}
+
+private fun shopMenu(rows: Int, configKey: String, title: String): Menu {
+    return menu(rows) {
+        val maskPattern = mutableListOf<String>()
+
+        repeat(rows - 1) {
+            maskPattern.add("100000001")
+        }
+
+        maskPattern.add("111101111")
+
+        setMask(
+            FillerMask(
+                MaskItems(
+                    Items.lookup("light_blue_stained_glass_pane")
+                ),
+                *maskPattern.toTypedArray()
+            )
+        )
+
+        setSlot(rows, 5, slot(
+            ItemStackBuilder(Material.DIAMOND)
+                .setDisplayName("&fYour Balance:")
+                .build()
+        ) {
+            setUpdater { player, _, previous ->
+                previous.fast().lore = listOf(
+                    "&b${player.crystals}❖ &fCrystals",
+                    "",
+                    "&eGet more at &astore.ecomc.net"
+                ).formatEco()
+
+                previous
+            }
+        })
+
+        for (config in EcoMCPlugin.instance.configYml.getSubsections("crystalshop.$configKey")) {
+            setSlot(
+                config.getInt("gui.row"),
+                config.getInt("gui.column"),
+                buySlot(config, isSingleUse = config.getBool("singleUse"))
+            )
+        }
+
+        setTitle("Crystal Shop ❖ - $title")
+
+        onClose { event, _ ->
+            val player = event.player as Player
+            EcoMCPlugin.instance.scheduler.run { mainMenu.open(player) }
+        }
+    }
+}
+
+private fun shopSlot(item: ItemStack, shop: Menu): Slot {
+    return slot(item) {
+        onLeftClick { event, _, _ ->
+            val player = event.whoClicked as Player
+            player.playClickSound()
+            shop.open(player)
+        }
     }
 }
 
@@ -135,17 +198,9 @@ private fun buySlot(config: Config, isSingleUse: Boolean = false): Slot {
     }
 }
 
-private lateinit var tagsShop: Menu
-private lateinit var trackersShop: Menu
-private lateinit var statsShop: Menu
-private lateinit var upgradesShop: Menu
-private lateinit var sellwandsShop: Menu
-private lateinit var potionShop: Menu
-private lateinit var crystalPotionShop: Menu
-
 private lateinit var mainMenu: Menu
 
-fun initCrystalShop(plugin: EcoPlugin) {
+fun initCrystalShop() {
     mainMenu = menu(3) {
         setMask(
             FillerMask(
@@ -191,92 +246,62 @@ fun initCrystalShop(plugin: EcoPlugin) {
         })
 
         setSlot(
-            2, 3, slot(
+            2, 3, shopSlot(
                 ItemStackBuilder(Material.NAME_TAG)
                     .setDisplayName("&bTags")
-                    .build()
-            ) {
-                onLeftClick { event, _, _ ->
-                    val player = event.whoClicked as Player
-                    player.playClickSound()
-                    tagsShop.open(player)
-                }
-            }
+                    .build(),
+                shopMenu(4, "tags", "Tags")
+            )
         )
 
         setSlot(
-            2, 4, slot(
+            2, 4, shopSlot(
                 ItemStackBuilder(Material.COMPASS)
                     .setDisplayName("&bStat Trackers")
-                    .build()
-            ) {
-                onLeftClick { event, _, _ ->
-                    val player = event.whoClicked as Player
-                    player.playClickSound()
-                    trackersShop.open(player)
-                }
-            }
+                    .build(),
+                shopMenu(3, "trackers", "Stat Trackers")
+            )
         )
 
         setSlot(
-            2, 6, slot(
+            2, 6, shopSlot(
                 ItemStackBuilder(Material.AMETHYST_SHARD)
                     .setDisplayName("&bStats")
-                    .build()
-            ) {
-                onLeftClick { event, _, _ ->
-                    val player = event.whoClicked as Player
-                    player.playClickSound()
-                    statsShop.open(player)
-                }
-            }
+                    .build(),
+                shopMenu(3, "stats", "Stats")
+            )
         )
 
         setSlot(
-            2, 7, slot(
+            2, 7, shopSlot(
                 ItemStackBuilder(Material.ENCHANTED_BOOK)
                     .setDisplayName("&bUpgrades")
-                    .build()
-            ) {
-                onLeftClick { event, _, _ ->
-                    val player = event.whoClicked as Player
-                    player.playClickSound()
-                    upgradesShop.open(player)
-                }
-            }
+                    .build(),
+                shopMenu(2, "upgrades", "Upgrades")
+            )
         )
 
         setSlot(
-            2, 2, slot(
+            2, 2, shopSlot(
                 ItemStackBuilder(Material.BLAZE_ROD)
                     .setDisplayName("&bSellwands")
-                    .build()
-            ) {
-                onLeftClick { event, _, _ ->
-                    val player = event.whoClicked as Player
-                    player.playClickSound()
-                    sellwandsShop.open(player)
-                }
-            }
+                    .build(),
+                shopMenu(2, "sellwands", "Sellwands")
+            )
         )
 
         setSlot(
-            2, 8, slot(
+            2, 8, shopSlot(
                 ItemStackBuilder(Material.POTION)
                     .setDisplayName("&bPotions")
                     .addItemFlag(ItemFlag.HIDE_POTION_EFFECTS)
-                    .build()
-            ) {
-                onLeftClick { event, _, _ ->
-                    val player = event.whoClicked as Player
-                    player.playClickSound()
-                    potionShop.open(player)
-                }
-            }
+                    .build(),
+                shopMenu(2, "potions", "Potions")
+            )
         )
 
         setSlot(
-            2, 5, slot(
+            2, 5, shopSlot(
                 ItemStackBuilder(Material.POTION)
                     .setDisplayName("&bCrystal Potions ❖")
                     .addItemFlag(ItemFlag.HIDE_POTION_EFFECTS)
@@ -285,320 +310,10 @@ fun initCrystalShop(plugin: EcoPlugin) {
                         val meta = this.itemMeta as PotionMeta
                         meta.color = Color.AQUA
                         this.itemMeta = meta
-                    }
-            ) {
-                onLeftClick { event, _, _ ->
-                    val player = event.whoClicked as Player
-                    player.playClickSound()
-                    crystalPotionShop.open(player)
-                }
-            }
-        )
-    }
-
-    tagsShop = menu(4) {
-        setMask(
-            FillerMask(
-                MaskItems(
-                    Items.lookup("light_blue_stained_glass_pane")
-                ),
-                "100000001",
-                "100000001",
-                "100000001",
-                "111101111",
+                    },
+                shopMenu(2, "crystal-potions", "Crystal Potions")
             )
         )
-
-        setSlot(4, 5, slot(
-            ItemStackBuilder(Material.DIAMOND)
-                .setDisplayName("&fYour Balance:")
-                .build()
-        ) {
-            setUpdater { player, _, previous ->
-                previous.fast().lore = listOf(
-                    "&b${player.crystals}❖ &fCrystals",
-                    "",
-                    "&eGet more at &astore.ecomc.net"
-                ).formatEco()
-
-                previous
-            }
-        })
-
-        for (config in plugin.configYml.getSubsections("crystalshop.tags")) {
-            setSlot(
-                config.getInt("gui.row"),
-                config.getInt("gui.column"),
-                buySlot(config, isSingleUse = config.getBool("singleUse"))
-            )
-        }
-
-        setTitle("Crystal Shop ❖ - Tags")
-
-        onClose { event, _ ->
-            val player = event.player as Player
-            plugin.scheduler.run { mainMenu.open(player) }
-        }
-    }
-
-    trackersShop = menu(3) {
-        setMask(
-            FillerMask(
-                MaskItems(
-                    Items.lookup("light_blue_stained_glass_pane")
-                ),
-                "100000001",
-                "100000001",
-                "111101111",
-            )
-        )
-
-        setSlot(3, 5, slot(
-            ItemStackBuilder(Material.DIAMOND)
-                .setDisplayName("&fYour Balance:")
-                .build()
-        ) {
-            setUpdater { player, _, previous ->
-                previous.fast().lore = listOf(
-                    "&b${player.crystals}❖ &fCrystals",
-                    "",
-                    "&eGet more at &astore.ecomc.net"
-                ).formatEco()
-
-                previous
-            }
-        })
-
-        for (config in plugin.configYml.getSubsections("crystalshop.trackers")) {
-            setSlot(
-                config.getInt("gui.row"),
-                config.getInt("gui.column"),
-                buySlot(config, isSingleUse = config.getBool("singleUse"))
-            )
-        }
-
-        setTitle("Crystal Shop ❖ - Stat Trackers")
-
-        onClose { event, _ ->
-            val player = event.player as Player
-            plugin.scheduler.run { mainMenu.open(player) }
-        }
-    }
-
-    statsShop = menu(3) {
-        setMask(
-            FillerMask(
-                MaskItems(
-                    Items.lookup("light_blue_stained_glass_pane")
-                ),
-                "000000000",
-                "000000000",
-                "111101111",
-            )
-        )
-
-        setSlot(3, 5, slot(
-            ItemStackBuilder(Material.DIAMOND)
-                .setDisplayName("&fYour Balance:")
-                .build()
-        ) {
-            setUpdater { player, _, previous ->
-                previous.fast().lore = listOf(
-                    "&b${player.crystals}❖ &fCrystals",
-                    "",
-                    "&eGet more at &astore.ecomc.net"
-                ).formatEco()
-
-                previous
-            }
-        })
-
-        for (config in plugin.configYml.getSubsections("crystalshop.stats")) {
-            setSlot(
-                config.getInt("gui.row"),
-                config.getInt("gui.column"),
-                buySlot(config, isSingleUse = config.getBool("singleUse"))
-            )
-        }
-
-        setTitle("Crystal Shop ❖ - Stats")
-
-        onClose { event, _ ->
-            val player = event.player as Player
-            plugin.scheduler.run { mainMenu.open(player) }
-        }
-    }
-
-    upgradesShop = menu(2) {
-        setMask(
-            FillerMask(
-                MaskItems(
-                    Items.lookup("light_blue_stained_glass_pane")
-                ),
-                "000000000",
-                "111101111",
-            )
-        )
-
-        setSlot(2, 5, slot(
-            ItemStackBuilder(Material.DIAMOND)
-                .setDisplayName("&fYour Balance:")
-                .build()
-        ) {
-            setUpdater { player, _, previous ->
-                previous.fast().lore = listOf(
-                    "&b${player.crystals}❖ &fCrystals",
-                    "",
-                    "&eGet more at &astore.ecomc.net"
-                ).formatEco()
-
-                previous
-            }
-        })
-
-        for (config in plugin.configYml.getSubsections("crystalshop.upgrades")) {
-            setSlot(
-                config.getInt("gui.row"),
-                config.getInt("gui.column"),
-                buySlot(config, isSingleUse = config.getBool("singleUse"))
-            )
-        }
-
-        setTitle("Crystal Shop ❖ - Upgrades")
-
-        onClose { event, _ ->
-            val player = event.player as Player
-            plugin.scheduler.run { mainMenu.open(player) }
-        }
-    }
-
-    sellwandsShop = menu(2) {
-        setMask(
-            FillerMask(
-                MaskItems(
-                    Items.lookup("light_blue_stained_glass_pane")
-                ),
-                "000000000",
-                "111101111",
-            )
-        )
-
-        setSlot(2, 5, slot(
-            ItemStackBuilder(Material.DIAMOND)
-                .setDisplayName("&fYour Balance:")
-                .build()
-        ) {
-            setUpdater { player, _, previous ->
-                previous.fast().lore = listOf(
-                    "&b${player.crystals}❖ &fCrystals",
-                    "",
-                    "&eGet more at &astore.ecomc.net"
-                ).formatEco()
-
-                previous
-            }
-        })
-
-        for (config in plugin.configYml.getSubsections("crystalshop.sellwands")) {
-            setSlot(
-                config.getInt("gui.row"),
-                config.getInt("gui.column"),
-                buySlot(config, isSingleUse = config.getBool("singleUse"))
-            )
-        }
-
-        setTitle("Crystal Shop ❖ - Sellwands")
-
-        onClose { event, _ ->
-            val player = event.player as Player
-            plugin.scheduler.run { mainMenu.open(player) }
-        }
-    }
-
-    potionShop = menu(2) {
-        setMask(
-            FillerMask(
-                MaskItems(
-                    Items.lookup("light_blue_stained_glass_pane")
-                ),
-                "000000000",
-                "111101111",
-            )
-        )
-
-        setSlot(2, 5, slot(
-            ItemStackBuilder(Material.DIAMOND)
-                .setDisplayName("&fYour Balance:")
-                .build()
-        ) {
-            setUpdater { player, _, previous ->
-                previous.fast().lore = listOf(
-                    "&b${player.crystals}❖ &fCrystals",
-                    "",
-                    "&eGet more at &astore.ecomc.net"
-                ).formatEco()
-
-                previous
-            }
-        })
-
-        for (config in plugin.configYml.getSubsections("crystalshop.potions")) {
-            setSlot(
-                config.getInt("gui.row"),
-                config.getInt("gui.column"),
-                buySlot(config, isSingleUse = config.getBool("singleUse"))
-            )
-        }
-
-        setTitle("Crystal Shop ❖ - Potions")
-
-        onClose { event, _ ->
-            val player = event.player as Player
-            plugin.scheduler.run { mainMenu.open(player) }
-        }
-    }
-
-    crystalPotionShop = menu(2) {
-        setMask(
-            FillerMask(
-                MaskItems(
-                    Items.lookup("light_blue_stained_glass_pane")
-                ),
-                "000000000",
-                "111101111",
-            )
-        )
-
-        setSlot(2, 5, slot(
-            ItemStackBuilder(Material.DIAMOND)
-                .setDisplayName("&fYour Balance:")
-                .build()
-        ) {
-            setUpdater { player, _, previous ->
-                previous.fast().lore = listOf(
-                    "&b${player.crystals}❖ &fCrystals",
-                    "",
-                    "&eGet more at &astore.ecomc.net"
-                ).formatEco()
-
-                previous
-            }
-        })
-
-        for (config in plugin.configYml.getSubsections("crystalshop.crystal-potions")) {
-            setSlot(
-                config.getInt("gui.row"),
-                config.getInt("gui.column"),
-                buySlot(config, isSingleUse = config.getBool("singleUse"))
-            )
-        }
-
-        setTitle("Crystal Shop ❖ - Crystal Potions")
-
-        onClose { event, _ ->
-            val player = event.player as Player
-            plugin.scheduler.run { mainMenu.open(player) }
-        }
     }
 }
 
