@@ -66,39 +66,34 @@ crystalshop:
       singleUse: false
       price: 105
       gui:
-        column: 1
+        column: 2
         row: 1
       id: crystal_finder
+
     - display: talismans:gemology_1
       item: talismans:gemology_1
       singleUse: false
       price: 135
       gui:
-        column: 2
+        column: 4
         row: 1
       id: gemology_1
-    - display: talismans:gemology_1
-      item: talismans:gemology_1
-      singleUse: false
-      price: 135
-      gui:
-        column: 2
-        row: 1
-      id: gemology_1
+
     - display: reforges:stone_sparkly
       item: reforges:stone_sparkly
       singleUse: false
       price: 95
       gui:
-        column: 3
+        column: 6
         row: 1
       id: sparkly
+
     - display: enchanted_book gleam:1
       item: enchanted_book gleam:1
       singleUse: false
       price: 185
       gui:
-        column: 4
+        column: 8
         row: 1
       id: gleam
 
