@@ -69,6 +69,7 @@ object CrystalPotions {
                     " &8» &fAccess to &a/shop",
                     " &8» &fAccess to &a/crystals",
                     " &8» &fAccess to &a/reforge",
+                    " &8» &fAccess to &a/heads",
                     " &8» &a+25%&f Skill XP Boost",
                     "",
                     "&fIf you already have a",

@@ -21,7 +21,10 @@ class BuyCrystalPotionsSmh(
         "/geodes",
         "/crystalshop",
         "/cshop",
-        "/geodeshop"
+        "/geodeshop",
+        "/hdb",
+        "/heads",
+        "/headdb"
     )
 
     @EventHandler
