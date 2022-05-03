@@ -72,7 +72,7 @@ fun initCrystalPotions(plugin: EcoPlugin) {
                 "",
                 "&fIf you already have a",
                 "&bCrystal Potion ❖&f active, this",
-                "&fwill add 4 more days of effects"
+                "&fwill add 4 more days of effects!"
             ).formatEco(formatPlaceholders = true)
         ).build().apply {
             val meta = this.itemMeta as PotionMeta
