@@ -74,7 +74,9 @@ class CrystalLuck : Stat("crystal_luck") {
             return
         }
 
-        if (NumberUtils.randFloat(0.0, 100.0) < level * config.getDouble("chance-per-level")) {
+        val chance = (level * config.getDouble("chance-per-level")) + config.getDouble("base-chance")
+
+        if (NumberUtils.randFloat(0.0, 100.0) < chance) {
             dropRandomGeode(player, event.block.location)
         }
     }
@@ -92,7 +94,10 @@ class CrystalLuck : Stat("crystal_luck") {
             return
         }
 
-        if (NumberUtils.randFloat(0.0, 100.0) < level * config.getDouble("chance-per-level-mobs") * multiplier) {
+        val chance =
+            (level * config.getDouble("chance-per-level-mobs") * multiplier) + config.getDouble("base-chance-mobs")
+
+        if (NumberUtils.randFloat(0.0, 100.0) < chance) {
             dropRandomGeode(player, event.victim.location)
         }
     }
