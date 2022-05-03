@@ -16,8 +16,10 @@ import com.willfp.eco.core.gui.slot.Slot
 import com.willfp.eco.core.items.Items
 import com.willfp.eco.core.items.TestableItem
 import com.willfp.eco.core.items.builder.ItemStackBuilder
+import com.willfp.eco.core.items.builder.SkullBuilder
 import com.willfp.eco.util.formatEco
 import com.willfp.ecomc.EcoMCPlugin
+import me.arcaniax.hdb.api.HeadDatabaseAPI
 import org.bukkit.Bukkit
 import org.bukkit.Color
 import org.bukkit.Material
@@ -294,13 +296,18 @@ object CrystalShop {
             )
 
             setSlot(
-                2, 8, shopSlot(
-                    ItemStackBuilder(Material.POTION)
-                        .setDisplayName("&bPotions")
-                        .addItemFlag(ItemFlag.HIDE_POTION_EFFECTS)
-                        .build(),
-                    shopMenu(2, "potions", "Potions")
-                )
+                2, 8, slot(
+                    SkullBuilder()
+                        .setSkullTexture("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTFjNTFiOTQ2Y2I0ODRiOWM3NmIyYzViZjVlYWIwYzc0YzljZWQ5NWYzNWFhODFlNjk5YmQ1ZDliNTdlMjBmIn19fQ==")
+                        .setDisplayName("&bHeads")
+                        .build()
+                ) {
+                    onLeftClick { event, _, _ ->
+                        val player = event.whoClicked as Player
+                        player.playClickSound()
+                        Bukkit.dispatchCommand(player, "heads")
+                    }
+                }
             )
 
             setSlot(

@@ -13,7 +13,6 @@ class EcoMCPlugin : EcoPlugin() {
         CrystalLuck() // Init crystal luck
         CrystalEnchantType() // Init enchant type
         CrystalPotions.init(this)
-        CustomPotions.init(this)
         Geodes.init(this)
         LevelPlaceholder.register(this)
         SchmoneyPlaceholder.init()
