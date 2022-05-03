@@ -9,6 +9,11 @@ depend:
   - eco
   - EcoSkills
   - EcoEnchants
+  - EcoItems
+  - EcoArmor
+  - Reforges
+  - Talismans
+  - EcoBosses
 
 commands:
   secretecomcadmincommand:
