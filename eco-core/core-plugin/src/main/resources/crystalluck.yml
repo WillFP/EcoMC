@@ -1,5 +1,5 @@
 name: "&b❖ Crystal Luck"
-chance-per-level: 0.002
-chance-per-level-mobs: 0.004
-base-chance: 0.06
-base-mob-chance: 0.04
+chance-per-level: 0.01
+chance-per-level-mobs: 0.05
+base-chance: 0.1
+base-mob-chance: 1
