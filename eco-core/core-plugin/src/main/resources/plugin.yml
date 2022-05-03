@@ -23,9 +23,21 @@ commands:
       - geodeshop
 
 permissions:
+  ecomc.crystals.*:
+    children:
+      ecomc.crystals: true
+      ecomc.crystals.give: true
+      ecomc.crystals.get: true
+      ecomc.crystals.shop: true
+      ecomc.crystals.geodes: true
+    default: op
   ecomc.crystals:
     default: true
   ecomc.crystals.give:
     default: op
   ecomc.crystals.get:
     default: op
+  ecomc.crystals.shop:
+    default: true
+  ecomc.crystals.geodes:
+    default: true

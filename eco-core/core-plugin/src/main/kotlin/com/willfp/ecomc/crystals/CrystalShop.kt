@@ -151,42 +151,13 @@ fun initCrystalShop(plugin: EcoPlugin) {
                     Items.lookup("black_stained_glass_pane"),
                     Items.lookup("gray_stained_glass_pane"),
                 ),
-                "221101122",
+                "221111122",
                 "333333333",
                 "221101122"
             )
         )
 
         setTitle("Crystal Shop ❖")
-
-        setSlot(1, 5, slot(
-            ItemStackBuilder(Material.STONECUTTER)
-                .addEnchantment(Enchantment.DURABILITY, 1)
-                .addItemFlag(ItemFlag.HIDE_ENCHANTS)
-                .addItemFlag(ItemFlag.HIDE_ATTRIBUTES)
-                .setDisplayName("&fCrack open geodes!")
-                .build()
-        ) {
-            setUpdater { player, _, previous ->
-                val item = previous.clone()
-
-                item.fast().lore = listOf(
-                    "",
-                    "&fBreak open your <gradient:#6a3093>Geodes</gradient:#a044ff>",
-                    "&fto get &b❖ Crystals&f!",
-                    "",
-                    "&e&oClick to open"
-                ).formatEco(player = player, formatPlaceholders = true)
-
-                item
-            }
-
-            onLeftClick { event, _, _ ->
-                val player = event.whoClicked as Player
-                player.playClickSound()
-                player.openGeodesMenu()
-            }
-        })
 
         setSlot(3, 5, slot(
             ItemStackBuilder(Material.DIAMOND)
