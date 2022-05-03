@@ -110,11 +110,12 @@ fun initGeodes(plugin: EcoPlugin) {
             FillerMask(
                 MaskItems(
                     Items.lookup("black_stained_glass_pane"),
+                    Items.lookup("purple_stained_glass_pane")
                 ),
                 "111111111",
-                "111101111",
-                "111101111",
-                "111111111",
+                "121101121",
+                "112101211",
+                "111212111",
                 "000000000"
             )
         )
@@ -132,7 +133,7 @@ fun initGeodes(plugin: EcoPlugin) {
                         val geodeLevel = menu.getCaptiveItems(player).getOrNull(0)?.geodeLevel ?: 0
 
                         if (geodeLevel > 0) {
-                            ItemStackBuilder(Material.PURPLE_STAINED_GLASS_PANE)
+                            ItemStackBuilder(Material.LIME_STAINED_GLASS_PANE)
                                 .setDisplayName("&e")
                                 .build()
                         } else {
