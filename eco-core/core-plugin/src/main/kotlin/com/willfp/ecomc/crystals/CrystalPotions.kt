@@ -125,12 +125,6 @@ val OfflinePlayer.hasCrystalPotion: Boolean
 fun OfflinePlayer.enableCrystalPotion() {
     var endTime = this.profile.read(crystalPotionKey)
     if (endTime < System.currentTimeMillis()) {
-
-        Bukkit.getServer().dispatchCommand(
-            Bukkit.getConsoleSender(),
-            "lp user ${this.name} parent add crystalpotion"
-        )
-
         endTime = System.currentTimeMillis().toDouble()
     }
 
@@ -189,11 +183,6 @@ class CrystalPotionHandler(private val plugin: EcoPlugin) : Listener {
                             Sound.BLOCK_NOTE_BLOCK_PLING,
                             5f,
                             0.5f
-                        )
-
-                        Bukkit.getServer().dispatchCommand(
-                            Bukkit.getConsoleSender(),
-                            "lp user ${player.name} parent remove crystalpotion"
                         )
                     }
                 }

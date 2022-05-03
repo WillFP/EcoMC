@@ -6,7 +6,6 @@ import com.willfp.eco.core.config.interfaces.Config
 import com.willfp.eco.core.drops.DropQueue
 import com.willfp.eco.core.events.EntityDeathByEntityEvent
 import com.willfp.eco.core.fast.fast
-import com.willfp.eco.core.items.Items
 import com.willfp.eco.util.NumberUtils
 import com.willfp.eco.util.tryAsPlayer
 import com.willfp.ecomc.EcoMCPlugin
@@ -19,13 +18,6 @@ import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
 import org.bukkit.event.block.BlockBreakEvent
 
-private class CrystalLuckConfig : BaseConfig(
-    "crystalluck",
-    EcoMCPlugin.instance,
-    true,
-    ConfigType.YAML
-)
-
 class CrystalLuck : Stat("crystal_luck") {
     override fun loadConfig(): Config {
         return CrystalLuckConfig()
@@ -35,17 +27,18 @@ class CrystalLuck : Stat("crystal_luck") {
         val weight = NumberUtils.randInt(0, 100)
 
         val item = if (weight < 70) {
-            Items.lookup("ecomc:geode_1").item
+            Geodes[1]
         } else if (weight < 90) {
-            Items.lookup("ecomc:geode_2").item
+            Geodes[2]
         } else {
-            Items.lookup("ecomc:geode_3").item
+            Geodes[3]
         }
 
         DropQueue(player)
             .addItem(item)
             .setLocation(location)
             .push()
+
         player.sendMessage(
             EcoMCPlugin.instance.langYml.getMessage("crystal-luck")
                 .replace("%geode%", item.fast().displayName)
@@ -101,4 +94,11 @@ class CrystalLuck : Stat("crystal_luck") {
             dropRandomGeode(player, event.victim.location)
         }
     }
+
+    private class CrystalLuckConfig : BaseConfig(
+        "crystalluck",
+        EcoMCPlugin.instance,
+        true,
+        ConfigType.YAML
+    )
 }
