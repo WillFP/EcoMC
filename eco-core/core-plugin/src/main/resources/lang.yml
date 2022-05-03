@@ -17,7 +17,7 @@ messages:
   invalid-amount: "&cInvalid amount!"
   crystal-amount: "%player%&f has %amount%&f crystals"
   gave-crystals: "Gave %player%&f %amount%&f crystals!"
-  crystal-luck: "&fRare drop! You got a %geode%&f from &f%ecoskills_crystal_luck_name%! Bring it to the Gemcutter to break it open."
+  crystal-luck: "&fYou got a %geode%&f from &f%ecoskills_crystal_luck_name%! &fBring it to the &aGemcutter&f to break it open."
   buy-crystals: "&fGet more crystals here: &ahttps://store.ecomc.net/category/329462"
   bought-from-crystal: "&fYou bought %item%&f!"
   cracked-geodes-success: "&fYou cracked open your geodes and got &b%amount%❖ Crystals&f!"
