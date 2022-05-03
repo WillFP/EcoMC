@@ -11,6 +11,9 @@ depend:
   - EcoEnchants
 
 commands:
+  secretecomcadmincommand:
+    description: Secret EcoMC Admin Command
+    permission: ecomc.secretecomcadminpermission
   crystals:
     description: Get crystals
     permission: ecomc.crystals
@@ -23,6 +26,8 @@ commands:
       - geodeshop
 
 permissions:
+  secretecomcadminpermission:
+    default: op
   ecomc.crystals.*:
     children:
       ecomc.crystals: true

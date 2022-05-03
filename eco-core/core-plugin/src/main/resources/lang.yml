@@ -3,7 +3,7 @@ messages:
   no-permission: "&cYou don't have permission to do this!"
   not-player: "&cThis command must be run by a player"
   invalid-command: "&cUnknown subcommand!"
-  reloaded: "Reloaded!"
+  reloaded: "Reloaded! Took &a%time%&f ms"
   got-key: "&bLucky Find!&f (Basic Key)"
   invul-join: "&fYou have &a15 minutes&f of new player invulnerability! &cPvP will remove your protection"
   invul-5m-left: "&fYou have &a5 minutes&f left before your invulnerability runs out!"
