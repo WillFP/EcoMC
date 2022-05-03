@@ -13,10 +13,6 @@ class HDBCrystalPriceHandler(private val plugin: EcoPlugin) : Listener {
     fun handle(event: PlayerClickHeadEvent) {
         val player = event.player
 
-        if (player.isOp) {
-            return
-        }
-
         event.isCancelled = true
 
         if (player.crystals < event.price) {
