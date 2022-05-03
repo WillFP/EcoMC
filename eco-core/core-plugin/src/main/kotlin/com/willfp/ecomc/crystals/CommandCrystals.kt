@@ -24,13 +24,26 @@ class CommandCrystals(
         this.addSubcommand(CommandGive(plugin))
             .addSubcommand(CommandGet(plugin))
             .addSubcommand(CommandShop(plugin))
-            .addSubcommand(CommandGeodes(plugin))
             .addSubcommand(CommandExpirePotion(plugin))
     }
 
     override fun onExecute(player: CommandSender, args: List<String>) {
         player as Player
         player.openCrystalShop()
+    }
+}
+
+class CommandGeodes(
+    plugin: EcoPlugin
+) : PluginCommand(
+    plugin,
+    "geodes",
+    "ecomc.geodes",
+    true
+) {
+    override fun onExecute(player: CommandSender, args: List<String>) {
+        player as Player
+        player.openGeodesMenu()
     }
 }
 
@@ -189,20 +202,6 @@ private class CommandShop(
     override fun onExecute(player: CommandSender, args: List<String>) {
         if (player !is Player) return
         player.openCrystalShop()
-    }
-}
-
-private class CommandGeodes(
-    plugin: EcoPlugin
-) : Subcommand(
-    plugin,
-    "geodes",
-    "ecomc.crystals.geodes",
-    false
-) {
-    override fun onExecute(player: CommandSender, args: List<String>) {
-        if (player !is Player) return
-        player.openGeodesMenu()
     }
 }
 

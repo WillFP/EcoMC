@@ -19,7 +19,6 @@ class BuyCrystalPotionsSmh(
         "/crystal",
         "/geode",
         "/geodes",
-        "/crystalshop",
         "/cshop",
         "/geodeshop",
         "/hdb",

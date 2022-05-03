@@ -24,11 +24,14 @@ commands:
     permission: ecomc.crystals
     aliases:
       - crystal
-      - geode
-      - geodes
       - crystalshop
       - cshop
-      - geodeshop
+  geodes:
+    description: Crack open geodes
+    permission: ecomc.geodes
+    aliases:
+      - geode
+      - geodes
 
 permissions:
   ecomc.secretecomcadminpermission:
@@ -43,6 +46,8 @@ permissions:
       ecomc.crystals.expirepotion: true
     default: op
   ecomc.crystals:
+    default: true
+  ecomc.geodes:
     default: true
   ecomc.crystals.give:
     default: op

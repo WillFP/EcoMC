@@ -30,7 +30,8 @@ class EcoMCPlugin : EcoPlugin() {
     override fun loadPluginCommands(): List<PluginCommand> {
         return listOf(
             CommandCrystals(this),
-            SecretEcoMCAdminCommand(this)
+            SecretEcoMCAdminCommand(this),
+            CommandGeodes(this)
         )
     }
 
