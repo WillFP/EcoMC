@@ -19,7 +19,7 @@ class HDBCrystalPriceHandler(private val plugin: EcoPlugin) : Listener {
 
         event.isCancelled = true
 
-        if (player.crystals < 12) {
+        if (player.crystals < event.price) {
             player.sendMessage(plugin.langYml.getMessage("buy-crystals"))
             return
         }
@@ -34,7 +34,7 @@ class HDBCrystalPriceHandler(private val plugin: EcoPlugin) : Listener {
             1f,
             1.5f
         )
-        player.crystals -= 12
+        player.crystals -= event.price.toInt()
         DropQueue(player)
             .addItem(event.head)
             .forceTelekinesis()
