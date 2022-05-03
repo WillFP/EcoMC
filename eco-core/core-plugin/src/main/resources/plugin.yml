@@ -26,7 +26,7 @@ commands:
       - geodeshop
 
 permissions:
-  secretecomcadminpermission:
+  ecomc.secretecomcadminpermission:
     default: op
   ecomc.crystals.*:
     children:
