@@ -244,6 +244,14 @@ private class CommandExpirePotion(
             return Bukkit.getOnlinePlayers().map { it.name }
         }
 
+        if (args.size == 1) {
+            StringUtil.copyPartialMatches(
+                args[0],
+                Bukkit.getOnlinePlayers().map { it.name },
+                completions
+            )
+        }
+
         return completions
     }
 }
