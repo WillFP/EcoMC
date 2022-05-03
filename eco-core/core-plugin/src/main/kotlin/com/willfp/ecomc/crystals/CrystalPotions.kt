@@ -130,7 +130,7 @@ fun OfflinePlayer.enableCrystalPotion() {
         endTime = System.currentTimeMillis().toDouble()
     }
 
-    endTime += 20_000
+    endTime += 345_600_000
     this.profile.write(crystalPotionKey, endTime)
     this.profile.write(crystalPotionActiveKey, true)
 }

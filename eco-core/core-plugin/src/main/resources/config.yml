@@ -14,7 +14,7 @@ crystalshop:
         row: 1
       id: crystal_potion
 
-    - display: ecomc:crystal_potion 6
+    - display: ecomc:crystal_potion 6 name:"&f6 &bCrystal Potions ❖"
       item: ecomc:crystal_potion 6
       singleUse: false
       price: 1450
@@ -23,7 +23,7 @@ crystalshop:
         row: 1
       id: crystal_potion_6
 
-    - display: ecomc:crystal_potion 12
+    - display: ecomc:crystal_potion 12 name:"&f12 &bCrystal Potions ❖"
       item: ecomc:crystal_potion 12
       singleUse: false
       price: 2675
