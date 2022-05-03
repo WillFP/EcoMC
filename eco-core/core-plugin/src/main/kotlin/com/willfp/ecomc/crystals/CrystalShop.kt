@@ -1,6 +1,7 @@
 package com.willfp.ecomc.crystals
 
 import com.willfp.eco.core.config.interfaces.Config
+import com.willfp.eco.core.config.updating.ConfigUpdater
 import com.willfp.eco.core.data.keys.PersistentDataKey
 import com.willfp.eco.core.data.keys.PersistentDataKeyType
 import com.willfp.eco.core.data.profile
@@ -199,120 +200,124 @@ private fun buySlot(config: Config, isSingleUse: Boolean = false): Slot {
 
 private lateinit var mainMenu: Menu
 
-fun initCrystalShop() {
-    mainMenu = menu(3) {
-        setMask(
-            FillerMask(
-                MaskItems(
-                    Items.lookup("light_blue_stained_glass_pane"),
-                    Items.lookup("black_stained_glass_pane"),
-                    Items.lookup("gray_stained_glass_pane"),
-                ),
-                "221111122",
-                "333333333",
-                "221101122"
+object CrystalShop {
+    @JvmStatic
+    @ConfigUpdater
+    fun initCrystalShop() {
+        mainMenu = menu(3) {
+            setMask(
+                FillerMask(
+                    MaskItems(
+                        Items.lookup("light_blue_stained_glass_pane"),
+                        Items.lookup("black_stained_glass_pane"),
+                        Items.lookup("gray_stained_glass_pane"),
+                    ),
+                    "221111122",
+                    "333333333",
+                    "221101122"
+                )
             )
-        )
 
-        setTitle("Crystal Shop ❖")
+            setTitle("Crystal Shop ❖")
 
-        setSlot(3, 5, slot(
-            ItemStackBuilder(Material.DIAMOND)
-                .setDisplayName("&fWhat are crystals and geodes?")
-                .build()
-        ) {
-            setUpdater { player, _, previous ->
-                val item = previous.clone()
-
-                item.fast().lore = listOf(
-                    "",
-                    "&bCrystals ❖&f are a special",
-                    "&fcurrency used to buy exclusive",
-                    "&fcosmetics, upgrades, and items.",
-                    "",
-                    "&fYou can get &bCrystals ❖&f by",
-                    "&fmining blocks, killing mobs",
-                    "&fand on &astore.ecomc.net",
-                    "",
-                    "&fThe %ecoskills_crystal_luck_name%&f stat",
-                    "&fincreases the chance of mobs",
-                    "&fand blocks dropping <g:#6a3093>Geodes</g:#a044ff>",
-                    "&fYour %ecoskills_crystal_luck_name%&f: &a%ecoskills_crystal_luck%"
-                ).formatEco(player = player, formatPlaceholders = true)
-
-                item
-            }
-        })
-
-        setSlot(
-            2, 3, shopSlot(
-                ItemStackBuilder(Material.NAME_TAG)
-                    .setDisplayName("&bTags")
-                    .build(),
-                shopMenu(4, "tags", "Tags")
-            )
-        )
-
-        setSlot(
-            2, 4, shopSlot(
-                ItemStackBuilder(Material.COMPASS)
-                    .setDisplayName("&bStat Trackers")
-                    .build(),
-                shopMenu(3, "trackers", "Stat Trackers")
-            )
-        )
-
-        setSlot(
-            2, 6, shopSlot(
-                ItemStackBuilder(Material.AMETHYST_SHARD)
-                    .setDisplayName("&bStats")
-                    .build(),
-                shopMenu(3, "stats", "Stats")
-            )
-        )
-
-        setSlot(
-            2, 7, shopSlot(
-                ItemStackBuilder(Material.ENCHANTED_BOOK)
-                    .setDisplayName("&bUpgrades")
-                    .build(),
-                shopMenu(2, "upgrades", "Upgrades")
-            )
-        )
-
-        setSlot(
-            2, 2, shopSlot(
-                ItemStackBuilder(Material.BLAZE_ROD)
-                    .setDisplayName("&bSellwands")
-                    .build(),
-                shopMenu(2, "sellwands", "Sellwands")
-            )
-        )
-
-        setSlot(
-            2, 8, shopSlot(
-                ItemStackBuilder(Material.POTION)
-                    .setDisplayName("&bPotions")
-                    .addItemFlag(ItemFlag.HIDE_POTION_EFFECTS)
-                    .build(),
-                shopMenu(2, "potions", "Potions")
-            )
-        )
-
-        setSlot(
-            2, 5, shopSlot(
-                ItemStackBuilder(Material.POTION)
-                    .setDisplayName("&bCrystal Potions ❖")
-                    .addItemFlag(ItemFlag.HIDE_POTION_EFFECTS)
+            setSlot(3, 5, slot(
+                ItemStackBuilder(Material.DIAMOND)
+                    .setDisplayName("&fWhat are crystals and geodes?")
                     .build()
-                    .apply {
-                        val meta = this.itemMeta as PotionMeta
-                        meta.color = Color.AQUA
-                        this.itemMeta = meta
-                    },
-                shopMenu(2, "crystal-potions", "Crystal Potions")
+            ) {
+                setUpdater { player, _, previous ->
+                    val item = previous.clone()
+
+                    item.fast().lore = listOf(
+                        "",
+                        "&bCrystals ❖&f are a special",
+                        "&fcurrency used to buy exclusive",
+                        "&fcosmetics, upgrades, and items.",
+                        "",
+                        "&fYou can get &bCrystals ❖&f by",
+                        "&fmining blocks, killing mobs",
+                        "&fand on &astore.ecomc.net",
+                        "",
+                        "&fThe %ecoskills_crystal_luck_name%&f stat",
+                        "&fincreases the chance of mobs",
+                        "&fand blocks dropping <g:#6a3093>Geodes</g:#a044ff>",
+                        "&fYour %ecoskills_crystal_luck_name%&f: &a%ecoskills_crystal_luck%"
+                    ).formatEco(player = player, formatPlaceholders = true)
+
+                    item
+                }
+            })
+
+            setSlot(
+                2, 3, shopSlot(
+                    ItemStackBuilder(Material.NAME_TAG)
+                        .setDisplayName("&bTags")
+                        .build(),
+                    shopMenu(4, "tags", "Tags")
+                )
             )
-        )
+
+            setSlot(
+                2, 4, shopSlot(
+                    ItemStackBuilder(Material.COMPASS)
+                        .setDisplayName("&bStat Trackers")
+                        .build(),
+                    shopMenu(3, "trackers", "Stat Trackers")
+                )
+            )
+
+            setSlot(
+                2, 6, shopSlot(
+                    ItemStackBuilder(Material.AMETHYST_SHARD)
+                        .setDisplayName("&bStats")
+                        .build(),
+                    shopMenu(3, "stats", "Stats")
+                )
+            )
+
+            setSlot(
+                2, 7, shopSlot(
+                    ItemStackBuilder(Material.ENCHANTED_BOOK)
+                        .setDisplayName("&bUpgrades")
+                        .build(),
+                    shopMenu(2, "upgrades", "Upgrades")
+                )
+            )
+
+            setSlot(
+                2, 2, shopSlot(
+                    ItemStackBuilder(Material.BLAZE_ROD)
+                        .setDisplayName("&bSellwands")
+                        .build(),
+                    shopMenu(2, "sellwands", "Sellwands")
+                )
+            )
+
+            setSlot(
+                2, 8, shopSlot(
+                    ItemStackBuilder(Material.POTION)
+                        .setDisplayName("&bPotions")
+                        .addItemFlag(ItemFlag.HIDE_POTION_EFFECTS)
+                        .build(),
+                    shopMenu(2, "potions", "Potions")
+                )
+            )
+
+            setSlot(
+                2, 5, shopSlot(
+                    ItemStackBuilder(Material.POTION)
+                        .setDisplayName("&bCrystal Potions ❖")
+                        .addItemFlag(ItemFlag.HIDE_POTION_EFFECTS)
+                        .build()
+                        .apply {
+                            val meta = this.itemMeta as PotionMeta
+                            meta.color = Color.AQUA
+                            this.itemMeta = meta
+                        },
+                    shopMenu(2, "crystal-potions", "Crystal Potions")
+                )
+            )
+        }
     }
 }
 
