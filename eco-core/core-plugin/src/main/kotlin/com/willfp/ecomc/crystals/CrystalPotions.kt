@@ -56,63 +56,65 @@ private val crystalPotionActiveKey = PersistentDataKey(
     false
 )
 
-fun initCrystalPotions(plugin: EcoPlugin) {
-    val item = ItemStackBuilder(Material.POTION)
-        .setDisplayName("&bCrystal Potion ❖")
-        .addItemFlag(ItemFlag.HIDE_POTION_EFFECTS)
-        .addLoreLines(
-            listOf(
-                "",
-                "&fDrink to gain the following",
-                "&fbuffs for &a4 Days&f:",
-                " &8» &fAccess to &a/shop",
-                " &8» &fAccess to &a/crystals",
-                " &8» &fAccess to &a/reforge",
-                " &8» &a+25%&f Skill XP Boost",
-                "",
-                "&fIf you already have a",
-                "&bCrystal Potion ❖&f active, this",
-                "&fwill add 4 more days of effects!"
-            ).formatEco(formatPlaceholders = true)
-        ).build().apply {
-            val meta = this.itemMeta as PotionMeta
-            meta.color = Color.AQUA
-            this.itemMeta = meta
-            this.setCrystalPotion()
-        }
-
-    CustomItem(
-        plugin.namespacedKeyFactory.create("crystal_potion"),
-        { it.isCrystalPotion },
-        item
-    ).register()
-
-    PlaceholderManager.registerPlaceholder(
-        PlayerPlaceholder(
-            plugin,
-            "crystal_potion_info"
-        ) {
-            if (it.hasCrystalPotion) {
-                val secondsLeft = Math.floorDiv(
-                    (it.profile.read(crystalPotionKey) - System.currentTimeMillis()).toInt(),
-                    1000
-                )
-
-                // if you've seen this code on the internet, no you haven't. shush
-                val seconds = secondsLeft % 3600 % 60
-                val minutes = floor(secondsLeft % 3600 / 60.0).toInt()
-                val hours = floor(secondsLeft / 3600.0).toInt()
-
-                val hh = (if (hours < 10) "0" else "") + hours
-                val mm = (if (minutes < 10) "0" else "") + minutes
-                val ss = (if (seconds < 10) "0" else "") + seconds
-
-                "&fYou have a &bCrystal Potion ❖&f active! Time left: &a${hh}:${mm}:${ss}"
-            } else {
-                "&cYou don't have a &bCrystal Potion ❖&c active!"
+object CrystalPotions {
+    fun init(plugin: EcoPlugin) {
+        val item = ItemStackBuilder(Material.POTION)
+            .setDisplayName("&bCrystal Potion ❖")
+            .addItemFlag(ItemFlag.HIDE_POTION_EFFECTS)
+            .addLoreLines(
+                listOf(
+                    "",
+                    "&fDrink to gain the following",
+                    "&fbuffs for &a4 Days&f:",
+                    " &8» &fAccess to &a/shop",
+                    " &8» &fAccess to &a/crystals",
+                    " &8» &fAccess to &a/reforge",
+                    " &8» &a+25%&f Skill XP Boost",
+                    "",
+                    "&fIf you already have a",
+                    "&bCrystal Potion ❖&f active, this",
+                    "&fwill add 4 more days of effects!"
+                ).formatEco(formatPlaceholders = true)
+            ).build().apply {
+                val meta = this.itemMeta as PotionMeta
+                meta.color = Color.AQUA
+                this.itemMeta = meta
+                this.setCrystalPotion()
             }
-        }
-    )
+
+        CustomItem(
+            plugin.namespacedKeyFactory.create("crystal_potion"),
+            { it.isCrystalPotion },
+            item
+        ).register()
+
+        PlaceholderManager.registerPlaceholder(
+            PlayerPlaceholder(
+                plugin,
+                "crystal_potion_info"
+            ) {
+                if (it.hasCrystalPotion) {
+                    val secondsLeft = Math.floorDiv(
+                        (it.profile.read(crystalPotionKey) - System.currentTimeMillis()).toInt(),
+                        1000
+                    )
+
+                    // if you've seen this code on the internet, no you haven't. shush
+                    val seconds = secondsLeft % 3600 % 60
+                    val minutes = floor(secondsLeft % 3600 / 60.0).toInt()
+                    val hours = floor(secondsLeft / 3600.0).toInt()
+
+                    val hh = (if (hours < 10) "0" else "") + hours
+                    val mm = (if (minutes < 10) "0" else "") + minutes
+                    val ss = (if (seconds < 10) "0" else "") + seconds
+
+                    "&fYou have a &bCrystal Potion ❖&f active! Time left: &a${hh}:${mm}:${ss}"
+                } else {
+                    "&cYou don't have a &bCrystal Potion ❖&c active!"
+                }
+            }
+        )
+    }
 }
 
 fun OfflinePlayer.expireCrystalPotion() {
