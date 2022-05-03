@@ -115,6 +115,10 @@ fun initCrystalPotions(plugin: EcoPlugin) {
     )
 }
 
+fun OfflinePlayer.expireCrystalPotion() {
+    this.profile.write(crystalPotionKey, 0.0)
+}
+
 val OfflinePlayer.hasCrystalPotion: Boolean
     get() = this.profile.read(crystalPotionActiveKey)
 
