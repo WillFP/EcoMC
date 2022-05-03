@@ -25,3 +25,5 @@ messages:
   drank-crystal-potion: "&fYou gained &a4 Days&f of &bCrystal Potion ❖&f!"
   crystal-potion-expired: "&fYour &bCrystal Potion ❖&f has expired. Get more from the &aCristallier&f!"
   expired-potion: "&fExpired %player%&f's &bCrystal Potion ❖"
+  buy-crystal-potion: "&cYou need a &bCrystal Potion ❖&c to run this command.&f Go to the NPC with &a/warp&f!"
+
