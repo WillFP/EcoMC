@@ -34,7 +34,7 @@ class CrystalLuck : Stat("crystal_luck") {
     private fun dropRandomGeode(player: Player, location: Location) {
         val weight = NumberUtils.randInt(0, 100)
 
-        val item = if (weight < 50) {
+        val item = if (weight < 70) {
             Items.lookup("ecomc:geode_1").item
         } else if (weight < 90) {
             Items.lookup("ecomc:geode_2").item

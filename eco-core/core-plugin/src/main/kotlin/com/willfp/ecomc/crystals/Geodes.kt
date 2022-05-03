@@ -24,6 +24,7 @@ import org.bukkit.event.block.BlockPlaceEvent
 import org.bukkit.inventory.ItemFlag
 import org.bukkit.inventory.ItemStack
 import org.bukkit.persistence.PersistentDataType
+import kotlin.math.roundToInt
 
 private fun ItemStack.setGeode(level: Int) {
     this.fast().persistentDataContainer.set(
@@ -202,7 +203,7 @@ fun initGeodes(plugin: EcoPlugin) {
 
                         repeat(amount) {
                             crystalsToGive += when (geodeLevel) {
-                                1 -> NumberUtils.randInt(0, 1)
+                                1 -> NumberUtils.triangularDistribution(0.0, 1.0, 0.0).roundToInt()
                                 2 -> NumberUtils.randInt(0, 2)
                                 3 -> NumberUtils.randInt(1, 4)
                                 else -> 0
