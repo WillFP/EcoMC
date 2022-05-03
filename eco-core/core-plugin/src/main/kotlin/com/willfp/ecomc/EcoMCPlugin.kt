@@ -25,7 +25,6 @@ class EcoMCPlugin : EcoPlugin() {
         initCustomPotions(this)
         initGeodes(this)
         LevelPlaceholder.register(this)
-        initCrystalShop(this)
         SchmoneyPlaceholder.init()
 
         PlaceholderManager.registerPlaceholder(
@@ -48,6 +47,7 @@ class EcoMCPlugin : EcoPlugin() {
     override fun handleReload() {
         SchmoneyPlaceholder.createTheRunnable(this)
         CrystalPotionHandler.initRunnable(this)
+        initCrystalShop(this)
     }
 
     override fun loadListeners(): List<Listener> {
