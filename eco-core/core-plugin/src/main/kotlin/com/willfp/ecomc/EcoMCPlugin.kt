@@ -8,8 +8,10 @@ import com.willfp.eco.util.toNiceString
 import com.willfp.ecomc.crystals.CommandCrystals
 import com.willfp.ecomc.crystals.CrystalEnchantType
 import com.willfp.ecomc.crystals.CrystalLuck
+import com.willfp.ecomc.crystals.CrystalPotionHandler
 import com.willfp.ecomc.crystals.PreventGeodePlace
 import com.willfp.ecomc.crystals.crystals
+import com.willfp.ecomc.crystals.initCrystalPotions
 import com.willfp.ecomc.crystals.initCrystalShop
 import com.willfp.ecomc.crystals.initCustomPotions
 import com.willfp.ecomc.crystals.initGeodes
@@ -19,6 +21,7 @@ class EcoMCPlugin : EcoPlugin() {
     override fun handleEnable() {
         CrystalLuck() // Init crystal luck
         CrystalEnchantType() // Init enchant type
+        initCrystalPotions(this)
         initCustomPotions(this)
         initGeodes(this)
         LevelPlaceholder.register(this)
@@ -44,6 +47,7 @@ class EcoMCPlugin : EcoPlugin() {
 
     override fun handleReload() {
         SchmoneyPlaceholder.createTheRunnable(this)
+        CrystalPotionHandler.initRunnable(this)
     }
 
     override fun loadListeners(): List<Listener> {
@@ -53,7 +57,8 @@ class EcoMCPlugin : EcoPlugin() {
             EntityYeeter(),
             SpawnProtection(this),
             Baninator(),
-            PreventGeodePlace()
+            PreventGeodePlace(),
+            CrystalPotionHandler(this)
         )
     }
 

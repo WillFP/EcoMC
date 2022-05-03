@@ -4,40 +4,41 @@ outgoing-damage-multiplier: 1
 incoming-damage-multiplier: 1
 
 crystalshop:
-  items:
-    - display: blaze_rod name:"&aSellwand &8| &f100 Uses &8| &f1.1x Sell Multiplier"
-      command: dsw sellwand %player% default 1 1.1 100
+  crystal-potions:
+    - display: ecomc:crystal_potion
+      item: ecomc:crystal_potion
       singleUse: false
-      price: 240
-      gui:
-        column: 2
-        row: 1
-      id: sellwand_11_100
-
-    - display: blaze_rod name:"&aSellwand &8| &f100 Uses &8| &f1.25x Sell Multiplier"
-      command: dsw sellwand %player% default 1 1.25 100
-      singleUse: false
-      price: 450
+      price: 265
       gui:
         column: 3
         row: 1
-      id: sellwand_125_100
+      id: crystal_potion
 
-    - display: blaze_rod name:"&aSellwand &8| &f100 Uses &8| &f1.5x Sell Multiplier"
-      command: dsw sellwand %player% default 1 1.5 100
+    - display: ecomc:crystal_potion 6
+      item: ecomc:crystal_potion 6
       singleUse: false
-      price: 675
+      price: 1450
       gui:
-        column: 4
+        column: 5
         row: 1
-      id: sellwand_15_100
+      id: crystal_potion_6
 
+    - display: ecomc:crystal_potion 12
+      item: ecomc:crystal_potion 12
+      singleUse: false
+      price: 2675
+      gui:
+        column: 7
+        row: 1
+      id: crystal_potion_12
+
+  potions:
     - display: ecomc:strength_5
       item: ecomc:strength_5
       singleUse: false
       price: 80
       gui:
-        column: 6
+        column: 3
         row: 1
       id: strength_5
 
@@ -46,7 +47,7 @@ crystalshop:
       singleUse: false
       price: 80
       gui:
-        column: 7
+        column: 5
         row: 1
       id: speed_5
 
@@ -55,9 +56,38 @@ crystalshop:
       singleUse: false
       price: 80
       gui:
-        column: 8
+        column: 7
         row: 1
       id: resistance_5
+
+
+  sellwands:
+    - display: blaze_rod name:"&aSellwand &8| &f100 Uses &8| &f1.1x Sell Multiplier"
+      command: dsw sellwand %player% default 1 1.1 100
+      singleUse: false
+      price: 240
+      gui:
+        column: 3
+        row: 1
+      id: sellwand_11_100
+
+    - display: blaze_rod name:"&aSellwand &8| &f100 Uses &8| &f1.25x Sell Multiplier"
+      command: dsw sellwand %player% default 1 1.25 100
+      singleUse: false
+      price: 450
+      gui:
+        column: 5
+        row: 1
+      id: sellwand_125_100
+
+    - display: blaze_rod name:"&aSellwand &8| &f100 Uses &8| &f1.5x Sell Multiplier"
+      command: dsw sellwand %player% default 1 1.5 100
+      singleUse: false
+      price: 675
+      gui:
+        column: 7
+        row: 1
+      id: sellwand_15_100
 
   upgrades:
     - display: enchanted_book crystal_finder:1
