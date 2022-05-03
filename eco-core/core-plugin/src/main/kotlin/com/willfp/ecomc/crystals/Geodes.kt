@@ -115,7 +115,7 @@ fun initGeodes(plugin: EcoPlugin) {
                 "111111111",
                 "121101121",
                 "112101211",
-                "111212111",
+                "111111111",
                 "000000000"
             )
         )
@@ -158,56 +158,33 @@ fun initGeodes(plugin: EcoPlugin) {
                 .push()
         }
 
-        // lmfao
-        fun ItemStackBuilder.hideAll(): ItemStackBuilder {
-            for (flag in ItemFlag.values()) {
-                this.addItemFlag(flag)
-            }
-
-            return this
-        }
-
         setSlot(
             3, 5, slot(
-                ItemStackBuilder(Material.GOLDEN_PICKAXE)
+                ItemStackBuilder(Material.LODESTONE)
                     .setDisplayName("&aBreak open geodes!")
-                    .hideAll()
                     .build()
             ) {
                 setUpdater { player, menu, _ ->
                     val geodeLevel = menu.getCaptiveItems(player).getOrNull(0)?.geodeLevel ?: 0
 
                     if (geodeLevel > 0) {
-                        ItemStackBuilder(Material.GOLDEN_PICKAXE)
+                        ItemStackBuilder(Material.LODESTONE)
                             .setDisplayName("&aBreak open geodes!")
                             .addLoreLine("")
                             .addLoreLine("&7Click to crack open your geodes")
                             .addLoreLine("&7to obtain &b❖ Crystals&7!")
                             .addEnchantment(Enchantment.DURABILITY, 1)
-                            .hideAll()
+                            .addItemFlag(ItemFlag.HIDE_ENCHANTS)
                             .build()
                     } else {
-                        ItemStackBuilder(Material.GOLDEN_PICKAXE)
+                        ItemStackBuilder(Material.LODESTONE)
                             .setDisplayName("&aBreak open geodes!")
                             .addLoreLine("")
                             .addLoreLine("&7Place geodes in the slot above")
                             .addLoreLine("&7to break them open for &b❖ Crystals&7!")
                             .addEnchantment(Enchantment.DURABILITY, 1)
-                            .hideAll()
+                            .addItemFlag(ItemFlag.HIDE_ENCHANTS)
                             .build()
-                    }
-                }
-
-                onClose { event, menu ->
-                    val player = event.player as Player
-                    DropQueue(player)
-                        .addItems(menu.getCaptiveItems(player))
-                        .forceTelekinesis()
-                        .setLocation(player.eyeLocation)
-                        .push()
-
-                    plugin.scheduler.run {
-                        player.openCrystalShop()
                     }
                 }
 
