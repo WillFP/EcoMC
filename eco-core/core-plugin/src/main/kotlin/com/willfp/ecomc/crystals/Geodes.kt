@@ -44,7 +44,7 @@ private val ItemStack.geodeLevel: Int
 
 private lateinit var geodesMenu: Menu
 
-class PreventGeodePlace: Listener {
+class PreventGeodePlace : Listener {
     @EventHandler
     fun handle(event: BlockPlaceEvent) {
         if (event.itemInHand.geodeLevel > 0) {
@@ -157,34 +157,42 @@ fun initGeodes(plugin: EcoPlugin) {
                 .push()
         }
 
+        // lmfao
+        fun ItemStackBuilder.hideAll(): ItemStackBuilder {
+            for (flag in ItemFlag.values()) {
+                this.addItemFlag(flag)
+            }
+
+            return this
+        }
+
         setSlot(
             3, 5, slot(
-                ItemStackBuilder(Material.STONECUTTER)
+                ItemStackBuilder(Material.GOLDEN_PICKAXE)
                     .setDisplayName("&aBreak open geodes!")
+                    .hideAll()
                     .build()
             ) {
                 setUpdater { player, menu, _ ->
                     val geodeLevel = menu.getCaptiveItems(player).getOrNull(0)?.geodeLevel ?: 0
 
                     if (geodeLevel > 0) {
-                        ItemStackBuilder(Material.STONECUTTER)
+                        ItemStackBuilder(Material.GOLDEN_PICKAXE)
                             .setDisplayName("&aBreak open geodes!")
                             .addLoreLine("")
                             .addLoreLine("&7Click to crack open your geodes")
                             .addLoreLine("&7to obtain &b❖ Crystals&7!")
                             .addEnchantment(Enchantment.DURABILITY, 1)
-                            .addItemFlag(ItemFlag.HIDE_ENCHANTS)
-                            .addItemFlag(ItemFlag.HIDE_ATTRIBUTES)
+                            .hideAll()
                             .build()
                     } else {
-                        ItemStackBuilder(Material.STONECUTTER)
+                        ItemStackBuilder(Material.GOLDEN_PICKAXE)
                             .setDisplayName("&aBreak open geodes!")
                             .addLoreLine("")
                             .addLoreLine("&7Place geodes in the slot above")
                             .addLoreLine("&7to break them open for &b❖ Crystals&7!")
                             .addEnchantment(Enchantment.DURABILITY, 1)
-                            .addItemFlag(ItemFlag.HIDE_ENCHANTS)
-                            .addItemFlag(ItemFlag.HIDE_ATTRIBUTES)
+                            .hideAll()
                             .build()
                     }
                 }
