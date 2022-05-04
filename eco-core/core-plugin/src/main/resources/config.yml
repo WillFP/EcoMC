@@ -149,7 +149,7 @@ crystalshop:
       price: 120
       gui:
         column: 7
-        row: 2
+        row: 1
       id: attack_speed
 
     - display: paper unbreaking:1 hide_enchants name:"&fPermanent +1 %ecoskills_wisdom_name%"
@@ -158,7 +158,7 @@ crystalshop:
       price: 120
       gui:
         column: 8
-        row: 2
+        row: 1
       id: wisdom
 
     - display: paper unbreaking:1 hide_enchants name:"&fPermanent +1 %ecoskills_ferocity_name%"
