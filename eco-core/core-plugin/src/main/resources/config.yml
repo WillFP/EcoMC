@@ -73,7 +73,7 @@ crystalshop:
     - display: talismans:gemology_1
       item: talismans:gemology_1
       singleUse: false
-      price: 135
+      price: 205
       gui:
         column: 4
         row: 1
