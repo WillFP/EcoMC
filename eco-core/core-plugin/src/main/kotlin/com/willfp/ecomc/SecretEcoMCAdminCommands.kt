@@ -6,6 +6,7 @@ import com.willfp.eco.core.command.impl.Subcommand
 import com.willfp.eco.core.drops.DropQueue
 import com.willfp.eco.core.items.Items
 import com.willfp.eco.util.StringUtils
+import com.willfp.eco.util.formatEco
 import com.willfp.eco.util.savedDisplayName
 import com.willfp.ecoskills.api.EcoSkillsAPI
 import com.willfp.ecoskills.skills.Skills
@@ -26,6 +27,7 @@ class SecretEcoMCAdminCommand(
         this.addSubcommand(CommandReload(plugin))
             .addSubcommand(CommandGet(plugin))
             .addSubcommand(CommandUpgradeSkill(plugin))
+            .addSubcommand(CommandKickAll(plugin))
     }
 
     override fun onExecute(sender: CommandSender, args: List<String>) {
@@ -158,5 +160,21 @@ private class CommandGet(
         }
 
         return completions
+    }
+}
+
+
+private class CommandKickAll(
+    plugin: EcoPlugin
+) : Subcommand(
+    plugin,
+    "kickall",
+    "ecomc.secretecomcadminpermission",
+    false
+) {
+    override fun onExecute(sender: CommandSender, args: List<String>) {
+        for (player in Bukkit.getOnlinePlayers()) {
+            player.kickPlayer("<g:#00ffff>EcoMC</g:#0000ff>&f is having a scheduled restart, come back in a couple minutes!".formatEco())
+        }
     }
 }
