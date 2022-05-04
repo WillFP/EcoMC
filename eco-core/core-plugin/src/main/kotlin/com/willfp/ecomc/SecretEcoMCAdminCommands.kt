@@ -174,7 +174,7 @@ private class CommandKickAll(
 ) {
     override fun onExecute(sender: CommandSender, args: List<String>) {
         for (player in Bukkit.getOnlinePlayers()) {
-            player.kickPlayer("<g:#00ffff>EcoMC</g:#0000ff>&f is having a scheduled restart, come back in a couple minutes!".formatEco())
+            player.kickPlayer("<g:#00ff00>EcoMC</g:#00ffff>&f is having a scheduled restart, come back in a couple minutes!".formatEco())
         }
     }
 }
