@@ -95,7 +95,7 @@ class CrystalLuck : Stat("crystal_luck") {
             return
         }
 
-        val chance = getProbability(level) * config.getDouble("mobs-times-more")
+        val chance = getProbability(level) * config.getDouble("mobs-times-more") * multiplier
 
         if (NumberUtils.randFloat(0.0, 100.0) < chance) {
             dropRandomGeode(player, event.victim.location)
