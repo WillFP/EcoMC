@@ -9,6 +9,7 @@ import com.willfp.ecomc.crystals.CommandCrystals
 import com.willfp.ecomc.crystals.CommandGeodes
 import com.willfp.ecomc.crystals.CrystalEnchantType
 import com.willfp.ecomc.crystals.CrystalLuck
+import com.willfp.ecomc.crystals.CrystalOnSkillLevelUp
 import com.willfp.ecomc.crystals.CrystalPotionHandler
 import com.willfp.ecomc.crystals.CrystalPotions
 import com.willfp.ecomc.crystals.Geodes
@@ -58,6 +59,7 @@ class EcoMCPlugin : EcoPlugin() {
             SpawnProtection(this),
             Baninator(),
             PreventGeodePlace(),
+            CrystalOnSkillLevelUp(),
             CrystalPotionHandler(this),
             BuyCrystalPotionsSmh(this),
             HDBCrystalPriceHandler(this)
