@@ -1,5 +1,7 @@
 name: "&b❖ Crystal Luck"
 mobs-times-more: 12.5
-initial: 0.05
-base: 1.14
-scalar: 0.016
+initial: 0.02
+base: 1.17
+scalar: 0.007
+multiplier: 0.4
+minute-limit: 3

@@ -17,6 +17,7 @@ import org.bukkit.attribute.Attribute
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
 import org.bukkit.event.block.BlockBreakEvent
+import java.util.UUID
 import kotlin.math.log
 
 class CrystalLuck : Stat("crystal_luck") {
@@ -28,7 +29,7 @@ class CrystalLuck : Stat("crystal_luck") {
         val base = config.getDouble("base")
         val scalar = config.getDouble("scalar")
         val initial = config.getDouble("initial")
-        return base / 15 * log(scalar * level + 1, base) + initial
+        return (base / 15 * log(scalar * level + 1, base) + initial) * config.getDouble("multiplier")
     }
 
     private fun dropRandomGeode(player: Player, location: Location) {
@@ -77,9 +78,17 @@ class CrystalLuck : Stat("crystal_luck") {
 
         val chance = getProbability(level)
 
-        if (NumberUtils.randFloat(0.0, 100.0) < chance) {
-            dropRandomGeode(player, event.block.location)
+        if (NumberUtils.randFloat(0.0, 100.0) >= chance) {
+            return
         }
+
+        if ((limiter[uuid] ?: 0) > config.getInt("minute-limit")) {
+            return
+        }
+
+        limiter[uuid] = (limiter[uuid] ?: 0) + 1
+
+        dropRandomGeode(player, event.block.location)
     }
 
     @EventHandler
@@ -97,9 +106,17 @@ class CrystalLuck : Stat("crystal_luck") {
 
         val chance = getProbability(level) * config.getDouble("mobs-times-more") * multiplier
 
-        if (NumberUtils.randFloat(0.0, 100.0) < chance) {
-            dropRandomGeode(player, event.victim.location)
+        if (NumberUtils.randFloat(0.0, 100.0) >= chance) {
+            return
         }
+
+        if ((limiter[uuid] ?: 0) > config.getInt("minute-limit")) {
+            return
+        }
+
+        limiter[uuid] = (limiter[uuid] ?: 0) + 1
+
+        dropRandomGeode(player, event.victim.location)
     }
 
     private class CrystalLuckConfig : BaseConfig(
@@ -108,4 +125,12 @@ class CrystalLuck : Stat("crystal_luck") {
         true,
         ConfigType.YAML
     )
+
+    companion object {
+        private val limiter = mutableMapOf<UUID, Int>()
+
+        fun resetLimiter() {
+            limiter.clear()
+        }
+    }
 }

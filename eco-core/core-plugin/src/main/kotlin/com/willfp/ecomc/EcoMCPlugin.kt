@@ -5,7 +5,16 @@ import com.willfp.eco.core.command.impl.PluginCommand
 import com.willfp.eco.core.integrations.placeholder.PlaceholderManager
 import com.willfp.eco.core.placeholder.PlayerPlaceholder
 import com.willfp.eco.util.toNiceString
-import com.willfp.ecomc.crystals.*
+import com.willfp.ecomc.crystals.CommandCrystals
+import com.willfp.ecomc.crystals.CommandGeodes
+import com.willfp.ecomc.crystals.CrystalEnchantType
+import com.willfp.ecomc.crystals.CrystalLuck
+import com.willfp.ecomc.crystals.CrystalPotionHandler
+import com.willfp.ecomc.crystals.CrystalPotions
+import com.willfp.ecomc.crystals.Geodes
+import com.willfp.ecomc.crystals.HDBCrystalPriceHandler
+import com.willfp.ecomc.crystals.PreventGeodePlace
+import com.willfp.ecomc.crystals.crystals
 import org.bukkit.event.Listener
 
 class EcoMCPlugin : EcoPlugin() {
@@ -38,6 +47,7 @@ class EcoMCPlugin : EcoPlugin() {
     override fun handleReload() {
         SchmoneyPlaceholder.createTheRunnable(this)
         CrystalPotionHandler.initRunnable(this)
+        this.scheduler.runTimer(1200, 1200) { CrystalLuck.resetLimiter() }
     }
 
     override fun loadListeners(): List<Listener> {
