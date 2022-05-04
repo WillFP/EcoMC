@@ -189,11 +189,13 @@ private fun buySlot(config: Config, isSingleUse: Boolean = false): Slot {
                 ""
             )
 
-            if (notifPlaceholder != null) {
-                if (PlaceholderManager.translatePlaceholders(notifPlaceholder, player) == notifEquals) {
-                    lore.add("&c&oYou cannot purchase")
-                    lore.add("&c&othis item!")
-                }
+            if (notifPlaceholder != null && PlaceholderManager.translatePlaceholders(
+                    notifPlaceholder,
+                    player
+                ) == notifEquals
+            ) {
+                lore.add("&c&oYou cannot purchase")
+                lore.add("&c&othis item!")
             } else {
                 if (key != null && player.profile.read(key) > 0) {
                     lore.add("&c&oYou have already purchased")
@@ -289,7 +291,7 @@ object CrystalShop {
                     ItemStackBuilder(Material.AMETHYST_SHARD)
                         .setDisplayName("&bStats + Skills")
                         .build(),
-                    shopMenu(6, "stats", "Stats + Skills")
+                    shopMenu(4, "stats", "Stats + Skills")
                 )
             )
 

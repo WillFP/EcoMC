@@ -103,7 +103,7 @@ crystalshop:
       singleUse: false
       price: 120
       gui:
-        column: 3
+        column: 2
         row: 1
       id: defense
 
@@ -112,7 +112,7 @@ crystalshop:
       singleUse: false
       price: 120
       gui:
-        column: 4
+        column: 3
         row: 1
       id: strength
 
@@ -121,7 +121,7 @@ crystalshop:
       singleUse: false
       price: 120
       gui:
-        column: 5
+        column: 4
         row: 1
       id: crit_chance
 
@@ -130,7 +130,7 @@ crystalshop:
       singleUse: false
       price: 120
       gui:
-        column: 6
+        column: 5
         row: 1
       id: crit_damage
 
@@ -139,7 +139,7 @@ crystalshop:
       singleUse: false
       price: 120
       gui:
-        column: 7
+        column: 6
         row: 1
       id: speed
 
@@ -148,7 +148,7 @@ crystalshop:
       singleUse: false
       price: 120
       gui:
-        column: 4
+        column: 7
         row: 2
       id: attack_speed
 
@@ -157,7 +157,7 @@ crystalshop:
       singleUse: false
       price: 120
       gui:
-        column: 5
+        column: 8
         row: 2
       id: wisdom
 
@@ -166,11 +166,11 @@ crystalshop:
       singleUse: false
       price: 120
       gui:
-        column: 6
+        column: 5
         row: 2
       id: ferocity
 
-    - display: stone_pickaxe name:"&fInstant %ecoskills_mining_name%&f Level Up!"
+    - display: stone_pickaxe name:"&fInstant &a%ecoskills_mining_name%&f Level Up!"
       command: secretecomcadmincommand upgradeskill %player% mining
       singleUse: false
       price: 365
@@ -178,11 +178,11 @@ crystalshop:
         placeholder: '%ecoskills_mining%'
         equals: 50
       gui:
-        column: 3
-        row: 4
+        column: 2
+        row: 2
       id: mining
 
-    - display: stone_sword name:"&fInstant %ecoskills_combat_name%&f Level Up!"
+    - display: stone_sword name:"&fInstant &a%ecoskills_combat_name%&f Level Up!"
       command: secretecomcadmincommand upgradeskill %player% combat
       singleUse: false
       price: 365
@@ -190,11 +190,11 @@ crystalshop:
         placeholder: '%ecoskills_combat%'
         equals: 50
       gui:
-        column: 4
-        row: 4
+        column: 8
+        row: 2
       id: combat
 
-    - display: enchanting_table name:"&fInstant %ecoskills_enchanting_name%&f Level Up!"
+    - display: enchanting_table name:"&fInstant &a%ecoskills_enchanting_name%&f Level Up!"
       command: secretecomcadmincommand upgradeskill %player% enchanting
       singleUse: false
       price: 365
@@ -202,11 +202,11 @@ crystalshop:
         placeholder: '%ecoskills_enchanting%'
         equals: 50
       gui:
-        column: 5
-        row: 4
+        column: 2
+        row: 3
       id: enchanting
 
-    - display: golden_hoe name:"&fInstant %ecoskills_farming_name%&f Level Up!"
+    - display: golden_hoe name:"&fInstant &a%ecoskills_farming_name%&f Level Up!"
       command: secretecomcadmincommand upgradeskill %player% farming
       singleUse: false
       price: 365
@@ -214,11 +214,11 @@ crystalshop:
         placeholder: '%ecoskills_farming%'
         equals: 50
       gui:
-        column: 6
-        row: 4
+        column: 3
+        row: 3
       id: farming
 
-    - display: jungle_sapling name:"&fInstant %ecoskills_woodcutting_name%&f Level Up!"
+    - display: jungle_sapling name:"&fInstant &a%ecoskills_woodcutting_name%&f Level Up!"
       command: secretecomcadmincommand upgradeskill %player% woodcutting
       singleUse: false
       price: 365
@@ -226,11 +226,11 @@ crystalshop:
         placeholder: '%ecoskills_woodcutting%'
         equals: 50
       gui:
-        column: 7
-        row: 4
+        column: 4
+        row: 3
       id: woodcutting
 
-    - display: fishing_rod name:"&fInstant %ecoskills_fishing_name%&f Level Up!"
+    - display: fishing_rod name:"&fInstant &a%ecoskills_fishing_name%&f Level Up!"
       command: secretecomcadmincommand upgradeskill %player% fishing
       singleUse: false
       price: 365
@@ -238,11 +238,11 @@ crystalshop:
         placeholder: '%ecoskills_fishing%'
         equals: 50
       gui:
-        column: 3
-        row: 5
+        column: 5
+        row: 3
       id: fishing
 
-    - display: brewing_stand name:"&fInstant %ecoskills_alchemy_name%&f Level Up!"
+    - display: brewing_stand name:"&fInstant &a%ecoskills_alchemy_name%&f Level Up!"
       command: secretecomcadmincommand upgradeskill %player% alchemy
       singleUse: false
       price: 365
@@ -250,11 +250,11 @@ crystalshop:
         placeholder: '%ecoskills_alchemy%'
         equals: 50
       gui:
-        column: 4
-        row: 5
+        column: 6
+        row: 3
       id: alchemy
 
-    - display: iron_chestplate name:"&fInstant %ecoskills_armory_name%&f Level Up!"
+    - display: iron_chestplate name:"&fInstant &a%ecoskills_armory_name%&f Level Up!"
       command: secretecomcadmincommand upgradeskill %player% armory
       singleUse: false
       price: 365
@@ -262,11 +262,11 @@ crystalshop:
         placeholder: '%ecoskills_armory%'
         equals: 50
       gui:
-        column: 6
-        row: 5
+        column: 7
+        row: 3
       id: armory
 
-    - display: leather_boots name:"&fInstant %ecoskills_exploration_name%&f Level Up!"
+    - display: leather_boots name:"&fInstant &a%ecoskills_exploration_name%&f Level Up!"
       command: secretecomcadmincommand upgradeskill %player% exploration
       singleUse: false
       price: 365
@@ -274,8 +274,8 @@ crystalshop:
         placeholder: '%ecoskills_exploration%'
         equals: 50
       gui:
-        column: 7
-        row: 5
+        column: 8
+        row: 3
       id: exploration
 
   trackers:
