@@ -13,13 +13,13 @@ import com.willfp.eco.core.gui.slot
 import com.willfp.eco.core.gui.slot.FillerMask
 import com.willfp.eco.core.gui.slot.MaskItems
 import com.willfp.eco.core.gui.slot.Slot
+import com.willfp.eco.core.integrations.placeholder.PlaceholderManager
 import com.willfp.eco.core.items.Items
 import com.willfp.eco.core.items.TestableItem
 import com.willfp.eco.core.items.builder.ItemStackBuilder
 import com.willfp.eco.core.items.builder.SkullBuilder
 import com.willfp.eco.util.formatEco
 import com.willfp.ecomc.EcoMCPlugin
-import me.arcaniax.hdb.api.HeadDatabaseAPI
 import org.bukkit.Bukkit
 import org.bukkit.Color
 import org.bukkit.Material
@@ -126,6 +126,9 @@ private fun buySlot(config: Config, isSingleUse: Boolean = false): Slot {
         ).player()
     } else null
 
+    val notifPlaceholder = config.getStringOrNull("not-if.placeholder")
+    val notifEquals = config.getStringOrNull("not-if.equals")
+
     val display = Items.lookup(config.getString("display"))
     val price = config.getInt("price")
     val item = if (config.has("command")) {
@@ -140,6 +143,12 @@ private fun buySlot(config: Config, isSingleUse: Boolean = false): Slot {
 
             if (key != null) {
                 if (player.profile.read(key) > 0) {
+                    return@onLeftClick
+                }
+            }
+
+            if (notifPlaceholder != null) {
+                if (PlaceholderManager.translatePlaceholders(notifPlaceholder, player) == notifEquals) {
                     return@onLeftClick
                 }
             }
@@ -180,16 +189,23 @@ private fun buySlot(config: Config, isSingleUse: Boolean = false): Slot {
                 ""
             )
 
-            if (key != null && player.profile.read(key) > 0) {
-                lore.add("&c&oYou have already purchased")
-                lore.add("&c&othis item")
+            if (notifPlaceholder != null) {
+                if (PlaceholderManager.translatePlaceholders(notifPlaceholder, player) == notifEquals) {
+                    lore.add("&c&oYou cannot purchase")
+                    lore.add("&c&othis item!")
+                }
             } else {
-                if (player.crystals >= price) {
-                    lore.add("&e&oLeft click to buy!")
+                if (key != null && player.profile.read(key) > 0) {
+                    lore.add("&c&oYou have already purchased")
+                    lore.add("&c&othis item!")
                 } else {
-                    lore.add("&c&oYou cannot afford this!")
-                    lore.add("&c&oYou need &b&o${price - player.crystals}❖&c&o more crystals")
-                    lore.add("&c&oGet some at &a&ostore.ecomc.net")
+                    if (player.crystals >= price) {
+                        lore.add("&e&oLeft click to buy!")
+                    } else {
+                        lore.add("&c&oYou cannot afford this!")
+                        lore.add("&c&oYou need &b&o${price - player.crystals}❖&c&o more crystals")
+                        lore.add("&c&oGet some at &a&ostore.ecomc.net")
+                    }
                 }
             }
 
@@ -271,9 +287,9 @@ object CrystalShop {
             setSlot(
                 2, 6, shopSlot(
                     ItemStackBuilder(Material.AMETHYST_SHARD)
-                        .setDisplayName("&bStats")
+                        .setDisplayName("&bStats + Skills")
                         .build(),
-                    shopMenu(3, "stats", "Stats")
+                    shopMenu(6, "stats", "Stats + Skills")
                 )
             )
 

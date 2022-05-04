@@ -103,7 +103,7 @@ crystalshop:
       singleUse: false
       price: 120
       gui:
-        column: 1
+        column: 3
         row: 1
       id: defense
 
@@ -112,7 +112,7 @@ crystalshop:
       singleUse: false
       price: 120
       gui:
-        column: 2
+        column: 4
         row: 1
       id: strength
 
@@ -121,7 +121,7 @@ crystalshop:
       singleUse: false
       price: 120
       gui:
-        column: 3
+        column: 5
         row: 1
       id: crit_chance
 
@@ -130,7 +130,7 @@ crystalshop:
       singleUse: false
       price: 120
       gui:
-        column: 4
+        column: 6
         row: 1
       id: crit_damage
 
@@ -139,7 +139,7 @@ crystalshop:
       singleUse: false
       price: 120
       gui:
-        column: 6
+        column: 7
         row: 1
       id: speed
 
@@ -148,8 +148,8 @@ crystalshop:
       singleUse: false
       price: 120
       gui:
-        column: 7
-        row: 1
+        column: 4
+        row: 2
       id: attack_speed
 
     - display: paper unbreaking:1 hide_enchants name:"&fPermanent +1 %ecoskills_wisdom_name%"
@@ -157,8 +157,8 @@ crystalshop:
       singleUse: false
       price: 120
       gui:
-        column: 8
-        row: 1
+        column: 5
+        row: 2
       id: wisdom
 
     - display: paper unbreaking:1 hide_enchants name:"&fPermanent +1 %ecoskills_ferocity_name%"
@@ -166,83 +166,117 @@ crystalshop:
       singleUse: false
       price: 120
       gui:
-        column: 9
-        row: 1
-      id: ferocity
-
-    # 10s
-
-    - display: paper unbreaking:1 hide_enchants name:"&fPermanent +10 %ecoskills_defense_name%"
-      command: ecoskills give %player% defense 10
-      singleUse: false
-      price: 1200
-      gui:
-        column: 1
-        row: 2
-      id: defense
-
-    - display: paper unbreaking:1 hide_enchants name:"&fPermanent +10 %ecoskills_strength_name%"
-      command: ecoskills give %player% strength 10
-      singleUse: false
-      price: 1200
-      gui:
-        column: 2
-        row: 2
-      id: strength
-
-    - display: paper unbreaking:1 hide_enchants name:"&fPermanent +10 %ecoskills_crit_chance_name%"
-      command: ecoskills give %player% crit_chance 10
-      singleUse: false
-      price: 1200
-      gui:
-        column: 3
-        row: 2
-      id: crit_chance
-
-    - display: paper unbreaking:1 hide_enchants name:"&fPermanent +10 %ecoskills_crit_damage_name%"
-      command: ecoskills give %player% crit_damage 10
-      singleUse: false
-      price: 1200
-      gui:
-        column: 4
-        row: 2
-      id: crit_damage
-
-    - display: paper unbreaking:1 hide_enchants name:"&fPermanent +10 %ecoskills_speed_name%"
-      command: ecoskills give %player% speed 10
-      singleUse: false
-      price: 1200
-      gui:
         column: 6
         row: 2
-      id: speed
+      id: ferocity
 
-    - display: paper unbreaking:1 hide_enchants name:"&fPermanent +10 %ecoskills_attack_speed_name%"
-      command: ecoskills give %player% attack_speed 10
+    - display: stone_pickaxe name:"&fInstant %ecoskills_mining_name%&f Level Up!"
+      command: secretecomcadmincommand upgradeskill %player% mining
       singleUse: false
-      price: 1200
+      price: 365
+      not-if:
+        placeholder: %ecoskills_mining%
+        equals: 50
+      gui:
+        column: 3
+        row: 4
+      id: mining
+
+    - display: stone_sword name:"&fInstant %ecoskills_combat_name%&f Level Up!"
+      command: secretecomcadmincommand upgradeskill %player% combat
+      singleUse: false
+      price: 365
+      not-if:
+        placeholder: %ecoskills_combat%
+        equals: 50
+      gui:
+        column: 4
+        row: 4
+      id: combat
+
+    - display: enchanting_table name:"&fInstant %ecoskills_enchanting_name%&f Level Up!"
+      command: secretecomcadmincommand upgradeskill %player% enchanting
+      singleUse: false
+      price: 365
+      not-if:
+        placeholder: %ecoskills_enchanting%
+        equals: 50
+      gui:
+        column: 5
+        row: 4
+      id: enchanting
+
+    - display: golden_hoe name:"&fInstant %ecoskills_farming_name%&f Level Up!"
+      command: secretecomcadmincommand upgradeskill %player% farming
+      singleUse: false
+      price: 365
+      not-if:
+        placeholder: %ecoskills_farming%
+        equals: 50
+      gui:
+        column: 6
+        row: 4
+      id: farming
+
+    - display: jungle_sapling name:"&fInstant %ecoskills_woodcutting_name%&f Level Up!"
+      command: secretecomcadmincommand upgradeskill %player% woodcutting
+      singleUse: false
+      price: 365
+      not-if:
+        placeholder: %ecoskills_woodcutting%
+        equals: 50
       gui:
         column: 7
-        row: 2
-      id: attack_speed
+        row: 4
+      id: woodcutting
 
-    - display: paper unbreaking:1 hide_enchants name:"&fPermanent +10 %ecoskills_wisdom_name%"
-      command: ecoskills give %player% wisdom 10
+    - display: fishing_rod name:"&fInstant %ecoskills_fishing_name%&f Level Up!"
+      command: secretecomcadmincommand upgradeskill %player% fishing
       singleUse: false
-      price: 1200
+      price: 365
+      not-if:
+        placeholder: %ecoskills_fishing%
+        equals: 50
       gui:
-        column: 8
-        row: 2
-      id: wisdom
+        column: 3
+        row: 5
+      id: fishing
 
-    - display: paper unbreaking:1 hide_enchants name:"&fPermanent +10 %ecoskills_ferocity_name%"
-      command: ecoskills give %player% ferocity 10
+    - display: brewing_stand name:"&fInstant %ecoskills_alchemy_name%&f Level Up!"
+      command: secretecomcadmincommand upgradeskill %player% alchemy
       singleUse: false
-      price: 1200
+      price: 365
+      not-if:
+        placeholder: %ecoskills_alchemy%
+        equals: 50
       gui:
-        column: 9
-        row: 2
-      id: ferocity
+        column: 4
+        row: 5
+      id: alchemy
+
+    - display: iron_chestplate name:"&fInstant %ecoskills_armory_name%&f Level Up!"
+      command: secretecomcadmincommand upgradeskill %player% armory
+      singleUse: false
+      price: 365
+      not-if:
+        placeholder: %ecoskills_armory%
+        equals: 50
+      gui:
+        column: 6
+        row: 5
+      id: armory
+
+    - display: leather_boots name:"&fInstant %ecoskills_exploration_name%&f Level Up!"
+      command: secretecomcadmincommand upgradeskill %player% exploration
+      singleUse: false
+      price: 365
+      not-if:
+        placeholder: %ecoskills_exploration%
+        equals: 50
+      gui:
+        column: 7
+        row: 5
+      id: exploration
 
   trackers:
     - display: stattrackers:arrows_shot
