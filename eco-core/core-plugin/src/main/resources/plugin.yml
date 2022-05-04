@@ -41,6 +41,7 @@ permissions:
       ecomc.crystals: true
       ecomc.crystals.give: true
       ecomc.crystals.get: true
+      ecomc.crystals.set: true
       ecomc.crystals.shop: true
       ecomc.crystals.geodes: true
       ecomc.crystals.expirepotion: true
@@ -52,6 +53,8 @@ permissions:
   ecomc.crystals.give:
     default: op
   ecomc.crystals.get:
+    default: op
+  ecomc.crystals.set:
     default: op
   ecomc.crystals.expirepotion:
     default: op

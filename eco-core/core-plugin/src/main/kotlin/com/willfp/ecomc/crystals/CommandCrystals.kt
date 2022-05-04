@@ -23,6 +23,7 @@ class CommandCrystals(
     init {
         this.addSubcommand(CommandGive(plugin))
             .addSubcommand(CommandGet(plugin))
+            .addSubcommand(CommandSet(plugin))
             .addSubcommand(CommandShop(plugin))
             .addSubcommand(CommandExpirePotion(plugin))
     }
@@ -134,6 +135,76 @@ private class CommandGive(
             StringUtil.copyPartialMatches(
                 args[2],
                 listOf("geode"),
+                completions
+            )
+        }
+
+        return completions
+    }
+}
+
+private class CommandSet(
+    plugin: EcoPlugin
+) : Subcommand(
+    plugin,
+    "set",
+    "ecomc.crystals.set",
+    false
+) {
+    override fun onExecute(sender: CommandSender, args: List<String>) {
+        if (args.isEmpty()) {
+            sender.sendMessage(plugin.langYml.getMessage("must-specify-player"))
+            return
+        }
+
+        @Suppress("DEPRECATION")
+        val player = Bukkit.getOfflinePlayer(args[0])
+
+
+        if (!player.hasPlayedBefore()) {
+            sender.sendMessage(plugin.langYml.getMessage("invalid-player"))
+            return
+        }
+
+        if (args.size < 2) {
+            sender.sendMessage(plugin.langYml.getMessage("must-specify-amount"))
+            return
+        }
+
+        val amount = args[1].toIntOrNull()
+
+        if (amount == null) {
+            sender.sendMessage(plugin.langYml.getMessage("invalid-amount"))
+            return
+        }
+
+        player.crystals = amount
+        sender.sendMessage(
+            plugin.langYml.getMessage("set-crystals", StringUtils.FormatOption.WITHOUT_PLACEHOLDERS)
+                .replace("%player%", player.savedDisplayName)
+                .replace("%amount%", amount.toString())
+        )
+    }
+
+    override fun tabComplete(sender: CommandSender, args: List<String>): List<String> {
+        val completions = mutableListOf<String>()
+
+        if (args.isEmpty()) {
+            return Bukkit.getOnlinePlayers().map { it.name }
+        }
+
+        if (args.size == 1) {
+            StringUtil.copyPartialMatches(
+                args[0],
+                Bukkit.getOnlinePlayers().map { it.name },
+                completions
+            )
+        }
+
+        if (args.size == 2) {
+            StringUtil.copyPartialMatches(
+                args[1],
+                arrayOf(1, 2, 3, 4, 5).map { it.toString() },
                 completions
             )
         }
