@@ -175,7 +175,7 @@ crystalshop:
       singleUse: false
       price: 365
       not-if:
-        placeholder: %ecoskills_mining%
+        placeholder: '%ecoskills_mining%'
         equals: 50
       gui:
         column: 3
@@ -187,7 +187,7 @@ crystalshop:
       singleUse: false
       price: 365
       not-if:
-        placeholder: %ecoskills_combat%
+        placeholder: '%ecoskills_combat%'
         equals: 50
       gui:
         column: 4
@@ -199,7 +199,7 @@ crystalshop:
       singleUse: false
       price: 365
       not-if:
-        placeholder: %ecoskills_enchanting%
+        placeholder: '%ecoskills_enchanting%'
         equals: 50
       gui:
         column: 5
@@ -211,7 +211,7 @@ crystalshop:
       singleUse: false
       price: 365
       not-if:
-        placeholder: %ecoskills_farming%
+        placeholder: '%ecoskills_farming%'
         equals: 50
       gui:
         column: 6
@@ -223,7 +223,7 @@ crystalshop:
       singleUse: false
       price: 365
       not-if:
-        placeholder: %ecoskills_woodcutting%
+        placeholder: '%ecoskills_woodcutting%'
         equals: 50
       gui:
         column: 7
@@ -235,7 +235,7 @@ crystalshop:
       singleUse: false
       price: 365
       not-if:
-        placeholder: %ecoskills_fishing%
+        placeholder: '%ecoskills_fishing%'
         equals: 50
       gui:
         column: 3
@@ -247,7 +247,7 @@ crystalshop:
       singleUse: false
       price: 365
       not-if:
-        placeholder: %ecoskills_alchemy%
+        placeholder: '%ecoskills_alchemy%'
         equals: 50
       gui:
         column: 4
@@ -259,7 +259,7 @@ crystalshop:
       singleUse: false
       price: 365
       not-if:
-        placeholder: %ecoskills_armory%
+        placeholder: '%ecoskills_armory%'
         equals: 50
       gui:
         column: 6
@@ -271,7 +271,7 @@ crystalshop:
       singleUse: false
       price: 365
       not-if:
-        placeholder: %ecoskills_exploration%
+        placeholder: '%ecoskills_exploration%'
         equals: 50
       gui:
         column: 7
