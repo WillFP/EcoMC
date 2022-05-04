@@ -291,7 +291,7 @@ object CrystalShop {
                     ItemStackBuilder(Material.AMETHYST_SHARD)
                         .setDisplayName("&bStats + Skills")
                         .build(),
-                    shopMenu(4, "stats", "Stats + Skills")
+                    shopMenu(3, "stats", "Stats + Skills")
                 )
             )
 
