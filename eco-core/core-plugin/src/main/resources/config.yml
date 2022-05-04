@@ -174,7 +174,7 @@ crystalshop:
     - display: stattrackers:arrows_shot
       item: stattrackers:arrows_shot
       singleUse: false
-      price: 275
+      price: 105
       gui:
         column: 2
         row: 1
@@ -183,7 +183,7 @@ crystalshop:
     - display: stattrackers:blocks_broken
       item: stattrackers:blocks_broken
       singleUse: false
-      price: 380
+      price: 165
       gui:
         column: 3
         row: 1
@@ -192,7 +192,7 @@ crystalshop:
     - display: stattrackers:bosses_killed
       item: stattrackers:bosses_killed
       singleUse: false
-      price: 275
+      price: 105
       gui:
         column: 4
         row: 1
@@ -201,7 +201,7 @@ crystalshop:
     - display: stattrackers:criticals_dealt
       item: stattrackers:criticals_dealt
       singleUse: false
-      price: 275
+      price: 105
       gui:
         column: 5
         row: 1
@@ -210,7 +210,7 @@ crystalshop:
     - display: stattrackers:damage_blocked
       item: stattrackers:damage_blocked
       singleUse: false
-      price: 275
+      price: 105
       gui:
         column: 6
         row: 1
@@ -219,7 +219,7 @@ crystalshop:
     - display: stattrackers:damage_dealt
       item: stattrackers:damage_dealt
       singleUse: false
-      price: 535
+      price: 225
       gui:
         column: 7
         row: 1
@@ -228,7 +228,7 @@ crystalshop:
     - display: stattrackers:damage_taken
       item: stattrackers:damage_taken
       singleUse: false
-      price: 350
+      price: 165
       gui:
         column: 8
         row: 1
@@ -237,7 +237,7 @@ crystalshop:
     - display: stattrackers:distance_flown
       item: stattrackers:distance_flown
       singleUse: false
-      price: 275
+      price: 105
       gui:
         column: 2
         row: 2
@@ -246,7 +246,7 @@ crystalshop:
     - display: stattrackers:headshots
       item: stattrackers:headshots
       singleUse: false
-      price: 275
+      price: 105
       gui:
         column: 3
         row: 2
@@ -255,7 +255,7 @@ crystalshop:
     - display: stattrackers:distance_sneaked
       item: stattrackers:distance_sneaked
       singleUse: false
-      price: 275
+      price: 105
       gui:
         column: 4
         row: 2
@@ -264,7 +264,7 @@ crystalshop:
     - display: stattrackers:distance_sprinted
       item: stattrackers:distance_sprinted
       singleUse: false
-      price: 275
+      price: 105
       gui:
         column: 5
         row: 2
@@ -273,7 +273,7 @@ crystalshop:
     - display: stattrackers:distance_travelled
       item: stattrackers:distance_travelled
       singleUse: false
-      price: 350
+      price: 165
       gui:
         column: 6
         row: 2
@@ -282,7 +282,7 @@ crystalshop:
     - display: stattrackers:mobs_killed
       item: stattrackers:mobs_killed
       singleUse: false
-      price: 275
+      price: 105
       gui:
         column: 7
         row: 2
@@ -291,7 +291,7 @@ crystalshop:
     - display: stattrackers:players_killed
       item: stattrackers:players_killed
       singleUse: false
-      price: 650
+      price: 295
       gui:
         column: 8
         row: 2
