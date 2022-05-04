@@ -160,6 +160,7 @@ private fun buySlot(config: Config, isSingleUse: Boolean = false): Slot {
                     player.profile.write(key, player.profile.read(key) + 1)
                 }
 
+                EcoMCPlugin.instance.logger.info("${player.name} bought $id for $price crystals")
                 item.giveTo(player)
                 player.playSound(
                     player.location,
