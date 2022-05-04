@@ -17,10 +17,18 @@ import org.bukkit.attribute.Attribute
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
 import org.bukkit.event.block.BlockBreakEvent
+import kotlin.math.log
 
 class CrystalLuck : Stat("crystal_luck") {
     override fun loadConfig(): Config {
         return CrystalLuckConfig()
+    }
+
+    private fun getProbability(level: Int): Double {
+        val base = config.getDouble("base")
+        val scalar = config.getDouble("scalar")
+        val initial = config.getDouble("initial")
+        return base / 15 * log(scalar * level + 1, base) + initial
     }
 
     private fun dropRandomGeode(player: Player, location: Location) {
@@ -67,7 +75,7 @@ class CrystalLuck : Stat("crystal_luck") {
             return
         }
 
-        val chance = (level * config.getDouble("chance-per-level")) + config.getDouble("base-chance")
+        val chance = getProbability(level)
 
         if (NumberUtils.randFloat(0.0, 100.0) < chance) {
             dropRandomGeode(player, event.block.location)
@@ -87,8 +95,7 @@ class CrystalLuck : Stat("crystal_luck") {
             return
         }
 
-        val chance =
-            (level * config.getDouble("chance-per-level-mobs") * multiplier) + config.getDouble("base-chance-mobs")
+        val chance = getProbability(level) * config.getDouble("mobs-times-more")
 
         if (NumberUtils.randFloat(0.0, 100.0) < chance) {
             dropRandomGeode(player, event.victim.location)
