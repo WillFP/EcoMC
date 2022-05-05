@@ -78,7 +78,7 @@ class EcoMCPlugin : EcoPlugin() {
             BuyCrystalPotionsSmh(this),
             HDBCrystalPriceHandler(this),
             MovementListener(),
-            NoColonCommands(this)
+            NoColonCommands()
         )
     }
 

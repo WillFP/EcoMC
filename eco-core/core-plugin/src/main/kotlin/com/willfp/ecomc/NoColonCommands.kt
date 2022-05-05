@@ -1,13 +1,10 @@
 package com.willfp.ecomc
 
-import com.willfp.eco.core.EcoPlugin
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.player.PlayerCommandPreprocessEvent
 
-class NoColonCommands(
-    private val plugin: EcoPlugin
-) : Listener {
+class NoColonCommands : Listener {
     @EventHandler
     fun onSendCommand(event: PlayerCommandPreprocessEvent) {
         val player = event.player
@@ -23,6 +20,5 @@ class NoColonCommands(
         }
 
         event.isCancelled = true
-        player.sendMessage(plugin.langYml.getMessage("unknown-command"))
     }
 }
