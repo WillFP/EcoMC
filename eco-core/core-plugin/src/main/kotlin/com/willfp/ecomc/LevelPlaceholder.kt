@@ -14,14 +14,10 @@ object LevelPlaceholder {
                 "level"
             ) {
 
-                val level: Int
-                level = try {
-                    PlaceholderManager.translatePlaceholders("%battlepass_tier%", it).toInt()
-                } catch (e: NumberFormatException) {
-                    return@PlayerPlaceholder "§80✯"
-                }
-                val color: String
-                color = if (level == 1) {
+                val level = PlaceholderManager.translatePlaceholders("%battlepass_tier%", it)
+                    .toIntOrNull() ?: return@PlayerPlaceholder "§80✯"
+
+                val color: String = if (level == 1) {
                     "§8"
                 } else if (level < 10) {
                     "§7"
@@ -49,12 +45,14 @@ object LevelPlaceholder {
                 "$color$level✯"
             }
         )
+
         PlaceholderManager.registerPlaceholder(PlayerPlaceholder(
             plugin,
             "color"
         ) {
             PlaceholderManager.translatePlaceholders("%luckperms_prefix%", it).substring(0, 2)
         })
+
         PlaceholderManager.registerPlaceholder(PlayerPlaceholder(
             plugin,
             "rank"
@@ -63,6 +61,7 @@ object LevelPlaceholder {
             prefix.replace(" ", "")
                 .replace("|", "")
         })
+
         PlaceholderManager.registerPlaceholder(PlayerPlaceholder(
             plugin,
             "tag"
@@ -74,6 +73,7 @@ object LevelPlaceholder {
                 " $tag"
             }
         })
+
         PlaceholderManager.registerPlaceholder(PlayerPlaceholder(
             plugin,
             "heart"
