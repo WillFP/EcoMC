@@ -78,7 +78,11 @@ object LevelPlaceholder {
             plugin,
             "heart"
         ) {
-            if (it.hasPotionEffect(PotionEffectType.ABSORPTION)) {
+            if (it.hasPotionEffect(PotionEffectType.WITHER)) {
+                StringUtils.format("&0❤")
+            } else if (it.hasPotionEffect(PotionEffectType.POISON)) {
+                StringUtils.format("&3❤")
+            } else if (it.hasPotionEffect(PotionEffectType.ABSORPTION)) {
                 StringUtils.format("&6❤")
             } else {
                 StringUtils.format("&c❤")
