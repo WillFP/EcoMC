@@ -16,12 +16,17 @@ import com.willfp.ecomc.crystals.Geodes
 import com.willfp.ecomc.crystals.HDBCrystalPriceHandler
 import com.willfp.ecomc.crystals.PreventGeodePlace
 import com.willfp.ecomc.crystals.crystals
+import com.willfp.ecomc.trails.CommandTrails
+import com.willfp.ecomc.trails.TrailGUI
+import com.willfp.ecomc.trails.tickTrail
+import org.bukkit.Bukkit
 import org.bukkit.event.Listener
 
 class EcoMCPlugin : EcoPlugin() {
     override fun handleEnable() {
         CrystalLuck() // Init crystal luck
         CrystalEnchantType() // Init enchant type
+        TrailGUI.init(this)
         CrystalPotions.init(this)
         Geodes.init(this)
         LevelPlaceholder.register(this)
@@ -41,7 +46,8 @@ class EcoMCPlugin : EcoPlugin() {
         return listOf(
             CommandCrystals(this),
             SecretEcoMCAdminCommand(this),
-            CommandGeodes(this)
+            CommandGeodes(this),
+            CommandTrails(this)
         )
     }
 
@@ -49,6 +55,14 @@ class EcoMCPlugin : EcoPlugin() {
         SchmoneyPlaceholder.createTheRunnable(this)
         CrystalPotionHandler.initRunnable(this)
         this.scheduler.runTimer(1200, 1200) { CrystalLuck.resetLimiter() }
+
+        var tick = 0
+        this.scheduler.runAsyncTimer(1, 1) {
+            tick++
+            for (player in Bukkit.getOnlinePlayers()) {
+                player.tickTrail(tick)
+            }
+        }
     }
 
     override fun loadListeners(): List<Listener> {

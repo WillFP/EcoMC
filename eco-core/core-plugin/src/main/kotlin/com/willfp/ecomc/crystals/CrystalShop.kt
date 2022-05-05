@@ -316,6 +316,15 @@ object CrystalShop {
             )
 
             setSlot(
+                2, 1, shopSlot(
+                    ItemStackBuilder(Material.NETHER_STAR)
+                        .setDisplayName("&bTrails")
+                        .build(),
+                    shopMenu(3, "trails", "Trails")
+                )
+            )
+
+            setSlot(
                 2, 8, slot(
                     SkullBuilder()
                         .setSkullTexture("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTFjNTFiOTQ2Y2I0ODRiOWM3NmIyYzViZjVlYWIwYzc0YzljZWQ5NWYzNWFhODFlNjk5YmQ1ZDliNTdlMjBmIn19fQ==")
@@ -348,7 +357,7 @@ object CrystalShop {
     }
 }
 
-private fun Player.playClickSound() {
+fun Player.playClickSound() {
     this.playSound(this.location, Sound.UI_BUTTON_CLICK, 1.0f, 1.0f)
 }
 

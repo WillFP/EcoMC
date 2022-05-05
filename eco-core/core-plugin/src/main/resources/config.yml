@@ -4,6 +4,29 @@ outgoing-damage-multiplier: 1
 incoming-damage-multiplier: 1
 
 crystalshop:
+  trails:
+    - display: flint_and_steel
+      particle: flame
+      name: "&cFlame"
+      command: lp user %player% permission set ecomc.trail.flame true
+      singleUse: true
+      price: 335
+      gui:
+        column: 2
+        row: 1
+      id: trail_flame
+
+    - display: soul_touch
+      particle: soul_fire_flame
+      name: "&bSoul Fire Flame"
+      command: lp user %player% permission set ecomc.trail.soul_fire_flame true
+      singleUse: true
+      price: 335
+      gui:
+        column: 3
+        row: 1
+      id: trail_soul_fire_flame
+
   crystal-potions:
     - display: ecomc:crystal_potion
       item: ecomc:crystal_potion

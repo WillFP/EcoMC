@@ -26,6 +26,9 @@ commands:
       - crystal
       - crystalshop
       - cshop
+  trails:
+    description: Open trails menu
+    permission: ecomc.trails
   geodes:
     description: Crack open geodes
     permission: ecomc.geodes
@@ -49,6 +52,8 @@ permissions:
   ecomc.crystals:
     default: true
   ecomc.geodes:
+    default: true
+  ecomc.trails:
     default: true
   ecomc.crystals.give:
     default: op
