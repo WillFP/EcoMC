@@ -27,6 +27,11 @@ object TrailGUI {
         return slot(itemStack) {
             onLeftClick { event, _, _ ->
                 val player = event.whoClicked as Player
+
+                if (player.trail == particle) {
+                    return@onLeftClick
+                }
+
                 if (player.hasPermission(permission)) {
                     player.playClickSound()
                     player.trail = particle
@@ -47,15 +52,23 @@ object TrailGUI {
 
             setUpdater { player, _, _ ->
                 itemStack.clone().fast().apply {
-                    lore = if (player.hasPermission(permission)) {
+                    lore = if (player.trail == particle) {
                         listOf(
-                            "&eLeft click to activate",
-                            "&ethis trail!"
+                            "",
+                            "&c&oYou already have this",
+                            "&c&otrail equipped!"
+                        ).formatEco()
+                    } else if (player.hasPermission(permission)) {
+                        listOf(
+                            "",
+                            "&e&oLeft click to activate",
+                            "&e&othis trail!"
                         ).formatEco()
                     } else {
                         listOf(
-                            "&cYou don't own this trail!",
-                            "&fBuy it from the &bCristallier ❖"
+                            "",
+                            "&c&oYou don't own this trail!",
+                            "&f&oBuy it from the &b&oCristallier ❖"
                         )
                     }
                 }.unwrap()
@@ -64,19 +77,19 @@ object TrailGUI {
     }
 
     fun init(plugin: EcoPlugin) {
-        menu = menu(4) {
+        menu = menu(5) {
             setTitle("Trails")
 
             setMask(
                 FillerMask(
                     MaskItems(
-                        Items.lookup("black_stained_glass_pane"),
-                        Items.lookup("red_stained_glass_pane")
+                        Items.lookup("black_stained_glass_pane")
                     ),
-                    "112222211",
-                    "100000001",
-                    "100000001",
-                    "112202211"
+                    "111111111",
+                    "111111111",
+                    "111111111",
+                    "111111111",
+                    "111111111"
                 )
             )
 
@@ -98,7 +111,7 @@ object TrailGUI {
             }
 
             setSlot(
-                4, 5, slot(
+                5, 5, slot(
                     ItemStackBuilder(Material.BARRIER)
                         .setDisplayName("&cRemove Trail")
                         .build()

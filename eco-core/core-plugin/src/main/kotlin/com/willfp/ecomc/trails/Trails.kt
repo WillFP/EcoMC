@@ -23,9 +23,9 @@ fun Player.tickTrail(tick: Int) {
 
     val sign = if (tick % 2 == 0) -1 else 1
 
-    val x = NumberUtils.fastCos(tick / (2 * PI) * 1) * sign
+    val x = NumberUtils.fastCos(tick / (2 * PI) * 1) * sign * 1.2
     val y = this.height * (tick % 60) / 60
-    val z = NumberUtils.fastSin(tick / (2 * PI) * 1) * sign
+    val z = NumberUtils.fastSin(tick / (2 * PI) * 1) * sign * 1.2
     val vector = Vector(x, y, z)
 
     val loc = this.location.clone().add(vector)

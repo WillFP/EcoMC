@@ -49,16 +49,71 @@ crystalshop:
         row: 1
       id: trail_hearts
 
-    - display: red_tulip name:"&cHearts &fTrail"
-      particle: heart
-      name: "&cHearts"
-      command: lp user %player% permission set ecomc.trail.heart true
+    - display: emerald name:"&aEmerald &fTrail"
+      particle: villager_happy
+      name: "&aEmerald"
+      command: lp user %player% permission set ecomc.trail.villager_happy true
+      singleUse: true
+      price: 335
+      gui:
+        column: 6
+        row: 1
+      id: trail_emerald
+
+    - display: totem_of_undying name:"&aTotem &fTrail"
+      particle: totem
+      name: "&aTotem"
+      command: lp user %player% permission set ecomc.trail.totem true
+      singleUse: true
+      price: 335
+      gui:
+        column: 7
+        row: 1
+      id: trail_totem
+
+    - display: soul_soil name:"&bSoul &fTrail"
+      particle: soul
+      name: "&bSoul"
+      command: lp user %player% permission set ecomc.trail.soul true
+      singleUse: true
+      price: 335
+      gui:
+        column: 8
+        row: 1
+      id: trail_soul
+
+    - display: dragon_head name:"&5Dragon &fTrail"
+      particle: dragon_breath
+      name: "&5Dragon"
+      command: lp user %player% permission set ecomc.trail.dragon_breath true
+      singleUse: true
+      price: 335
+      gui:
+        column: 3
+        row: 2
+      id: trail_dragon
+
+    - display: firework_rocket name:"&fFirework &fTrail"
+      particle: fireworks_spark
+      name: "&fFirework"
+      command: lp user %player% permission set ecomc.trail.fireworks_spark true
       singleUse: true
       price: 335
       gui:
         column: 5
-        row: 1
-      id: trail_hearts
+        row: 2
+      id: trail_firework
+
+    - display: iron_sword name:"&4Damage &fTrail"
+      particle: damage_indicator
+      name: "&4Damage"
+      command: lp user %player% permission set ecomc.trail.damage_indicator true
+      singleUse: true
+      price: 335
+      gui:
+        column: 7
+        row: 2
+      id: trail_damage
 
   crystal-potions:
     - display: ecomc:crystal_potion

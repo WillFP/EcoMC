@@ -29,6 +29,6 @@ messages:
   buy-crystal-potion: "&cYou need a &bCrystal Potion ❖&c to run this command.&f Go to the NPC with &a/warp&f!"
   upgraded-skill: "Upgraded %skill%&f for %player%&f!"
   dont-own-trail: "&cYou don't own this trail! Get it from the &bCristallier ❖&f!"
-  equipped-trail: "&fYou've equipped the %trail% trail!"
+  equipped-trail: "&fYou've equipped the %trail%&f trail!"
   removed-trail: "&fYou've deactivated your trail!"
   set-trail: "Set %player%&f to have the &a%trail%&f trail!"
