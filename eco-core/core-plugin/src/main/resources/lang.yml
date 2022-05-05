@@ -31,3 +31,4 @@ messages:
   dont-own-trail: "&cYou don't own this trail! Get it from the &bCristallier ❖&f!"
   equipped-trail: "&fYou've equipped the %trail% trail!"
   removed-trail: "&fYou've deactivated your trail!"
+  set-trail: "Set %player%&f to have the &a%trail%&f trail!"

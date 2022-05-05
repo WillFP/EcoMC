@@ -55,6 +55,8 @@ permissions:
     default: true
   ecomc.trails:
     default: true
+  ecomc.trails.set:
+    default: op
   ecomc.crystals.give:
     default: op
   ecomc.crystals.get:

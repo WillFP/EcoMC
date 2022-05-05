@@ -8,6 +8,7 @@ import com.willfp.eco.core.items.Items
 import com.willfp.eco.util.StringUtils
 import com.willfp.eco.util.formatEco
 import com.willfp.eco.util.savedDisplayName
+import com.willfp.eco.util.toComponent
 import com.willfp.ecoskills.api.EcoSkillsAPI
 import com.willfp.ecoskills.skills.Skills
 import org.bukkit.Bukkit
@@ -174,7 +175,11 @@ private class CommandKickAll(
 ) {
     override fun onExecute(sender: CommandSender, args: List<String>) {
         for (player in Bukkit.getOnlinePlayers()) {
-            player.kickPlayer("<g:#00ff00>EcoMC</g:#00ffff>&f is having a scheduled restart, come back in a couple minutes!".formatEco())
+            player.kick(
+                "<g:#00ff00>EcoMC</g:#00ffff>&f is having a scheduled restart, come back in a couple minutes!"
+                    .formatEco()
+                    .toComponent()
+            )
         }
     }
 }

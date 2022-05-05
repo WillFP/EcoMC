@@ -5,20 +5,31 @@ import com.willfp.eco.core.data.keys.PersistentDataKeyType
 import com.willfp.eco.core.data.profile
 import com.willfp.eco.util.NumberUtils
 import com.willfp.ecomc.EcoMCPlugin
+import com.willfp.ecomc.lastPosition
+import org.bukkit.OfflinePlayer
 import org.bukkit.Particle
 import org.bukkit.entity.Player
 import org.bukkit.util.Vector
+import kotlin.math.PI
 
 fun Player.tickTrail(tick: Int) {
     val particle = this.trail ?: return
 
-    val y = this.height / (tick % 20)
-    val x = NumberUtils.fastCos(tick.toDouble()) * 1.5
-    val z = NumberUtils.fastSin(tick.toDouble()) * 1.5
+    val dist = this.lastPosition.distance(this.location.toVector())
 
+    if (dist > 0.2) {
+        return
+    }
+
+    val sign = if (tick % 2 == 0) -1 else 1
+
+    val x = NumberUtils.fastCos(tick / (2 * PI) * 1) * sign
+    val y = this.height * (tick % 60) / 60
+    val z = NumberUtils.fastSin(tick / (2 * PI) * 1) * sign
     val vector = Vector(x, y, z)
+
     val loc = this.location.clone().add(vector)
-    this.world.spawnParticle(particle, loc, 1, 0.0, 0.0, 1.0, null)
+    this.world.spawnParticle(particle, loc, 1, 0.0, 0.0, 0.0, 0.0, null)
 }
 
 private val trailKey = PersistentDataKey(
@@ -27,7 +38,7 @@ private val trailKey = PersistentDataKey(
     ""
 )
 
-var Player.trail: Particle?
+var OfflinePlayer.trail: Particle?
     get() {
         val key = this.profile.read(trailKey)
         if (key.isEmpty()) {
