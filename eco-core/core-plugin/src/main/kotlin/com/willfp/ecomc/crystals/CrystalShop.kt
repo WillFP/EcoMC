@@ -340,6 +340,17 @@ object CrystalShop {
             )
 
             setSlot(
+                2, 9, slot(
+                    SkullBuilder()
+                        .setSkullTexture("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNGI3ZjY2M2Q2NWNkZWQ3YmQzNjUxYmRkZDZkYjU0NjM2MGRkNzczYWJiZGFmNDhiODNhZWUwOGUxY2JlMTQifX19")
+                        .setDisplayName("&cComing Soon...")
+                        .build()
+                ) {
+
+                }
+            )
+
+            setSlot(
                 2, 5, shopSlot(
                     ItemStackBuilder(Material.POTION)
                         .setDisplayName("&bCrystal Potions ❖")
