@@ -17,16 +17,20 @@ fun Player.tickTrail(tick: Int) {
 
     val dist = this.lastPosition.distance(this.location.toVector())
 
-    if (dist > 0.2) {
-        return
+    val vector = if (dist > 0.2) {
+        if (tick % 4 != 0) {
+            return
+        }
+
+        Vector(0.0, -0.5, 0.0)
+    } else {
+        val sign = if (tick % 2 == 0) -1 else 1
+
+        val x = NumberUtils.fastCos(tick / (2 * PI) * 1) * sign * 1.2
+        val y = this.height * (tick % 60) / 60
+        val z = NumberUtils.fastSin(tick / (2 * PI) * 1) * sign * 1.2
+        Vector(x, y, z)
     }
-
-    val sign = if (tick % 2 == 0) -1 else 1
-
-    val x = NumberUtils.fastCos(tick / (2 * PI) * 1) * sign * 1.2
-    val y = this.height * (tick % 60) / 60
-    val z = NumberUtils.fastSin(tick / (2 * PI) * 1) * sign * 1.2
-    val vector = Vector(x, y, z)
 
     val loc = this.location.clone().add(vector)
     this.world.spawnParticle(particle, loc, 1, 0.0, 0.0, 0.0, 0.0, null)
