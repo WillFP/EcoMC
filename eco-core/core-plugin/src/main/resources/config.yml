@@ -4,6 +4,115 @@ outgoing-damage-multiplier: 1
 incoming-damage-multiplier: 1
 
 crystalshop:
+  skills:
+    - display: stone_pickaxe name:"&fInstant &a%ecoskills_mining_name%&f Level Up!"
+      command: secretecomcadmincommand upgradeskill %player% mining
+      singleUse: false
+      price: '%ecomc_mining_levelprice%'
+      not-if:
+        placeholder: '%ecoskills_mining%'
+        equals: 50
+      gui:
+        column: 2
+        row: 1
+      id: mining
+
+    - display: stone_sword name:"&fInstant &a%ecoskills_combat_name%&f Level Up!"
+      command: secretecomcadmincommand upgradeskill %player% combat
+      singleUse: false
+      price: '%ecomc_combat_levelprice%'
+      not-if:
+        placeholder: '%ecoskills_combat%'
+        equals: 50
+      gui:
+        column: 3
+        row: 1
+      id: combat
+
+    - display: enchanting_table name:"&fInstant &a%ecoskills_enchanting_name%&f Level Up!"
+      command: secretecomcadmincommand upgradeskill %player% enchanting
+      singleUse: false
+      price: '%ecomc_enchanting_levelprice%'
+      not-if:
+        placeholder: '%ecoskills_enchanting%'
+        equals: 50
+      gui:
+        column: 4
+        row: 1
+      id: enchanting
+
+    - display: golden_hoe name:"&fInstant &a%ecoskills_farming_name%&f Level Up!"
+      command: secretecomcadmincommand upgradeskill %player% farming
+      singleUse: false
+      price: '%ecomc_farming_levelprice%'
+      not-if:
+        placeholder: '%ecoskills_farming%'
+        equals: 50
+      gui:
+        column: 5
+        row: 1
+      id: farming
+
+    - display: jungle_sapling name:"&fInstant &a%ecoskills_woodcutting_name%&f Level Up!"
+      command: secretecomcadmincommand upgradeskill %player% woodcutting
+      singleUse: false
+      price: '%ecomc_woodcutting_levelprice%'
+      not-if:
+        placeholder: '%ecoskills_woodcutting%'
+        equals: 50
+      gui:
+        column: 6
+        row: 1
+      id: woodcutting
+
+    - display: fishing_rod name:"&fInstant &a%ecoskills_fishing_name%&f Level Up!"
+      command: secretecomcadmincommand upgradeskill %player% fishing
+      singleUse: false
+      price: '%ecomc_fishing_levelprice%'
+      not-if:
+        placeholder: '%ecoskills_fishing%'
+        equals: 50
+      gui:
+        column: 7
+        row: 1
+      id: fishing
+
+    - display: brewing_stand name:"&fInstant &a%ecoskills_alchemy_name%&f Level Up!"
+      command: secretecomcadmincommand upgradeskill %player% alchemy
+      singleUse: false
+      price: '%ecomc_alchemy_levelprice%'
+      not-if:
+        placeholder: '%ecoskills_alchemy%'
+        equals: 50
+      gui:
+        column: 8
+        row: 1
+      id: alchemy
+
+    - display: iron_chestplate name:"&fInstant &a%ecoskills_armory_name%&f Level Up!"
+      command: secretecomcadmincommand upgradeskill %player% armory
+      singleUse: false
+      price: '%ecomc_armory_levelprice%'
+      not-if:
+        placeholder: '%ecoskills_armory%'
+        equals: 50
+      gui:
+        column: 4
+        row: 2
+      id: armory
+
+    - display: leather_boots name:"&fInstant &a%ecoskills_exploration_name%&f Level Up!"
+      command: secretecomcadmincommand upgradeskill %player% exploration
+      singleUse: false
+      price: '%ecomc_exploration_levelprice%'
+      not-if:
+        placeholder: '%ecoskills_exploration%'
+        equals: 50
+      gui:
+        column: 6
+        row: 2
+      id: exploration
+
   trails:
     - display: flint_and_steel name:"&cFlame &fTrail"
       particle: flame

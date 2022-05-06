@@ -65,8 +65,7 @@ private class CommandGive(
         @Suppress("DEPRECATION")
         val player = Bukkit.getOfflinePlayer(args[0])
 
-
-        if (!player.hasPlayedBefore()) {
+        if (!player.hasPlayedBefore() && player !is Player) {
             sender.sendMessage(plugin.langYml.getMessage("invalid-player"))
             return
         }
@@ -161,7 +160,7 @@ private class CommandSet(
         val player = Bukkit.getOfflinePlayer(args[0])
 
 
-        if (!player.hasPlayedBefore()) {
+        if (!player.hasPlayedBefore() && player !is Player) {
             sender.sendMessage(plugin.langYml.getMessage("invalid-player"))
             return
         }
@@ -231,7 +230,7 @@ private class CommandGet(
         val player = Bukkit.getOfflinePlayer(args[0])
 
 
-        if (!player.hasPlayedBefore()) {
+        if (!player.hasPlayedBefore() && player !is Player) {
             sender.sendMessage(plugin.langYml.getMessage("invalid-player"))
             return
         }
@@ -294,7 +293,7 @@ private class CommandExpirePotion(
         val player = Bukkit.getOfflinePlayer(args[0])
 
 
-        if (!player.hasPlayedBefore()) {
+        if (!player.hasPlayedBefore() && player !is Player) {
             sender.sendMessage(plugin.langYml.getMessage("invalid-player"))
             return
         }

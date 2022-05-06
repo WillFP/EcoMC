@@ -28,6 +28,7 @@ import org.bukkit.entity.Player
 import org.bukkit.inventory.ItemFlag
 import org.bukkit.inventory.ItemStack
 import org.bukkit.inventory.meta.PotionMeta
+import kotlin.math.ceil
 
 private interface ShopItem {
     fun giveTo(player: Player)
@@ -130,7 +131,6 @@ private fun buySlot(config: Config, isSingleUse: Boolean = false): Slot {
     val notifEquals = config.getStringOrNull("not-if.equals")
 
     val display = Items.lookup(config.getString("display"))
-    val price = config.getInt("price")
     val item = if (config.has("command")) {
         CommandShopItem(config.getString("command"))
     } else {
@@ -140,6 +140,8 @@ private fun buySlot(config: Config, isSingleUse: Boolean = false): Slot {
     return slot(display.item) {
         onLeftClick { event, _, _ ->
             val player = event.whoClicked as Player
+
+            val price = ceil(config.getDoubleFromExpression("price", player)).toInt()
 
             if (key != null) {
                 if (player.profile.read(key) > 0) {
@@ -184,6 +186,8 @@ private fun buySlot(config: Config, isSingleUse: Boolean = false): Slot {
         }
 
         setUpdater { player, _, _ ->
+            val price = ceil(config.getDoubleFromExpression("price", player)).toInt()
+
             val lore = mutableListOf(
                 "",
                 "&fPrice: &b${price}❖",
@@ -291,9 +295,9 @@ object CrystalShop {
             setSlot(
                 2, 6, shopSlot(
                     ItemStackBuilder(Material.AMETHYST_SHARD)
-                        .setDisplayName("&bStats + Skills")
+                        .setDisplayName("&bStats")
                         .build(),
-                    shopMenu(3, "stats", "Stats + Skills")
+                    shopMenu(3, "stats", "Stats")
                 )
             )
 
@@ -340,14 +344,12 @@ object CrystalShop {
             )
 
             setSlot(
-                2, 9, slot(
-                    SkullBuilder()
-                        .setSkullTexture("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNGI3ZjY2M2Q2NWNkZWQ3YmQzNjUxYmRkZDZkYjU0NjM2MGRkNzczYWJiZGFmNDhiODNhZWUwOGUxY2JlMTQifX19")
-                        .setDisplayName("&cComing Soon...")
-                        .build()
-                ) {
-
-                }
+                2, 9, shopSlot(
+                    ItemStackBuilder(Material.ENCHANTING_TABLE)
+                        .setDisplayName("&bSkill Upgrades")
+                        .build(),
+                    shopMenu(3, "skills", "Skill Upgrades")
+                )
             )
 
             setSlot(

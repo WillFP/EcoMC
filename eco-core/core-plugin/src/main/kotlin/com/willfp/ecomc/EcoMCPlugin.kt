@@ -26,6 +26,7 @@ class EcoMCPlugin : EcoPlugin() {
     override fun handleEnable() {
         CrystalLuck() // Init crystal luck
         CrystalEnchantType() // Init enchant type
+        JankyPlaceholder.init(this)
         TrailGUI.init(this)
         CrystalPotions.init(this)
         Geodes.init(this)
