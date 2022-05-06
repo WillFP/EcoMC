@@ -275,7 +275,7 @@ object CrystalShop {
             })
 
             setSlot(
-                2, 3, shopSlot(
+                2, 2, shopSlot(
                     ItemStackBuilder(Material.NAME_TAG)
                         .setDisplayName("&bTags")
                         .build(),
@@ -284,7 +284,7 @@ object CrystalShop {
             )
 
             setSlot(
-                2, 4, shopSlot(
+                2, 3, shopSlot(
                     ItemStackBuilder(Material.COMPASS)
                         .setDisplayName("&bStat Trackers")
                         .build(),
@@ -293,7 +293,7 @@ object CrystalShop {
             )
 
             setSlot(
-                2, 6, shopSlot(
+                2, 9, shopSlot(
                     ItemStackBuilder(Material.AMETHYST_SHARD)
                         .setDisplayName("&bStats")
                         .build(),
@@ -302,7 +302,7 @@ object CrystalShop {
             )
 
             setSlot(
-                2, 7, shopSlot(
+                2, 6, shopSlot(
                     ItemStackBuilder(Material.ENCHANTED_BOOK)
                         .setDisplayName("&bUpgrades")
                         .build(),
@@ -311,7 +311,7 @@ object CrystalShop {
             )
 
             setSlot(
-                2, 2, shopSlot(
+                2, 8, shopSlot(
                     ItemStackBuilder(Material.BLAZE_ROD)
                         .setDisplayName("&bSellwands")
                         .build(),
@@ -329,7 +329,7 @@ object CrystalShop {
             )
 
             setSlot(
-                2, 8, slot(
+                2, 4, slot(
                     SkullBuilder()
                         .setSkullTexture("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTFjNTFiOTQ2Y2I0ODRiOWM3NmIyYzViZjVlYWIwYzc0YzljZWQ5NWYzNWFhODFlNjk5YmQ1ZDliNTdlMjBmIn19fQ==")
                         .setDisplayName("&bHeads")
@@ -344,7 +344,7 @@ object CrystalShop {
             )
 
             setSlot(
-                2, 9, shopSlot(
+                2, 7, shopSlot(
                     ItemStackBuilder(Material.ENCHANTING_TABLE)
                         .setDisplayName("&bSkill Upgrades")
                         .build(),
