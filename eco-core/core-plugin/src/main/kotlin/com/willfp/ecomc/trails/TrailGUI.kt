@@ -69,7 +69,7 @@ object TrailGUI {
                             "",
                             "&c&oYou don't own this trail!",
                             "&f&oBuy it from the &b&oCristallier ❖"
-                        )
+                        ).formatEco()
                     }
                 }.unwrap()
             }
