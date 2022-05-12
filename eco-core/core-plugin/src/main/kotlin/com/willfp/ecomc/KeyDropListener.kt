@@ -18,7 +18,7 @@ class KeyDropListener(private val plugin: EcoPlugin) : Listener {
         if (NumberUtils.randFloat(0.0, 100.0) < plugin.configYml.getDouble("chance")) {
             Bukkit.getServer().dispatchCommand(
                 Bukkit.getConsoleSender(),
-                "crates givekey basic " + player.name + " 1"
+                "crates give ${player.name} basic virtual 1"
             )
             player.sendMessage(plugin.langYml.getMessage("got-key"))
             player.playSound(
@@ -45,7 +45,7 @@ class KeyDropListener(private val plugin: EcoPlugin) : Listener {
         if (NumberUtils.randFloat(0.0, 100.0) < plugin.configYml.getDouble("mob-chance") * multiplier) {
             Bukkit.getServer().dispatchCommand(
                 Bukkit.getConsoleSender(),
-                "crates givekey basic " + player.name + " 1"
+                "crates give ${player.name} basic virtual 1"
             )
             player.sendMessage(plugin.langYml.getMessage("got-key"))
             player.playSound(
