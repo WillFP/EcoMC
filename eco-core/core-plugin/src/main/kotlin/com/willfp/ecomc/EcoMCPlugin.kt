@@ -55,6 +55,7 @@ class EcoMCPlugin : EcoPlugin() {
     override fun handleReload() {
         SchmoneyPlaceholder.createTheRunnable(this)
         CrystalPotionHandler.initRunnable(this)
+        EntityYeeter.pollForTPS(this)
         this.scheduler.runTimer(1200, 1200) { CrystalLuck.resetLimiter() }
 
         var tick = 0
