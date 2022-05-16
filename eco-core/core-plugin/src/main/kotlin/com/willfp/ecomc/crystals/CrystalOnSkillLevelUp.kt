@@ -13,6 +13,6 @@ class CrystalOnSkillLevelUp : Listener {
             return
         }
 
-        player.crystals += 15
+        player.crystals += 10
     }
 }
