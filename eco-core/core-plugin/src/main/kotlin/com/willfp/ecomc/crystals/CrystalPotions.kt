@@ -67,7 +67,6 @@ object CrystalPotions {
                     "&fDrink to gain the following",
                     "&fbuffs for &a4 Days&f:",
                     " &8» &fAccess to &a/shop",
-                    " &8» &fAccess to &a/crystals",
                     " &8» &fAccess to &a/reforge",
                     " &8» &fAccess to &a/geodes",
                     " &8» &fAccess to &a/heads",
