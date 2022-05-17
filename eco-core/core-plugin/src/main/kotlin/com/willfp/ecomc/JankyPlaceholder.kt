@@ -38,7 +38,7 @@ object JankyPlaceholder {
                     "${skill.id}_levelprice",
                 ) {
                     val level = EcoSkillsAPI.getInstance().getSkillLevel(it, skill)
-                    val progress = EcoSkillsAPI.getInstance().getSkillProgress(it, skill)
+                    val progress = EcoSkillsAPI.getInstance().getSkillProgressToNextLevel(it, skill)
                     val requiredXp = defaultProg[level + 1] * progress
 
                     val sneaky = if (level > 10) 1.5 else 1.0
