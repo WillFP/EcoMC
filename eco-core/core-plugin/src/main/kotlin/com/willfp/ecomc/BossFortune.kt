@@ -23,6 +23,8 @@ class BossFortune : Stat("boss_fortune") {
             return
         }
 
+        event.chance *= config.getDouble("base")
+
         event.chance *= 1 + (config.getDouble("bonus") * level)
     }
 

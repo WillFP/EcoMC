@@ -386,9 +386,18 @@ crystalshop:
       singleUse: false
       price: 120
       gui:
-        column: 5
+        column: 4
         row: 2
       id: ferocity
+
+    - display: paper unbreaking:1 hide_enchants name:"&fPermanent +1 %ecoskills_boss_fortune_name%"
+      command: ecoskills give %player% boss_fortune 1
+      singleUse: false
+      price: 255
+      gui:
+        column: 4
+        row: 2
+      id: boss_fortune
 
   trackers:
     - display: stattrackers:arrows_shot
