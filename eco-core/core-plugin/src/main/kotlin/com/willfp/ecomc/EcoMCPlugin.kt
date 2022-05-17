@@ -25,6 +25,7 @@ import org.bukkit.event.Listener
 class EcoMCPlugin : EcoPlugin() {
     override fun handleEnable() {
         CrystalLuck() // Init crystal luck
+        BossFortune() // Init boss fortune
         CrystalEnchantType() // Init enchant type
         JankyPlaceholder.init(this)
         TrailGUI.init(this)
