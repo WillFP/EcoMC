@@ -395,7 +395,7 @@ crystalshop:
       singleUse: false
       price: 255
       gui:
-        column: 4
+        column: 6
         row: 2
       id: boss_fortune
 
