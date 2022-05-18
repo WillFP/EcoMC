@@ -7,11 +7,11 @@ description: "&8Improves boss drop chance by &a%chance%%" # The description to b
 stats-gui:
   enabled: false
   position:
-    row: 5
+    row: 4
     column: 5
   item:
     item: player_head texture:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvZmU0OGRiNDBlODBjM2UwMzlmYTVhM2M3NWIyZjE0ODFlMzM5OWZiYTg4MGYwYWJiMzU2NDQ0NzBiMWZiYmMxOCJ9fX0=
     name: "%stat%"
     lore:
-      - "&fLevel: &a%level%"
+      - "&fLevel: &a%ecoskills_boss_fortune_base% &e%ecoskills_boss_fortune_bonus%"
       - "&8&o%description%"
