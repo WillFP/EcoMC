@@ -29,6 +29,9 @@ commands:
   trails:
     description: Open trails menu
     permission: ecomc.trails
+  bosses:
+    description: Open bosses menu
+    permission: ecomc.bosses
   geodes:
     description: Crack open geodes
     permission: ecomc.geodes
