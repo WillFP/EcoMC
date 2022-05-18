@@ -84,9 +84,6 @@ private fun buySlot(config: Config): Slot? {
         setUpdater { player, _, _ ->
             val price = ceil(config.getDoubleFromExpression("price", player)).toInt()
 
-            val displayItem = Display.display(item.clone(), player)
-            displayItem.bossEgg = null
-
             val lore = mutableListOf(
                 "",
                 "&fPrice: &a$${price}",
@@ -100,7 +97,7 @@ private fun buySlot(config: Config): Slot? {
                 lore.add("&c&oYou need &a&o$${(price - EconomyManager.getBalance(player)).toNiceString()}&c&o more")
             }
 
-            ItemStackBuilder(displayItem)
+            ItemStackBuilder(item.clone())
                 .addLoreLines(lore)
                 .build()
         }
