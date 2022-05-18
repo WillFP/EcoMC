@@ -49,6 +49,8 @@ permissions:
       ecomc.crystals.geodes: true
       ecomc.crystals.expirepotion: true
     default: op
+  ecomc.bosses:
+    default: true
   ecomc.crystals:
     default: true
   ecomc.geodes:

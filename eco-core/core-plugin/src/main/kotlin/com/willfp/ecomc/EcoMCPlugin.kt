@@ -49,7 +49,8 @@ class EcoMCPlugin : EcoPlugin() {
             CommandCrystals(this),
             SecretEcoMCAdminCommand(this),
             CommandGeodes(this),
-            CommandTrails(this)
+            CommandTrails(this),
+            CommandBosses(this)
         )
     }
 

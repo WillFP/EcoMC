@@ -3,6 +3,29 @@ chance: 0.008
 outgoing-damage-multiplier: 1
 incoming-damage-multiplier: 1
 
+bosses:
+  shop:
+    - boss: dark_guardian
+      price: 27500
+      column: 3
+      row: 2
+    - boss: steel_golem
+      price: 45000
+      column: 4
+      row: 2
+    - boss: holy_protector
+      price: 95000
+      column: 5
+      row: 2
+    - boss: rapid_wolf
+      price: 135000
+      column: 6
+      row: 2
+    - boss: blood_soldier
+      price: 205000
+      column: 7
+      row: 2
+
 crystalshop:
   skills:
     - display: stone_pickaxe name:"&fInstant &a%ecoskills_mining_name%&f Level Up!"
