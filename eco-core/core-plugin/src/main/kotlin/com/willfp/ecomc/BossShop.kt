@@ -15,6 +15,7 @@ import com.willfp.eco.core.gui.slot.Slot
 import com.willfp.eco.core.integrations.economy.EconomyManager
 import com.willfp.eco.core.items.Items
 import com.willfp.eco.core.items.builder.ItemStackBuilder
+import com.willfp.eco.util.toNiceString
 import com.willfp.ecobosses.bosses.Bosses
 import com.willfp.ecobosses.bosses.bossEgg
 import org.bukkit.Material
@@ -96,7 +97,7 @@ private fun buySlot(config: Config): Slot? {
                 lore.add("&e&oLeft click to buy this spawn egg!")
             } else {
                 lore.add("&c&oYou cannot afford this!")
-                lore.add("&c&oYou need &a&o$${price - EconomyManager.getBalance(player)}&c&o more")
+                lore.add("&c&oYou need &a&o$${(price - EconomyManager.getBalance(player)).toNiceString()}&c&o more")
             }
 
             ItemStackBuilder(displayItem)
