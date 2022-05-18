@@ -39,7 +39,7 @@ class CommandBosses(
 }
 
 private fun buySlot(config: Config): Slot? {
-    val boss = Bosses.getByID(config.getString("id")) ?: return null
+    val boss = Bosses.getByID(config.getString("boss")) ?: return null
     val item = boss.spawnEgg?.clone() ?: return null
 
     return slot(item) {
