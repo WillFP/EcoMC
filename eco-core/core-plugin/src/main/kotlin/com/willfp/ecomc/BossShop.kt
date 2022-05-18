@@ -130,8 +130,8 @@ object BossShop {
 
             for (config in plugin.configYml.getSubsections("bosses.shop")) {
                 setSlot(
-                    config.getInt("column"),
                     config.getInt("row"),
+                    config.getInt("column"),
                     buySlot(config) ?: slot(ItemStack(Material.BARRIER)) { }
                 )
             }
