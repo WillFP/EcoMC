@@ -1,5 +1,5 @@
 initial: 0.02
-multiplier: 0.35
+multiplier: 0.225
 description: '&8Improves chance to get &bCrystals ❖&8 from mining and mobs'
 mobs-times-more: 12.5
 scalar: 0.007

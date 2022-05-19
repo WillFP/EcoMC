@@ -4,7 +4,6 @@ import com.willfp.eco.core.EcoPlugin
 import com.willfp.eco.core.command.impl.PluginCommand
 import com.willfp.eco.core.config.interfaces.Config
 import com.willfp.eco.core.config.updating.ConfigUpdater
-import com.willfp.eco.core.display.Display
 import com.willfp.eco.core.drops.DropQueue
 import com.willfp.eco.core.gui.menu
 import com.willfp.eco.core.gui.menu.Menu
@@ -15,9 +14,8 @@ import com.willfp.eco.core.gui.slot.Slot
 import com.willfp.eco.core.integrations.economy.EconomyManager
 import com.willfp.eco.core.items.Items
 import com.willfp.eco.core.items.builder.ItemStackBuilder
-import com.willfp.eco.util.toNiceString
 import com.willfp.ecobosses.bosses.Bosses
-import com.willfp.ecobosses.bosses.bossEgg
+import com.willfp.ecomc.crystals.crystals
 import org.bukkit.Material
 import org.bukkit.Sound
 import org.bukkit.command.CommandSender
@@ -81,20 +79,58 @@ private fun buySlot(config: Config): Slot? {
             }
         }
 
+        onRightClick { event, _, _ ->
+            val player = event.whoClicked as Player
+
+            val price = ceil(config.getDoubleFromExpression("crystal-price", player)).toInt()
+
+            if (player.crystals >= price) {
+                player.crystals -= price
+
+                EcoMCPlugin.instance.logger.info("${player.name} bought a boss egg for $price crystals")
+
+                DropQueue(player)
+                    .setLocation(player.location)
+                    .addItem(item)
+                    .forceTelekinesis()
+                    .push()
+
+                player.playSound(
+                    player.location,
+                    Sound.BLOCK_NOTE_BLOCK_PLING,
+                    1f,
+                    1.5f
+                )
+                player.sendMessage(
+                    EcoMCPlugin.instance.langYml.getMessage("bought-boss-egg")
+                        .replace("%boss%", boss.displayName)
+                )
+            } else {
+                player.sendMessage(EcoMCPlugin.instance.langYml.getMessage("buy-crystals"))
+                player.playSound(
+                    player.location,
+                    Sound.ENTITY_VILLAGER_NO,
+                    1f,
+                    0.9f
+                )
+            }
+        }
+
         setUpdater { player, _, _ ->
             val price = ceil(config.getDoubleFromExpression("price", player)).toInt()
+            val crystalPrice = ceil(config.getDoubleFromExpression("crystal-price", player)).toInt()
 
             val lore = mutableListOf(
                 "",
-                "&fPrice: &a$${price}",
+                "&fPrice: &a$${price} &for &b${crystalPrice} &❖",
                 ""
             )
 
-            if (EconomyManager.getBalance(player) >= price) {
-                lore.add("&e&oLeft click to buy this spawn egg!")
+            if (EconomyManager.getBalance(player) >= price || player.crystals >= crystalPrice) {
+                lore.add("&e&oLeft click to buy with money,")
+                lore.add("&e&oright click to buy with &bCrystals ❖!")
             } else {
                 lore.add("&c&oYou cannot afford this!")
-                lore.add("&c&oYou need &a&o$${(price - EconomyManager.getBalance(player)).toNiceString()}&c&o more")
             }
 
             ItemStackBuilder(item.clone())
