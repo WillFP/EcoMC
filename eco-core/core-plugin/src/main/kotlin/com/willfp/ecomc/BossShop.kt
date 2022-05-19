@@ -122,7 +122,7 @@ private fun buySlot(config: Config): Slot? {
 
             val lore = mutableListOf(
                 "",
-                "&fPrice: &a$${price} &for &b${crystalPrice} &❖",
+                "&fPrice: &a$${price} &for &b${crystalPrice} ❖",
                 ""
             )
 
