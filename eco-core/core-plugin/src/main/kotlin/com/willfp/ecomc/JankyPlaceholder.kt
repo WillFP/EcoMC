@@ -43,7 +43,7 @@ object JankyPlaceholder {
                     val sneaky = if (level > 10) 1.5 else 1.0
                     val basePrice = 265 + (requiredXp * sneaky / 22500) * 35
 
-                    val price = min(basePrice.toInt(), 6435)
+                    val price = min(basePrice.toInt(), 1485)
                     price.toString()
                 }
             )
