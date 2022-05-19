@@ -5,6 +5,7 @@ import com.willfp.eco.core.command.impl.PluginCommand
 import com.willfp.eco.core.config.interfaces.Config
 import com.willfp.eco.core.config.updating.ConfigUpdater
 import com.willfp.eco.core.drops.DropQueue
+import com.willfp.eco.core.fast.fast
 import com.willfp.eco.core.gui.menu
 import com.willfp.eco.core.gui.menu.Menu
 import com.willfp.eco.core.gui.slot
@@ -14,6 +15,7 @@ import com.willfp.eco.core.gui.slot.Slot
 import com.willfp.eco.core.integrations.economy.EconomyManager
 import com.willfp.eco.core.items.Items
 import com.willfp.eco.core.items.builder.ItemStackBuilder
+import com.willfp.eco.util.formatEco
 import com.willfp.ecobosses.bosses.Bosses
 import com.willfp.ecomc.crystals.crystals
 import org.bukkit.Material
@@ -66,7 +68,8 @@ private fun buySlot(config: Config): Slot? {
                 )
                 player.sendMessage(
                     EcoMCPlugin.instance.langYml.getMessage("bought-boss-egg")
-                        .replace("%boss%", boss.displayName)
+                        .replace("%boss%", item.fast().displayName)
+                        .formatEco()
                 )
             } else {
                 player.sendMessage(EcoMCPlugin.instance.langYml.getMessage("not-enough-money"))
@@ -103,7 +106,8 @@ private fun buySlot(config: Config): Slot? {
                 )
                 player.sendMessage(
                     EcoMCPlugin.instance.langYml.getMessage("bought-boss-egg")
-                        .replace("%boss%", boss.displayName)
+                        .replace("%boss%", item.fast().displayName)
+                        .formatEco()
                 )
             } else {
                 player.sendMessage(EcoMCPlugin.instance.langYml.getMessage("buy-crystals"))
@@ -122,13 +126,13 @@ private fun buySlot(config: Config): Slot? {
 
             val lore = mutableListOf(
                 "",
-                "&fPrice: &a$${price} &for &b${crystalPrice} ❖",
+                "&fPrice: &a$${price} &for &b${crystalPrice}❖",
                 ""
             )
 
             if (EconomyManager.getBalance(player) >= price || player.crystals >= crystalPrice) {
                 lore.add("&e&oLeft click to buy with money,")
-                lore.add("&e&oright click to buy with &bCrystals ❖!")
+                lore.add("&e&oRight click to buy with &bCrystals ❖!")
             } else {
                 lore.add("&c&oYou cannot afford this!")
             }

@@ -34,4 +34,4 @@ messages:
   removed-trail: "&fYou've deactivated your trail!"
   set-trail: "Set %player%&f to have the &a%trail%&f trail!"
   not-enough-money: "&cYou cannot afford this!"
-  bought-boss-egg: "&fYou bought %boss%&f spawn egg!"
+  bought-boss-egg: "&fYou bought %boss%&f!"
