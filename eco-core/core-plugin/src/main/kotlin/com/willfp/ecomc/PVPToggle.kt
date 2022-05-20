@@ -32,10 +32,15 @@ class CommandPvptoggle(
     override fun onExecute(player: CommandSender, args: List<String>) {
         player as Player
         val current = player.profile.read(pvpEnabledKey)
-        player.profile.write(pvpEnabledKey, !current)
         if (!current) {
-            player.sendMessage(plugin.langYml.getMessage("disabled-pvp"))
+            player.sendMessage(plugin.langYml.getMessage("disabling-pvp"))
+
+            plugin.scheduler.runLater(200) {
+                player.profile.write(pvpEnabledKey, !current)
+                player.sendMessage(plugin.langYml.getMessage("disabled-pvp"))
+            }
         } else {
+            player.profile.write(pvpEnabledKey, !current)
             player.sendMessage(plugin.langYml.getMessage("enabled-pvp"))
         }
     }
