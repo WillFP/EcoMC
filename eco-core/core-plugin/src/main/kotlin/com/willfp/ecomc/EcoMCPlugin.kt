@@ -50,7 +50,8 @@ class EcoMCPlugin : EcoPlugin() {
             SecretEcoMCAdminCommand(this),
             CommandGeodes(this),
             CommandTrails(this),
-            CommandBosses(this)
+            CommandBosses(this),
+            CommandPvptoggle(this)
         )
     }
 
@@ -82,7 +83,8 @@ class EcoMCPlugin : EcoPlugin() {
             BuyCrystalPotionsSmh(this),
             HDBCrystalPriceHandler(this),
             MovementListener(),
-            NoColonCommands()
+            NoColonCommands(),
+            PVPListener(this)
         )
     }
 

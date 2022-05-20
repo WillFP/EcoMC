@@ -32,6 +32,12 @@ commands:
   bosses:
     description: Open bosses menu
     permission: ecomc.bosses
+  pvptoggle:
+    description: Toggles PvP
+    permission: ecomc.pvptoggle
+    aliases:
+      - togglepvp
+      - pvp
   geodes:
     description: Crack open geodes
     permission: ecomc.geodes
