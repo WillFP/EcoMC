@@ -7,10 +7,15 @@ import org.bukkit.entity.EntityType
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.entity.EntitySpawnEvent
+import java.lang.Double.min
 
-class EntityYeeter : Listener {
+class TPSFixer : Listener {
     @EventHandler
     fun handle(event: EntitySpawnEvent) {
+        if (NumberUtils.randFloat(0.0, 1.0) > spawnRate) {
+            event.isCancelled = true
+        }
+
         if (event.entityType == EntityType.BAT) {
             event.isCancelled = true
         }
@@ -32,10 +37,13 @@ class EntityYeeter : Listener {
     }
 
     companion object {
+        private var spawnRate = 1.0
+
         fun pollForTPS(plugin: EcoPlugin) {
             // Run every 10 seconds
             plugin.scheduler.runTimer(200, 200) {
-                if (Bukkit.getTPS().any { it < 19.9 }) {
+                val tps = min(Bukkit.getTPS()[0], Bukkit.getTPS()[1]) // Ignore 15m tps
+                if (tps < 19.9) {
                     plugin.logger.info("TPS is dropping - Killing spawner mobs!")
                     for (world in Bukkit.getWorlds()) {
                         if (world.name.lowercase().contains("spawn")) {
@@ -48,6 +56,22 @@ class EntityYeeter : Listener {
                             }
                         }
                     }
+                }
+
+                spawnRate = if (tps > 18) {
+                    1.0
+                } else if (tps > 17) {
+                    plugin.logger.info("TPS is $tps; spawn rate = 0.5")
+                    0.5
+                } else if (tps > 15) {
+                    plugin.logger.info("TPS is $tps; spawn rate = 0.25")
+                    0.25
+                } else if (tps > 10) {
+                    plugin.logger.info("TPS is $tps; spawn rate = 0.1")
+                    0.1
+                } else {
+                    plugin.logger.info("TPS is $tps; spawn rate = 0")
+                    0.0
                 }
             }
         }
