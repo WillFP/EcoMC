@@ -2,6 +2,8 @@ package com.willfp.ecomc
 
 import com.willfp.eco.core.EcoPlugin
 import com.willfp.eco.core.command.impl.PluginCommand
+import com.willfp.eco.core.integrations.antigrief.AntigriefIntegration
+import com.willfp.eco.core.integrations.antigrief.AntigriefManager
 import com.willfp.eco.core.integrations.placeholder.PlaceholderManager
 import com.willfp.eco.core.placeholder.PlayerPlaceholder
 import com.willfp.eco.util.toNiceString
@@ -33,6 +35,7 @@ class EcoMCPlugin : EcoPlugin() {
         Geodes.init(this)
         LevelPlaceholder.register(this)
         SchmoneyPlaceholder.init()
+        AntigriefManager.register(AntigriefPVPToggle)
 
         PlaceholderManager.registerPlaceholder(
             PlayerPlaceholder(

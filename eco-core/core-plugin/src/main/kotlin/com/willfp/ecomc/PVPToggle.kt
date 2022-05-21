@@ -5,11 +5,14 @@ import com.willfp.eco.core.command.impl.PluginCommand
 import com.willfp.eco.core.data.keys.PersistentDataKey
 import com.willfp.eco.core.data.keys.PersistentDataKeyType
 import com.willfp.eco.core.data.profile
+import com.willfp.eco.core.integrations.antigrief.AntigriefIntegration
 import com.willfp.eco.core.integrations.shop.ShopSellEvent
-import com.willfp.ecomc.crystals.openCrystalShop
 import com.willfp.ecoskills.api.PlayerSkillExpGainEvent
 import com.willfp.ecoskills.tryAsPlayer
+import org.bukkit.Location
+import org.bukkit.block.Block
 import org.bukkit.command.CommandSender
+import org.bukkit.entity.LivingEntity
 import org.bukkit.entity.Player
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
@@ -48,7 +51,7 @@ class CommandPvptoggle(
 
 class PVPListener(
     private val plugin: EcoMCPlugin
-): Listener {
+) : Listener {
     @EventHandler
     fun onPVP(event: EntityDamageByEntityEvent) {
         val victim = event.entity as? Player ?: return
@@ -76,5 +79,31 @@ class PVPListener(
         if (!player.profile.read(pvpEnabledKey)) {
             event.price *= 0.75
         }
+    }
+}
+
+object AntigriefPVPToggle : AntigriefIntegration {
+    override fun canBreakBlock(player: Player, block: Block): Boolean {
+        return true
+    }
+
+    override fun canCreateExplosion(player: Player, location: Location): Boolean {
+        return true
+    }
+
+    override fun canPlaceBlock(player: Player, block: Block): Boolean {
+        return true
+    }
+
+    override fun canInjure(player: Player, victim: LivingEntity): Boolean {
+        if (victim !is Player) {
+            return true
+        }
+
+        return victim.profile.read(pvpEnabledKey) && player.profile.read(pvpEnabledKey)
+    }
+
+    override fun getPluginName(): String {
+        return "EcoMC"
     }
 }
