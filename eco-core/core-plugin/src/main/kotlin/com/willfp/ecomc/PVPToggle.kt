@@ -64,6 +64,20 @@ class PVPListener(
     }
 
     @EventHandler
+    fun antiPvP(event: EntityDamageByEntityEvent) {
+        if (event.entity !is Player) {
+            return
+        }
+
+        val attacker = event.damager.tryAsPlayer() ?: return
+
+        if (!attacker.profile.read(pvpEnabledKey)) {
+            event.isCancelled = true
+            attacker.sendMessage(plugin.langYml.getMessage("you-have-pvp-disabled"))
+        }
+    }
+
+    @EventHandler
     fun debuff(event: PlayerSkillExpGainEvent) {
         val player = event.player
 

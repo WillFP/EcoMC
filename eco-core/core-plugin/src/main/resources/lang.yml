@@ -36,6 +36,7 @@ messages:
   not-enough-money: "&cYou cannot afford this!"
   bought-boss-egg: "&fYou bought %boss%&f!"
   player-has-pvp-disabled: "&cThis player has PvP disabled."
+  you-have-pvp-disabled: "&cYou have PvP disabled."
   disabled-pvp: "&fYou have &cdisabled&f PvP! Disabling PvP gives you &c4x &fless skill experience, and sell prices are &a25% lower&f."
   enabled-pvp: "&fYou have &aenabled&f PvP!"
   disabling-pvp: "&fPvP will be &cdisabled&f in 10 seconds! Disabling PvP gives you &c4x &fless skill experience, and sell prices are &a25% lower&f."
