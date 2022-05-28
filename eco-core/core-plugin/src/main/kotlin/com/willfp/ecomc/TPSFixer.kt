@@ -8,10 +8,10 @@ import org.bukkit.entity.EntityType
 import org.bukkit.entity.ItemFrame
 import org.bukkit.entity.LivingEntity
 import org.bukkit.entity.Tameable
-import org.bukkit.entity.Villager
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.entity.EntitySpawnEvent
+import org.bukkit.inventory.Merchant
 import java.lang.Double.min
 
 class TPSFixer : Listener {
@@ -93,7 +93,7 @@ class TPSFixer : Listener {
                                 continue
                             }
 
-                            if (entity is Tameable || entity is ItemFrame || entity is ArmorStand || entity is Villager) {
+                            if (entity is Tameable || entity is ItemFrame || entity is ArmorStand || entity is Merchant) {
                                 continue
                             }
 
