@@ -3,6 +3,7 @@ package com.willfp.ecomc
 import com.willfp.eco.core.EcoPlugin
 import com.willfp.eco.util.NumberUtils
 import org.bukkit.Bukkit
+import org.bukkit.entity.ArmorStand
 import org.bukkit.entity.EntityType
 import org.bukkit.entity.ItemFrame
 import org.bukkit.entity.LivingEntity
@@ -80,18 +81,18 @@ class TPSFixer : Listener {
                 }
 
                 if (lastTps < 18) {
-                    plugin.logger.info("Most recent TPS is $lastTps; halving mobs!")
+                    plugin.logger.info("Most recent TPS is $lastTps; killing 25% of mobs!")
                     for (world in Bukkit.getWorlds()) {
                         if (world.name.lowercase().contains("spawn")) {
                             continue
                         }
 
                         for (entity in world.entities.toList()) {
-                            if (NumberUtils.randFloat(0.0, 1.0) > 0.5) {
+                            if (NumberUtils.randFloat(0.0, 1.0) > 0.25) {
                                 continue
                             }
 
-                            if (entity is Tameable || entity is ItemFrame) {
+                            if (entity is Tameable || entity is ItemFrame || entity is ArmorStand) {
                                 continue
                             }
 
