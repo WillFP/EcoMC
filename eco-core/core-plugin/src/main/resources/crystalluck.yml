@@ -1,7 +1,20 @@
-name: "&b❖ Crystal Luck"
-mobs-times-more: 12.5
 initial: 0.02
-base: 1.17
+multiplier: 0.225
+description: '&8Improves chance to get &bCrystals ❖&8 from mining and mobs'
+mobs-times-more: 12.5
 scalar: 0.007
-multiplier: 0.35
+stats-gui:
+  item:
+    item: player_head texture:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvM2E1YTA3MTVjNjIxMjJkZWQ2NWFmNGVhZTA5NjlmMjNmNTcxYjBhZmE1MGNmOTNmYzllZTJhZjRjN2IzNGUxMiJ9fX0=
+    lore:
+      - '&fLevel: &a%ecoskills_crystal_luck_base% &e%ecoskills_crystal_luck_bonus%'
+      - '&8&o%description%'
+    name: '%stat%'
+  position:
+    column: 7
+    row: 4
+  enabled: true
 minute-limit: 3
+name: '&b❖ Crystal Luck'
+base: 1.17
+

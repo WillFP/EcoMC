@@ -1,21 +1,32 @@
 package com.willfp.ecomc.trails
 
+import com.earth2me.essentials.Essentials
+import com.earth2me.essentials.IEssentials
 import com.willfp.eco.core.data.keys.PersistentDataKey
 import com.willfp.eco.core.data.keys.PersistentDataKeyType
 import com.willfp.eco.core.data.profile
 import com.willfp.eco.util.NumberUtils
 import com.willfp.ecomc.EcoMCPlugin
 import com.willfp.ecomc.lastPosition
+import org.bukkit.Bukkit
+import org.bukkit.GameMode
 import org.bukkit.OfflinePlayer
 import org.bukkit.Particle
 import org.bukkit.entity.Player
+import org.bukkit.plugin.java.JavaPlugin
 import org.bukkit.util.Vector
 import kotlin.math.PI
+
+private val essentials = JavaPlugin.getPlugin(Essentials::class.java)
 
 fun Player.tickTrail(tick: Int) {
     val particle = this.trail ?: return
 
     val dist = this.lastPosition.distance(this.location.toVector())
+
+    if (this.gameMode == GameMode.SPECTATOR || essentials.getUser(this).isVanished) {
+        return
+    }
 
     val vector = if (dist > 0.2) {
         if (tick % 4 != 0) {

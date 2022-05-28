@@ -56,5 +56,10 @@
       <option name="name" value="maven3" />
       <option name="url" value="https://papermc.io/repo/repository/maven-public/" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven6" />
+      <option name="name" value="maven6" />
+      <option name="url" value="https://repo.essentialsx.net/releases/" />
+    </remote-repository>
   </component>
 </project>

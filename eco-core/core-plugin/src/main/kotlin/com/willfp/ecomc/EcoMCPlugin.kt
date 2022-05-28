@@ -2,6 +2,8 @@ package com.willfp.ecomc
 
 import com.willfp.eco.core.EcoPlugin
 import com.willfp.eco.core.command.impl.PluginCommand
+import com.willfp.eco.core.integrations.antigrief.AntigriefIntegration
+import com.willfp.eco.core.integrations.antigrief.AntigriefManager
 import com.willfp.eco.core.integrations.placeholder.PlaceholderManager
 import com.willfp.eco.core.placeholder.PlayerPlaceholder
 import com.willfp.eco.util.toNiceString
@@ -25,6 +27,7 @@ import org.bukkit.event.Listener
 class EcoMCPlugin : EcoPlugin() {
     override fun handleEnable() {
         CrystalLuck() // Init crystal luck
+        BossFortune() // Init boss fortune
         CrystalEnchantType() // Init enchant type
         JankyPlaceholder.init(this)
         TrailGUI.init(this)
@@ -32,6 +35,7 @@ class EcoMCPlugin : EcoPlugin() {
         Geodes.init(this)
         LevelPlaceholder.register(this)
         SchmoneyPlaceholder.init()
+        AntigriefManager.register(AntigriefPVPToggle)
 
         PlaceholderManager.registerPlaceholder(
             PlayerPlaceholder(
@@ -48,14 +52,16 @@ class EcoMCPlugin : EcoPlugin() {
             CommandCrystals(this),
             SecretEcoMCAdminCommand(this),
             CommandGeodes(this),
-            CommandTrails(this)
+            CommandTrails(this),
+            CommandBosses(this),
+            CommandPvptoggle(this)
         )
     }
 
     override fun handleReload() {
         SchmoneyPlaceholder.createTheRunnable(this)
         CrystalPotionHandler.initRunnable(this)
-        EntityYeeter.pollForTPS(this)
+        TPSFixer.pollForTPS(this)
         this.scheduler.runTimer(1200, 1200) { CrystalLuck.resetLimiter() }
 
         var tick = 0
@@ -71,7 +77,7 @@ class EcoMCPlugin : EcoPlugin() {
         return listOf(
             KeyDropListener(this),
             Hardinator(this),
-            EntityYeeter(),
+            TPSFixer(),
             SpawnProtection(this),
             Baninator(),
             PreventGeodePlace(),
@@ -80,7 +86,8 @@ class EcoMCPlugin : EcoPlugin() {
             BuyCrystalPotionsSmh(this),
             HDBCrystalPriceHandler(this),
             MovementListener(),
-            NoColonCommands()
+            NoColonCommands(),
+            PVPListener(this)
         )
     }
 

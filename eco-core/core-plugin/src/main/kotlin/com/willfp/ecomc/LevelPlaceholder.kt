@@ -4,6 +4,7 @@ import com.willfp.eco.core.EcoPlugin
 import com.willfp.eco.core.integrations.placeholder.PlaceholderManager
 import com.willfp.eco.core.placeholder.PlayerPlaceholder
 import com.willfp.eco.util.StringUtils
+import com.willfp.ecomc.crystals.hasCrystalPotion
 import org.bukkit.potion.PotionEffectType
 
 object LevelPlaceholder {
@@ -71,6 +72,17 @@ object LevelPlaceholder {
                 ""
             } else {
                 " $tag"
+            }
+        })
+
+        PlaceholderManager.registerPlaceholder(PlayerPlaceholder(
+            plugin,
+            "crystal_potion_tag"
+        ) {
+            if (it.hasCrystalPotion) {
+                " §b❖"
+            } else {
+                ""
             }
         })
 

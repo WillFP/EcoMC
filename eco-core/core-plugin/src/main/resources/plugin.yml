@@ -29,6 +29,15 @@ commands:
   trails:
     description: Open trails menu
     permission: ecomc.trails
+  bosses:
+    description: Open bosses menu
+    permission: ecomc.bosses
+  pvptoggle:
+    description: Toggles PvP
+    permission: ecomc.pvptoggle
+    aliases:
+      - togglepvp
+      - pvp
   geodes:
     description: Crack open geodes
     permission: ecomc.geodes
@@ -49,6 +58,8 @@ permissions:
       ecomc.crystals.geodes: true
       ecomc.crystals.expirepotion: true
     default: op
+  ecomc.bosses:
+    default: true
   ecomc.crystals:
     default: true
   ecomc.geodes:
