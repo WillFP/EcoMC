@@ -71,6 +71,13 @@ class EcoMCPlugin : EcoPlugin() {
                 player.tickTrail(tick)
             }
         }
+
+        this.scheduler.runLater(5) {
+            Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "citizens reload")
+            this.scheduler.runLater(1) {
+                Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "citizens reload")
+            }
+        }
     }
 
     override fun loadListeners(): List<Listener> {
