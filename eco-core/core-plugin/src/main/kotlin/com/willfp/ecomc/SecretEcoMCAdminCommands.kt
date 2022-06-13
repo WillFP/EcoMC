@@ -11,7 +11,9 @@ import com.willfp.eco.util.savedDisplayName
 import com.willfp.eco.util.toComponent
 import com.willfp.ecoskills.api.EcoSkillsAPI
 import com.willfp.ecoskills.skills.Skills
+import net.kyori.adventure.text.Component
 import org.bukkit.Bukkit
+import org.bukkit.Sound
 import org.bukkit.command.CommandSender
 import org.bukkit.entity.Player
 import org.bukkit.util.StringUtil
@@ -29,6 +31,7 @@ class SecretEcoMCAdminCommand(
             .addSubcommand(CommandGet(plugin))
             .addSubcommand(CommandUpgradeSkill(plugin))
             .addSubcommand(CommandKickAll(plugin))
+            .addSubcommand(CommandBroadcastPurchase(plugin))
     }
 
     override fun onExecute(sender: CommandSender, args: List<String>) {
@@ -179,6 +182,43 @@ private class CommandKickAll(
                 "<g:#00ff00>EcoMC</g:#00ffff>&f is having a scheduled restart, come back in a couple minutes!"
                     .formatEco()
                     .toComponent()
+            )
+        }
+    }
+}
+
+private class CommandBroadcastPurchase(
+    plugin: EcoPlugin
+) : Subcommand(
+    plugin,
+    "broadcastpurchase",
+    "ecomc.broadcastpurchase",
+    false
+) {
+    override fun onExecute(sender: CommandSender, args: List<String>) {
+        if (args.size < 2) {
+            return
+        }
+
+        val playerName = args[0]
+        val pkg = args.subList(1, args.size).joinToString(" ")
+
+        Bukkit.getServer().broadcast(Component.empty())
+        Bukkit.getServer().broadcast(
+            StringUtils.toComponent(
+                plugin.langYml.getMessage("purchase", StringUtils.FormatOption.WITHOUT_PLACEHOLDERS)
+                    .replace("%player%", playerName)
+                    .replace("%package%", pkg)
+            )
+        )
+        Bukkit.getServer().broadcast(Component.empty())
+
+        for (player in Bukkit.getOnlinePlayers()) {
+            player.playSound(
+                player.location,
+                Sound.ENTITY_PLAYER_LEVELUP,
+                10000f,
+                1f
             )
         }
     }

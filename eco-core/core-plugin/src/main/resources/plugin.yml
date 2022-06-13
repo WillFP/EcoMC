@@ -29,9 +29,6 @@ commands:
   trails:
     description: Open trails menu
     permission: ecomc.trails
-  broadcastpurchase:
-    description: Announce store purchase
-    permission: ecomc.broadcastpurchase
   bosses:
     description: Open bosses menu
     permission: ecomc.bosses

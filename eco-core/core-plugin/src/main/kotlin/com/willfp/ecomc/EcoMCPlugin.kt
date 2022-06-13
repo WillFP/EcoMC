@@ -52,8 +52,7 @@ class EcoMCPlugin : EcoPlugin() {
             SecretEcoMCAdminCommand(this),
             CommandGeodes(this),
             CommandTrails(this),
-            CommandBroadcastPurchase(this),
-            CommandPvptoggle(this)
+            CommandPvptoggle(this),
         )
     }
 
