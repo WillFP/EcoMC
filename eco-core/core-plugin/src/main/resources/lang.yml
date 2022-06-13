@@ -40,3 +40,4 @@ messages:
   disabled-pvp: "&fYou have &cdisabled&f PvP! Disabling PvP gives you &c4x &fless skill experience, and sell prices are &a25% lower&f."
   enabled-pvp: "&fYou have &aenabled&f PvP!"
   disabling-pvp: "&fPvP will be &cdisabled&f in 10 seconds! Disabling PvP gives you &c4x &fless skill experience, and sell prices are &a25% lower&f."
+  purchase: "&fThank you &a%player%&f for buying &a%package% &f! &astore.ecomc.net"

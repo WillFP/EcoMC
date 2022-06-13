@@ -2,7 +2,6 @@ package com.willfp.ecomc
 
 import com.willfp.eco.core.EcoPlugin
 import com.willfp.eco.core.command.impl.PluginCommand
-import com.willfp.eco.core.integrations.antigrief.AntigriefIntegration
 import com.willfp.eco.core.integrations.antigrief.AntigriefManager
 import com.willfp.eco.core.integrations.placeholder.PlaceholderManager
 import com.willfp.eco.core.placeholder.PlayerPlaceholder
@@ -53,7 +52,7 @@ class EcoMCPlugin : EcoPlugin() {
             SecretEcoMCAdminCommand(this),
             CommandGeodes(this),
             CommandTrails(this),
-            CommandBosses(this),
+            CommandAnnouncePurchase(this),
             CommandPvptoggle(this)
         )
     }
