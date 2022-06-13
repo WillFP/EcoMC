@@ -8,12 +8,12 @@ import org.bukkit.Bukkit
 import org.bukkit.Sound
 import org.bukkit.command.CommandSender
 
-class CommandAnnouncePurchase(
+class CommandBroadcastPurchase(
     plugin: EcoPlugin
 ) : PluginCommand(
     plugin,
-    "announcepurchase",
-    "ecomc.announcepurchase",
+    "broadcastpurchase",
+    "ecomc.broadcastpurchase",
     false
 ) {
     override fun onExecute(sender: CommandSender, args: List<String>) {

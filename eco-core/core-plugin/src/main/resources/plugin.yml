@@ -29,9 +29,9 @@ commands:
   trails:
     description: Open trails menu
     permission: ecomc.trails
-  announcepurchase:
+  broadcastpurchase:
     description: Announce store purchase
-    permission: ecomc.announcepurchase
+    permission: ecomc.broadcastpurchase
   bosses:
     description: Open bosses menu
     permission: ecomc.bosses
@@ -67,7 +67,7 @@ permissions:
     default: true
   ecomc.geodes:
     default: true
-  ecomc.announcepurchase:
+  ecomc.broadcastpurchase:
     default: false
   ecomc.trails:
     default: true
