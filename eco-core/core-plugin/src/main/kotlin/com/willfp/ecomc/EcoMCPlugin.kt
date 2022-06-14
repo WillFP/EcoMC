@@ -53,6 +53,7 @@ class EcoMCPlugin : EcoPlugin() {
             CommandGeodes(this),
             CommandTrails(this),
             CommandPvptoggle(this),
+            CommandBosses(this)
         )
     }
 
