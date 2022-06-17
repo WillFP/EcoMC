@@ -9,6 +9,7 @@ import com.willfp.eco.util.StringUtils
 import com.willfp.eco.util.formatEco
 import com.willfp.eco.util.savedDisplayName
 import com.willfp.eco.util.toComponent
+import com.willfp.ecomc.crystals.crystals
 import com.willfp.ecoskills.api.EcoSkillsAPI
 import com.willfp.ecoskills.skills.Skills
 import net.kyori.adventure.text.Component
@@ -32,6 +33,7 @@ class SecretEcoMCAdminCommand(
             .addSubcommand(CommandUpgradeSkill(plugin))
             .addSubcommand(CommandKickAll(plugin))
             .addSubcommand(CommandBroadcastPurchase(plugin))
+            .addSubcommand(CommandMostCrystals(plugin))
     }
 
     override fun onExecute(sender: CommandSender, args: List<String>) {
@@ -53,6 +55,25 @@ private class CommandReload(
                 "%time%", plugin.reloadWithTime().toString()
             )
         )
+    }
+}
+
+private class CommandMostCrystals(
+    plugin: EcoPlugin
+) : Subcommand(
+    plugin,
+    "mostcrystals",
+    "ecomc.secretecomcadminpermission",
+    false
+) {
+    override fun onExecute(sender: CommandSender, args: List<String>) {
+        val top = Bukkit.getOfflinePlayers().sortedByDescending { it.crystals }
+            .subList(0, 10)
+            .mapIndexed { index, offlinePlayer -> "${index + 1}: ${offlinePlayer.savedDisplayName}&r: ${offlinePlayer.crystals}" }
+            .map { it.formatEco() }
+        for (s in top) {
+            sender.sendMessage(s)
+        }
     }
 }
 
