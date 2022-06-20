@@ -272,7 +272,7 @@ object CrystalShop {
 
             setSlot(4, 5, slot(
                 ItemStackBuilder(Material.DIAMOND)
-                    .setDisplayName("&fWhat are crystals and geodes?")
+                    .setDisplayName("&fWhat are crystals?")
                     .build()
             ) {
                 setUpdater { player, _, previous ->
@@ -281,18 +281,12 @@ object CrystalShop {
                     item.fast().lore = listOf(
                         "",
                         "&bCrystals ❖&f are a special",
-                        "&fcurrency used to buy exclusive",
-                        "&fcosmetics, upgrades, and items.",
+                        "&fcurrency used to buy ranks,",
+                        "&fboosters, crate keys, heads,",
+                        "&fcosmetics, upgrades, and more!",
                         "",
-                        "&fYou can get &bCrystals ❖&f by",
-                        "&fmining blocks, killing mobs,",
-                        "&flevelling up skills and quests,",
-                        "&fand on &astore.ecomc.net",
-                        "",
-                        "&fThe %ecoskills_crystal_luck_name%&f stat",
-                        "&fincreases the chance of mobs",
-                        "&fand blocks dropping <g:#6a3093>Geodes</g:#a044ff>",
-                        "&fYour %ecoskills_crystal_luck_name%&f: &a%ecoskills_crystal_luck%"
+                        "&fGet more crystals &bCrystals ❖&f on",
+                        "&astore.ecomc.net"
                     ).formatEco(player = player, formatPlaceholders = true)
 
                     item
