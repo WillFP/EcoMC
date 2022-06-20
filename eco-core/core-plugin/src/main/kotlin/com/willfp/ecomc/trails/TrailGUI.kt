@@ -68,7 +68,7 @@ object TrailGUI {
                         listOf(
                             "",
                             "&c&oYou don't own this trail!",
-                            "&f&oBuy it from the &b&oCristallier ❖"
+                            "&f&oBuy it from the &b&oCrystal Shop ❖"
                         ).formatEco()
                     }
                 }.unwrap()

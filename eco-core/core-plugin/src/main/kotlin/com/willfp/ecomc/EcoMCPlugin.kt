@@ -28,6 +28,7 @@ class EcoMCPlugin : EcoPlugin() {
         CrystalLuck() // Init crystal luck
         BossFortune() // Init boss fortune
         CrystalEnchantType() // Init enchant type
+        RankCostPlaceholder.init(this)
         JankyPlaceholder.init(this)
         TrailGUI.init(this)
         CrystalPotions.init(this)

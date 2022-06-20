@@ -26,6 +26,10 @@ commands:
       - crystal
       - crystalshop
       - cshop
+      - ranks
+      - vip
+      - buy
+      - donate
   trails:
     description: Open trails menu
     permission: ecomc.trails

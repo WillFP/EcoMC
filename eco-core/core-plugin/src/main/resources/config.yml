@@ -31,6 +31,115 @@ bosses:
       row: 2
 
 crystalshop:
+  ranks:
+    - display: ecoitems:iron_rank
+      command: lp user %player% parent set iron
+      singleUse: true
+      price: "%ecomc_iron_price%"
+      not-if:
+        placeholder: '%ecomc_iron_price%'
+        equals: 0
+      gui:
+        column: 3
+        row: 1
+      id: iron_rank
+    - display: ecoitems:cobalt_rank
+      command: lp user %player% parent set cobalt
+      singleUse: true
+      price: "%ecomc_cobalt_price%"
+      not-if:
+        placeholder: '%ecomc_cobalt_price%'
+        equals: 0
+      gui:
+        column: 4
+        row: 1
+      id: cobalt_rank
+    - display: ecoitems:diamond_rank
+      command: lp user %player% parent set diamond
+      singleUse: true
+      price: "%ecomc_diamond_price%"
+      not-if:
+        placeholder: '%ecomc_diamond_price%'
+        equals: 0
+      gui:
+        column: 5
+        row: 1
+      id: diamond_rank
+    - display: ecoitems:netherite_rank
+      command: lp user %player% parent set netherite
+      singleUse: true
+      price: "%ecomc_netherite_price%"
+      not-if:
+        placeholder: '%ecomc_netherite_price%'
+        equals: 0
+      gui:
+        column: 6
+        row: 1
+      id: netherite_rank
+    - display: ecoitems:manyullyn_rank
+      command: lp user %player% parent set manyullyn
+      singleUse: true
+      price: "%ecomc_manyullyn_price%"
+      not-if:
+        placeholder: '%ecomc_manyullyn_price%'
+        equals: 0
+      gui:
+        column: 7
+        row: 1
+      id: manyullyn_rank
+
+  boosters:
+    - display: player_head name:"&d+25% Global Stat Boost" texture:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYTM0YjI3YmZjYzhmOWI5NjQ1OTRiNjE4YjExNDZhZjY5ZGUyNzhjZTVlMmUzMDEyY2I0NzFhOWEzY2YzODcxIn19fQ==
+      command: boosters give %player% stat_boost
+      price: 575
+      gui:
+        column: 3
+        row: 1
+      id: stat_boost_booster
+
+    - display: player_head name:"&d2x Sell Multiplier" texture:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYjBhN2I5NGM0ZTU4MWI2OTkxNTlkNDg4NDZlYzA5MTM5MjUwNjIzN2M4OWE5N2M5MzI0OGEwZDhhYmM5MTZkNSJ9fX0=
+      command: boosters give %player% 2sell_multiplier
+      price: 575
+      gui:
+        column: 5
+        row: 1
+      id: 2sell_multiplier_booster
+
+    - display: player_head name:"&d+2x Skill XP Multiplier" texture:eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODkyNmMxZjJjM2MxNGQwODZjNDBjZmMyMzVmZTkzODY5NGY0YTUxMDY3YWRhNDcyNmI0ODZlYTFjODdiMDNlMiJ9fX0=
+      command: boosters give %player% skill_xp
+      singleUse: true
+      price: 575
+      gui:
+        column: 7
+        row: 1
+      id: skill_xp_booster
+
+  keys:
+    - display: ecocrates:alumite_key
+      item: ecocrates:alumite_key 1
+      price: 175
+      gui:
+        column: 5
+        row: 1
+      id: alumite_key_1
+
+    - display: ecocrates:alumite_key 2
+      item: ecocrates:alumite_key 2
+      price: 350
+      gui:
+        column: 5
+        row: 2
+      id: alumite_key_2
+
+    - display: Necocrates:alumite_key 5
+      item: ecocrates:alumite_key 5
+      singleUse: true
+      price: 700
+      gui:
+        column: 5
+        row: 3
+      id: alumite_key_5
+
   trackers:
     - item: stattrackers:arrows_shot
       display: stattrackers:arrows_shot

@@ -1,5 +1,6 @@
 package com.willfp.ecomc.crystals
 
+import com.willfp.eco.core.EcoPlugin
 import com.willfp.eco.core.config.interfaces.Config
 import com.willfp.eco.core.config.updating.ConfigUpdater
 import com.willfp.eco.core.data.keys.PersistentDataKey
@@ -14,6 +15,7 @@ import com.willfp.eco.core.gui.slot.FillerMask
 import com.willfp.eco.core.gui.slot.MaskItems
 import com.willfp.eco.core.gui.slot.Slot
 import com.willfp.eco.core.integrations.placeholder.PlaceholderManager
+import com.willfp.eco.core.items.CustomItem
 import com.willfp.eco.core.items.Items
 import com.willfp.eco.core.items.TestableItem
 import com.willfp.eco.core.items.builder.ItemStackBuilder
@@ -229,7 +231,7 @@ object CrystalShop {
     @JvmStatic
     @ConfigUpdater
     fun initCrystalShop() {
-        mainMenu = menu(3) {
+        mainMenu = menu(4) {
             setMask(
                 FillerMask(
                     MaskItems(
@@ -239,13 +241,14 @@ object CrystalShop {
                     ),
                     "221111122",
                     "333333333",
+                    "333333333",
                     "221101122"
                 )
             )
 
             setTitle("Crystal Shop ❖")
 
-            setSlot(3, 5, slot(
+            setSlot(4, 5, slot(
                 ItemStackBuilder(Material.DIAMOND)
                     .setDisplayName("&fWhat are crystals and geodes?")
                     .build()
@@ -275,7 +278,36 @@ object CrystalShop {
             })
 
             setSlot(
-                2, 2, shopSlot(
+                2, 3, shopSlot(
+                    SkullBuilder()
+                        .setSkullTexture("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTVlZmU4NDEzM2Q4YjRjNDhiMWE4YzViNTc3ZDY5M2JkM2MwZDc2ZDMzMjE0YTRjZWYxNzIxNTcyYWI5ZjIyNCJ9fX0=")
+                        .setDisplayName("&bRanks")
+                        .build(),
+                    shopMenu(3, "ranks", "Ranks")
+                )
+            )
+
+            setSlot(
+                2, 5, shopSlot(
+                    SkullBuilder()
+                        .setSkullTexture("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODkyNmMxZjJjM2MxNGQwODZjNDBjZmMyMzVmZTkzODY5NGY0YTUxMDY3YWRhNDcyNmI0ODZlYTFjODdiMDNlMiJ9fX0=")
+                        .setDisplayName("&bBoosters")
+                        .build(),
+                    shopMenu(3, "boosters", "Boosters")
+                )
+            )
+
+            setSlot(
+                2, 7, shopSlot(
+                    ItemStackBuilder(Material.ENDER_CHEST)
+                        .setDisplayName("&bCrate Keys")
+                        .build(),
+                    shopMenu(5, "keys", "Crate Keys")
+                )
+            )
+
+            setSlot(
+                3, 2, shopSlot(
                     ItemStackBuilder(Material.NAME_TAG)
                         .setDisplayName("&bTags")
                         .build(),
@@ -284,7 +316,7 @@ object CrystalShop {
             )
 
             setSlot(
-                2, 3, shopSlot(
+                3, 3, shopSlot(
                     ItemStackBuilder(Material.COMPASS)
                         .setDisplayName("&bStat Trackers")
                         .build(),
@@ -293,7 +325,7 @@ object CrystalShop {
             )
 
             setSlot(
-                2, 9, shopSlot(
+                3, 9, shopSlot(
                     ItemStackBuilder(Material.AMETHYST_SHARD)
                         .setDisplayName("&bStats")
                         .build(),
@@ -302,7 +334,7 @@ object CrystalShop {
             )
 
             setSlot(
-                2, 6, shopSlot(
+                3, 6, shopSlot(
                     ItemStackBuilder(Material.ENCHANTED_BOOK)
                         .setDisplayName("&bUpgrades")
                         .build(),
@@ -311,7 +343,7 @@ object CrystalShop {
             )
 
             setSlot(
-                2, 8, shopSlot(
+                3, 8, shopSlot(
                     ItemStackBuilder(Material.BLAZE_ROD)
                         .setDisplayName("&bSellwands")
                         .build(),
@@ -320,7 +352,7 @@ object CrystalShop {
             )
 
             setSlot(
-                2, 1, shopSlot(
+                3, 1, shopSlot(
                     ItemStackBuilder(Material.NETHER_STAR)
                         .setDisplayName("&bTrails")
                         .build(),
@@ -329,7 +361,7 @@ object CrystalShop {
             )
 
             setSlot(
-                2, 4, slot(
+                3, 4, slot(
                     SkullBuilder()
                         .setSkullTexture("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvMTFjNTFiOTQ2Y2I0ODRiOWM3NmIyYzViZjVlYWIwYzc0YzljZWQ5NWYzNWFhODFlNjk5YmQ1ZDliNTdlMjBmIn19fQ==")
                         .setDisplayName("&bHeads")
@@ -344,7 +376,7 @@ object CrystalShop {
             )
 
             setSlot(
-                2, 7, shopSlot(
+                3, 7, shopSlot(
                     ItemStackBuilder(Material.ENCHANTING_TABLE)
                         .setDisplayName("&bSkill Upgrades")
                         .build(),
@@ -353,7 +385,7 @@ object CrystalShop {
             )
 
             setSlot(
-                2, 5, shopSlot(
+                3, 5, shopSlot(
                     ItemStackBuilder(Material.POTION)
                         .setDisplayName("&bCrystal Potions ❖")
                         .addItemFlag(ItemFlag.HIDE_POTION_EFFECTS)
