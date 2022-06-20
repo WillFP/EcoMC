@@ -20,8 +20,11 @@ import com.willfp.eco.core.items.Items
 import com.willfp.eco.core.items.TestableItem
 import com.willfp.eco.core.items.builder.ItemStackBuilder
 import com.willfp.eco.core.items.builder.SkullBuilder
+import com.willfp.eco.util.StringUtils
 import com.willfp.eco.util.formatEco
+import com.willfp.eco.util.savedDisplayName
 import com.willfp.ecomc.EcoMCPlugin
+import net.kyori.adventure.text.Component
 import org.bukkit.Bukkit
 import org.bukkit.Color
 import org.bukkit.Material
@@ -176,6 +179,25 @@ private fun buySlot(config: Config, isSingleUse: Boolean = false): Slot {
                     EcoMCPlugin.instance.langYml.getMessage("bought-from-crystal")
                         .replace("%item%", display.item.fast().displayName)
                 )
+                Bukkit.getServer().broadcast(Component.empty())
+                Bukkit.getServer().broadcast(
+                    StringUtils.toComponent(
+                        EcoMCPlugin.instance.langYml.getMessage("purchase-crystals", StringUtils.FormatOption.WITHOUT_PLACEHOLDERS)
+                            .replace("%player%", player.savedDisplayName)
+                            .replace("%package%", display.item.fast().displayName)
+                    )
+                )
+                Bukkit.getServer().broadcast(Component.empty())
+
+                for (p in Bukkit.getOnlinePlayers()) {
+                    p.playSound(
+                        p.location,
+                        Sound.ENTITY_PLAYER_LEVELUP,
+                        2f,
+                        1.5f
+                    )
+                }
+
             } else {
                 player.sendMessage(EcoMCPlugin.instance.langYml.getMessage("buy-crystals"))
                 player.playSound(
@@ -230,7 +252,7 @@ private lateinit var mainMenu: Menu
 object CrystalShop {
     @JvmStatic
     @ConfigUpdater
-    fun initCrystalShop() {
+    fun initCrystalShop(plugin: EcoPlugin) {
         mainMenu = menu(4) {
             setMask(
                 FillerMask(
@@ -275,10 +297,15 @@ object CrystalShop {
 
                     item
                 }
+
+                onLeftClick { event, _ ->
+                    val player = event.whoClicked as Player
+                    player.sendMessage(plugin.langYml.getMessage("buy-crystals-shop"))
+                }
             })
 
             setSlot(
-                2, 3, shopSlot(
+                2, 4, shopSlot(
                     SkullBuilder()
                         .setSkullTexture("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNTVlZmU4NDEzM2Q4YjRjNDhiMWE4YzViNTc3ZDY5M2JkM2MwZDc2ZDMzMjE0YTRjZWYxNzIxNTcyYWI5ZjIyNCJ9fX0=")
                         .setDisplayName("&bRanks")
@@ -293,16 +320,16 @@ object CrystalShop {
                         .setSkullTexture("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODkyNmMxZjJjM2MxNGQwODZjNDBjZmMyMzVmZTkzODY5NGY0YTUxMDY3YWRhNDcyNmI0ODZlYTFjODdiMDNlMiJ9fX0=")
                         .setDisplayName("&bBoosters")
                         .build(),
-                    shopMenu(3, "boosters", "Boosters")
+                    shopMenu(2, "boosters", "Boosters")
                 )
             )
 
             setSlot(
-                2, 7, shopSlot(
+                2, 6, shopSlot(
                     ItemStackBuilder(Material.ENDER_CHEST)
                         .setDisplayName("&bCrate Keys")
                         .build(),
-                    shopMenu(5, "keys", "Crate Keys")
+                    shopMenu(4, "keys", "Crate Keys")
                 )
             )
 

@@ -115,7 +115,7 @@ crystalshop:
       id: skill_xp_booster
 
   keys:
-    - display: ecocrates:alumite_key
+    - display: tripwire_hook unbreaking:1 hide_enchants name:"&f1 &dAlumite Key"
       item: ecocrates:alumite_key 1
       price: 175
       gui:
@@ -123,7 +123,7 @@ crystalshop:
         row: 1
       id: alumite_key_1
 
-    - display: ecocrates:alumite_key 2
+    - display: tripwire_hook 2 unbreaking:1 hide_enchants name:"&f2 &dAlumite Keys"
       item: ecocrates:alumite_key 2
       price: 350
       gui:
@@ -131,7 +131,7 @@ crystalshop:
         row: 2
       id: alumite_key_2
 
-    - display: Necocrates:alumite_key 5
+    - display: tripwire_hook 5 unbreaking:1 hide_enchants name:"&f5 &dAlumite Keys"
       item: ecocrates:alumite_key 5
       singleUse: true
       price: 700
