@@ -179,7 +179,6 @@ private fun buySlot(config: Config, isSingleUse: Boolean = false): Slot {
                     EcoMCPlugin.instance.langYml.getMessage("bought-from-crystal")
                         .replace("%item%", display.item.fast().displayName)
                 )
-                Bukkit.getServer().broadcast(Component.empty())
                 Bukkit.getServer().broadcast(
                     StringUtils.toComponent(
                         EcoMCPlugin.instance.langYml.getMessage("purchase-crystals", StringUtils.FormatOption.WITHOUT_PLACEHOLDERS)
@@ -187,7 +186,6 @@ private fun buySlot(config: Config, isSingleUse: Boolean = false): Slot {
                             .replace("%package%", display.item.fast().displayName)
                     )
                 )
-                Bukkit.getServer().broadcast(Component.empty())
 
                 for (p in Bukkit.getOnlinePlayers()) {
                     p.playSound(
