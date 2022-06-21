@@ -354,39 +354,6 @@ crystalshop:
         column: 7
         row: 2
       id: trail_damage
-  upgrades:
-    - item: enchanted_book crystal_finder:1
-      display: enchanted_book crystal_finder:1
-      singleUse: false
-      price: 105
-      gui:
-        column: 2
-        row: 1
-      id: crystal_finder
-    - item: talismans:gemology_1
-      display: talismans:gemology_1
-      singleUse: false
-      price: 205
-      gui:
-        column: 4
-        row: 1
-      id: gemology_1
-    - item: reforges:stone_sparkly
-      display: reforges:stone_sparkly
-      singleUse: false
-      price: 95
-      gui:
-        column: 6
-        row: 1
-      id: sparkly
-    - item: enchanted_book gleam:1
-      display: enchanted_book gleam:1
-      singleUse: false
-      price: 185
-      gui:
-        column: 8
-        row: 1
-      id: gleam
   tags:
     - display: name_tag name:"&9ツ &fTag"
       command: lp user %player% permission set deluxetags.tag.1 true

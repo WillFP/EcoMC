@@ -309,16 +309,6 @@ object CrystalShop {
             )
 
             setSlot(
-                2, 5, shopSlot(
-                    SkullBuilder()
-                        .setSkullTexture("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODkyNmMxZjJjM2MxNGQwODZjNDBjZmMyMzVmZTkzODY5NGY0YTUxMDY3YWRhNDcyNmI0ODZlYTFjODdiMDNlMiJ9fX0=")
-                        .setDisplayName("&bBoosters")
-                        .build(),
-                    shopMenu(2, "boosters", "Boosters")
-                )
-            )
-
-            setSlot(
                 2, 6, shopSlot(
                     ItemStackBuilder(Material.ENDER_CHEST)
                         .setDisplayName("&bCrate Keys")
@@ -356,10 +346,11 @@ object CrystalShop {
 
             setSlot(
                 3, 6, shopSlot(
-                    ItemStackBuilder(Material.ENCHANTED_BOOK)
-                        .setDisplayName("&bUpgrades")
+                    SkullBuilder()
+                        .setSkullTexture("eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODkyNmMxZjJjM2MxNGQwODZjNDBjZmMyMzVmZTkzODY5NGY0YTUxMDY3YWRhNDcyNmI0ODZlYTFjODdiMDNlMiJ9fX0=")
+                        .setDisplayName("&bBoosters")
                         .build(),
-                    shopMenu(2, "upgrades", "Upgrades")
+                    shopMenu(2, "boosters", "Boosters")
                 )
             )
 
