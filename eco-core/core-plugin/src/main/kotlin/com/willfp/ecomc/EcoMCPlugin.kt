@@ -7,15 +7,11 @@ import com.willfp.eco.core.integrations.placeholder.PlaceholderManager
 import com.willfp.eco.core.placeholder.PlayerPlaceholder
 import com.willfp.eco.util.toNiceString
 import com.willfp.ecomc.crystals.CommandCrystals
-import com.willfp.ecomc.crystals.CommandGeodes
 import com.willfp.ecomc.crystals.CrystalEnchantType
-import com.willfp.ecomc.crystals.CrystalLuck
 import com.willfp.ecomc.crystals.CrystalOnSkillLevelUp
 import com.willfp.ecomc.crystals.CrystalPotionHandler
 import com.willfp.ecomc.crystals.CrystalPotions
-import com.willfp.ecomc.crystals.Geodes
 import com.willfp.ecomc.crystals.HDBCrystalPriceHandler
-import com.willfp.ecomc.crystals.PreventGeodePlace
 import com.willfp.ecomc.crystals.crystals
 import com.willfp.ecomc.trails.CommandTrails
 import com.willfp.ecomc.trails.TrailGUI
@@ -25,14 +21,12 @@ import org.bukkit.event.Listener
 
 class EcoMCPlugin : EcoPlugin() {
     override fun handleEnable() {
-        CrystalLuck() // Init crystal luck
         BossFortune() // Init boss fortune
         CrystalEnchantType() // Init enchant type
         RankCostPlaceholder.init(this)
         JankyPlaceholder.init(this)
         TrailGUI.init(this)
         CrystalPotions.init(this)
-        Geodes.init(this)
         LevelPlaceholder.register(this)
         SchmoneyPlaceholder.init()
         AntigriefManager.register(AntigriefPVPToggle)
@@ -51,7 +45,6 @@ class EcoMCPlugin : EcoPlugin() {
         return listOf(
             CommandCrystals(this),
             SecretEcoMCAdminCommand(this),
-            CommandGeodes(this),
             CommandTrails(this),
             CommandPvptoggle(this),
             CommandBosses(this)
@@ -62,7 +55,6 @@ class EcoMCPlugin : EcoPlugin() {
         SchmoneyPlaceholder.createTheRunnable(this)
         CrystalPotionHandler.initRunnable(this)
         TPSFixer.pollForTPS(this)
-        this.scheduler.runTimer(1200, 1200) { CrystalLuck.resetLimiter() }
 
         var tick = 0
         this.scheduler.runAsyncTimer(1, 1) {
@@ -87,7 +79,6 @@ class EcoMCPlugin : EcoPlugin() {
             TPSFixer(),
             SpawnProtection(this),
             Baninator(),
-            PreventGeodePlace(),
             CrystalOnSkillLevelUp(),
             CrystalPotionHandler(this),
             BuyCrystalPotionsSmh(this),

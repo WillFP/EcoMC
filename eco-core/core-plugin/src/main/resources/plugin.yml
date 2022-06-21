@@ -42,12 +42,6 @@ commands:
     aliases:
       - togglepvp
       - pvp
-  geodes:
-    description: Crack open geodes
-    permission: ecomc.geodes
-    aliases:
-      - geode
-      - geodes
 
 permissions:
   ecomc.secretecomcadminpermission:
@@ -59,14 +53,11 @@ permissions:
       ecomc.crystals.get: true
       ecomc.crystals.set: true
       ecomc.crystals.shop: true
-      ecomc.crystals.geodes: true
       ecomc.crystals.expirepotion: true
     default: op
   ecomc.bosses:
     default: true
   ecomc.crystals:
-    default: true
-  ecomc.geodes:
     default: true
   ecomc.broadcastpurchase:
     default: false
@@ -83,6 +74,4 @@ permissions:
   ecomc.crystals.expirepotion:
     default: op
   ecomc.crystals.shop:
-    default: true
-  ecomc.crystals.geodes:
     default: true

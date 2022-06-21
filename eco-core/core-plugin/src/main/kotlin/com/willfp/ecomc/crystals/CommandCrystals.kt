@@ -3,8 +3,6 @@ package com.willfp.ecomc.crystals
 import com.willfp.eco.core.EcoPlugin
 import com.willfp.eco.core.command.impl.PluginCommand
 import com.willfp.eco.core.command.impl.Subcommand
-import com.willfp.eco.core.drops.DropQueue
-import com.willfp.eco.core.items.Items
 import com.willfp.eco.util.StringUtils
 import com.willfp.eco.util.savedDisplayName
 import org.bukkit.Bukkit
@@ -31,20 +29,6 @@ class CommandCrystals(
     override fun onExecute(player: CommandSender, args: List<String>) {
         player as Player
         player.openCrystalShop()
-    }
-}
-
-class CommandGeodes(
-    plugin: EcoPlugin
-) : PluginCommand(
-    plugin,
-    "geodes",
-    "ecomc.geodes",
-    true
-) {
-    override fun onExecute(player: CommandSender, args: List<String>) {
-        player as Player
-        player.openGeodesMenu()
     }
 }
 
@@ -82,29 +66,12 @@ private class CommandGive(
             return
         }
 
-        if (args.getOrNull(2) == "geode") {
-            val onlinePlayer = Bukkit.getPlayer(player.uniqueId) ?: return
-            repeat(amount) {
-                DropQueue(onlinePlayer)
-                    .addItem(Items.lookup("ecomc:geode_1").item)
-                    .addItem(Items.lookup("ecomc:geode_2").item)
-                    .addItem(Items.lookup("ecomc:geode_3").item)
-                    .forceTelekinesis()
-                    .push()
-            }
-            sender.sendMessage(
-                plugin.langYml.getMessage("gave-crystals", StringUtils.FormatOption.WITHOUT_PLACEHOLDERS)
-                    .replace("%player%", player.savedDisplayName)
-                    .replace("%amount%", amount.toString())
-            )
-        } else {
-            player.crystals += amount
-            sender.sendMessage(
-                plugin.langYml.getMessage("gave-crystals", StringUtils.FormatOption.WITHOUT_PLACEHOLDERS)
-                    .replace("%player%", player.savedDisplayName)
-                    .replace("%amount%", amount.toString())
-            )
-        }
+        player.crystals += amount
+        sender.sendMessage(
+            plugin.langYml.getMessage("gave-crystals", StringUtils.FormatOption.WITHOUT_PLACEHOLDERS)
+                .replace("%player%", player.savedDisplayName)
+                .replace("%amount%", amount.toString())
+        )
     }
 
     override fun tabComplete(sender: CommandSender, args: List<String>): List<String> {
@@ -126,14 +93,6 @@ private class CommandGive(
             StringUtil.copyPartialMatches(
                 args[1],
                 arrayOf(1, 2, 3, 4, 5).map { it.toString() },
-                completions
-            )
-        }
-
-        if (args.size == 3) {
-            StringUtil.copyPartialMatches(
-                args[2],
-                listOf("geode"),
                 completions
             )
         }

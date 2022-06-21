@@ -15,8 +15,6 @@ class BuyCrystalPotionsSmh(
         "/shop",
         "/shopgui",
         "/guishop",
-        "/geode",
-        "/geodes",
         "/hdb",
         "/heads",
         "/headdb"
