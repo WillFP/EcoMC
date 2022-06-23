@@ -85,7 +85,8 @@ class EcoMCPlugin : EcoPlugin() {
             HDBCrystalPriceHandler(this),
             MovementListener(),
             NoColonCommands(),
-            PVPListener(this)
+            PVPListener(this),
+            RankSellMultiplier()
         )
     }
 

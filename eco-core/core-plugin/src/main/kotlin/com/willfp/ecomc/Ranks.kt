@@ -2,59 +2,65 @@ package com.willfp.ecomc
 
 import com.willfp.eco.core.EcoPlugin
 import com.willfp.eco.core.integrations.placeholder.PlaceholderManager
+import com.willfp.eco.core.integrations.shop.ShopSellEvent
 import com.willfp.eco.core.placeholder.PlayerPlaceholder
 import org.bukkit.entity.Player
+import org.bukkit.event.EventHandler
+import org.bukkit.event.Listener
 
-object RankCostPlaceholder {
-    private val rankCosts = arrayOf(
-        600,
-        1325,
-        2750,
-        4500,
-        6750
-    )
+enum class Rank(
+    val price: Int
+) {
+    DEFAULT(0),
+    IRON(600),
+    COBALT(1325),
+    DIAMOND(2750),
+    NETHERITE(4500),
+    MANYULLYN(6750)
+}
 
-    private val ranks = arrayOf(
-        "iron",
-        "cobalt",
-        "diamond",
-        "netherite",
-        "manyullyn"
-    )
-
-    private fun Player.getRank(): String? {
+val Player.rank: Rank
+    get() {
         if (this.hasPermission("ecomc.rank.manyullyn")) {
-            return "manyullyn"
+            return Rank.MANYULLYN
         }
         if (this.hasPermission("ecomc.rank.netherite")) {
-            return "netherite"
+            return Rank.NETHERITE
         }
         if (this.hasPermission("ecomc.rank.diamond")) {
-            return "diamond"
+            return Rank.DIAMOND
         }
         if (this.hasPermission("ecomc.rank.cobalt")) {
-            return "cobalt"
+            return Rank.COBALT
         }
         if (this.hasPermission("ecomc.rank.iron")) {
-            return "iron"
+            return Rank.IRON
         }
-        return null
+        return Rank.DEFAULT
     }
 
+class RankSellMultiplier : Listener {
+    @EventHandler
+    fun onSell(event: ShopSellEvent) {
+        val player = event.player
+        if (player.rank == Rank.MANYULLYN) {
+            event.price *= 1.5
+        }
+    }
+}
+
+object RankCostPlaceholder {
     fun init(plugin: EcoPlugin) {
-        for (rank in ranks) {
+        for (rank in Rank.values()) {
             PlaceholderManager.registerPlaceholder(
                 PlayerPlaceholder(
                     plugin,
                     "${rank}_price",
                 ) {
-                    val currentRank = it.getRank()
-                    var priceDiscount = 0
-                    if (currentRank != null) {
-                        priceDiscount = rankCosts[ranks.indexOf(currentRank)]
-                    }
+                    val currentRank = it.rank
+                    val priceDiscount = currentRank.price
 
-                    val price = rankCosts[ranks.indexOf(rank)] - priceDiscount
+                    val price = rank.price - priceDiscount
                     if (price <= 0) {
                         "0"
                     } else {
