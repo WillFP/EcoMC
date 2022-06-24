@@ -160,7 +160,11 @@ private fun buySlot(config: Config, isSingleUse: Boolean = false): Slot {
                 }
             }
 
-            if (player.crystals >= price && price > 0) {
+            if (price == 0) {
+                return@onLeftClick
+            }
+
+            if (player.crystals >= price) {
                 player.crystals -= price
 
                 if (key != null) {
@@ -216,10 +220,10 @@ private fun buySlot(config: Config, isSingleUse: Boolean = false): Slot {
                 ""
             )
 
-            if (notifPlaceholder != null && PlaceholderManager.translatePlaceholders(
+            if ((notifPlaceholder != null && PlaceholderManager.translatePlaceholders(
                     notifPlaceholder,
                     player
-                ) == notifEquals
+                ) == notifEquals) || price == 0
             ) {
                 lore.add("&c&oYou cannot purchase")
                 lore.add("&c&othis item!")

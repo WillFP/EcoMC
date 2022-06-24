@@ -34,7 +34,6 @@ crystalshop:
   ranks:
     - display: ecoitems:iron_rank
       command: lp user %player% parent set iron
-      singleUse: true
       price: "%ecomc_iron_price%"
       not-if:
         placeholder: '%ecomc_iron_price%'
@@ -45,7 +44,6 @@ crystalshop:
       id: iron_rank
     - display: ecoitems:cobalt_rank
       command: lp user %player% parent set cobalt
-      singleUse: true
       price: "%ecomc_cobalt_price%"
       not-if:
         placeholder: '%ecomc_cobalt_price%'
@@ -56,7 +54,6 @@ crystalshop:
       id: cobalt_rank
     - display: ecoitems:diamond_rank
       command: lp user %player% parent set diamond
-      singleUse: true
       price: "%ecomc_diamond_price%"
       not-if:
         placeholder: '%ecomc_diamond_price%'
@@ -67,7 +64,6 @@ crystalshop:
       id: diamond_rank
     - display: ecoitems:netherite_rank
       command: lp user %player% parent set netherite
-      singleUse: true
       price: "%ecomc_netherite_price%"
       not-if:
         placeholder: '%ecomc_netherite_price%'
@@ -78,7 +74,6 @@ crystalshop:
       id: netherite_rank
     - display: ecoitems:manyullyn_rank
       command: lp user %player% parent set manyullyn
-      singleUse: true
       price: "%ecomc_manyullyn_price%"
       not-if:
         placeholder: '%ecomc_manyullyn_price%'
