@@ -55,7 +55,7 @@ object RankCostPlaceholder {
             PlaceholderManager.registerPlaceholder(
                 PlayerPlaceholder(
                     plugin,
-                    "${rank}_price",
+                    "${rank.name.lowercase()}_price",
                 ) {
                     val currentRank = it.rank
                     val priceDiscount = currentRank.price

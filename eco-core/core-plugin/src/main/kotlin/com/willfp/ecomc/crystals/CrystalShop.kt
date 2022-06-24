@@ -160,7 +160,7 @@ private fun buySlot(config: Config, isSingleUse: Boolean = false): Slot {
                 }
             }
 
-            if (player.crystals >= price) {
+            if (player.crystals >= price && price > 0) {
                 player.crystals -= price
 
                 if (key != null) {

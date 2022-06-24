@@ -75,3 +75,14 @@ permissions:
     default: op
   ecomc.crystals.shop:
     default: true
+
+  ecomc.rank.iron:
+    default: false
+  ecomc.rank.cobalt:
+    default: false
+  ecomc.rank.diamond:
+    default: false
+  ecomc.rank.netherite:
+    default: false
+  ecomc.rank.manyullyn:
+    default: false
